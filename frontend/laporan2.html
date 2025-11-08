@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Kebersihan - Si-Mohan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 20px; 
+            background-color: #f8f9fa; 
+        }
+        .header { 
+            text-align: center; 
+            margin-bottom: 20px; 
+            border-bottom: 2px solid #2c3e50; 
+            padding-bottom: 20px; 
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .filter-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            font-size: 14px; 
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .table th, .table td { 
+            border: 1px solid #dee2e6; 
+            padding: 12px; 
+            text-align: center; 
+            vertical-align: middle;
+        }
+        .table th { 
+            background-color: #2c3e50; 
+            color: white; 
+            font-weight: 600;
+            border-bottom: 2px solid #34495e;
+        }
+        .table td { 
+            background-color: white; 
+        }
+        .check-yes { color: #28a745; font-weight: bold; font-size: 16px; }
+        .check-no { color: #dc3545; font-weight: bold; font-size: 16px; }
+        .check-pending { color: #ffc107; font-weight: bold; font-size: 16px; }
+        .room-badge { background-color: #3498db; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+        .date-badge { background-color: #6c757d; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+        
+        /* Style tambahan untuk improvement */
+        .room-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            color: white !important;
+            font-weight: bold !important;
+        }
+        .data-highlight {
+            background-color: #fff3cd !important;
+            font-weight: 600;
+        }
+        .checked-item { color: #28a745; font-weight: bold; }
+        .pending-item { color: #ffc107; font-weight: bold; }
+        .unchecked-item { color: #dc3545; font-weight: bold; }
+        
+        @media print {
+            body { margin: 0; background: white; }
+            .no-print { display: none !important; }
+            .table { font-size: 12px; box-shadow: none; }
+            .filter-section { display: none; }
+            .header { box-shadow: none; border: 1px solid #ddd; }
+        }
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h4 class="mb-1">MAHKAMAH AGUNG REPUBLIK INDONESIA</h4>
+            <h5 class="mb-1">DIREKTORAT JENDERAL BADAN PERADILAN AGAMA</h5>
+            <h5 class="mb-1">PENGADILAN TINGGI AGAMA MAKASSAR</h5>
+            <h5 class="mb-3">PENGADILAN AGAMA TAKALAR</h5>
+            <p class="mb-1">Jl. Diponegoro No. 5, Kel. Bajeng, Kec. Pattallassang, Kab. Takalar Sulawesi Selatan 92211</p>
+            <p class="mb-0">https://pa-takalar.go.id/ | patakalar307470@gmail.com | Phone/Fax: (0418)21022</p>
+        </div>
+
+        <h4 class="text-center mb-4">LAPORAN MONITORING KEBERSIHAN</h4>
+        
+        <!-- Filter Section dengan Dropdown Ruangan -->
+        <div class="filter-section">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="roomSelect" class="form-label"><strong><i class="fas fa-door-open"></i> Pilih Ruangan:</strong></label>
+                        <select class="form-select" id="roomSelect">
+                            <option value="">Semua Ruangan</option>
+                            <!-- Options akan diisi oleh JavaScript -->
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label"><strong><i class="fas fa-calendar"></i> Tanggal Laporan:</strong></label>
+                        <div>
+                            <span id="reportDate" class="date-badge">-</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label"><strong><i class="fas fa-info-circle"></i> Status:</strong></label>
+                        <div>
+                            <span id="reportStatus" class="badge bg-info">Memuat...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button class="btn btn-primary me-2 no-print" onclick="window.print()">
+                        <i class="fas fa-print"></i> Print Laporan
+                    </button>
+                    <button class="btn btn-success me-2 no-print" onclick="refreshData()">
+                        <i class="fas fa-sync"></i> Refresh Data
+                    </button>
+                    <button class="btn btn-warning no-print" onclick="showHelp()">
+                        <i class="fas fa-question-circle"></i> Bantuan
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Ruangan yang Dipilih -->
+        <div id="roomInfo" class="alert alert-info mb-4" style="display: none;">
+            <i class="fas fa-door-open me-2"></i>
+            <strong>Ruangan: </strong><span id="selectedRoomName">-</span>
+            | <strong>Total Data: </strong><span id="totalDataCount">0</span> records
+            | <strong>Update Terakhir: </strong><span id="lastUpdateTime">-</span>
+        </div>
+
+        <!-- Table -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Petugas</th>
+                        <th>Ruangan</th>
+                        <th>Waktu</th>
+                        <th>Lantai</th>
+                        <th>Kaca</th>
+                        <th>Pintu</th>
+                        <th>Lawa-lawa</th>
+                        <th>Lubang Angin</th>
+                        <th>Kusen</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody id="reportData">
+                    <tr>
+                        <td colspan="11" class="text-center py-4">
+                            <div class="loading-spinner"></div>
+                            <p class="mt-2">Memuat data laporan...</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Legend -->
+        <div class="mt-4 p-3 bg-light rounded no-print">
+            <h6><i class="fas fa-info-circle me-2"></i>Keterangan Simbol:</h6>
+            <div class="row">
+                <div class="col-md-4">
+                    <p class="mb-1"><span class="check-yes">✓</span> = Sudah dibersihkan (Checklist ✓)</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-1"><span class="check-pending">-</span> = Belum selesai dibersihkan</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-1"><span class="check-no">✗</span> = Belum dicek oleh pengawas</p>
+                </div>
+            </div>
+            <p class="mb-0 mt-2"><strong>Status Keterangan:</strong> B = Baik, K = Kurang</p>
+        </div>
+
+        <!-- Signature -->
+        <div class="signature mt-5 text-center">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="border-top pt-3">
+                        <p class="mb-1">Dibuat Oleh:</p>
+                        <p class="fw-bold mb-1">Dicky Adji Nugraha</p>
+                        <p class="mb-0">Teknisi Sarana dan Prasana</p>
+                        <p class="text-muted small mt-2">Laporan di-generate otomatis oleh Sistem Monitoring Kebersihan (Si-Mohan)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Bantuan -->
+    <div class="modal fade" id="helpModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-question-circle me-2"></i>Bantuan Laporan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Cara menggunakan laporan:</h6>
+                    <ul>
+                        <li><strong>Pilih ruangan</strong> tertentu dari dropdown untuk melihat data spesifik ruangan tersebut</li>
+                        <li>Gunakan <strong>"Semua Ruangan"</strong> untuk melihat semua data dari seluruh ruangan</li>
+                        <li>Data akan <strong>terupdate otomatis</strong> setiap 30 detik</li>
+                        <li>Simbol <span class="checked-item">✓</span> berarti sudah dibersihkan dan dicek</li>
+                        <li>Simbol <span class="pending-item">-</span> berarti belum selesai dibersihkan</li>
+                        <li>Simbol <span class="unchecked-item">✗</span> berarti belum dicek oleh pengawas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/config.js"></script>
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="js/auth.js"></script>
+    <script src="js/auth-check.js"></script> -->
+    <script>
+        // Variabel global
+        let allReportData = [];
+        let roomsList = [];
+        let lastUpdateTime = null;
+
+        // Fungsi konversi nilai checklist
+        function getCheckValue(val) {
+            if (val === null || val === undefined) {
+                return '<span class="check-no">✗</span>';
+            }
+            
+            if (typeof val === 'boolean') {
+                return val ? '<span class="check-yes">✓</span>' : '<span class="check-pending">-</span>';
+            }
+            
+            if (typeof val === 'number') {
+                return val === 1 ? '<span class="check-yes">✓</span>' : '<span class="check-pending">-</span>';
+            }
+            
+            if (typeof val === 'string') {
+                const cleanValue = val.toLowerCase().trim();
+                if (cleanValue === 'true' || cleanValue === '1' || cleanValue === 'yes' || cleanValue === 'y') {
+                    return '<span class="check-yes">✓</span>';
+                }
+                if (cleanValue === 'false' || cleanValue === '0' || cleanValue === 'no' || cleanValue === 'n') {
+                    return '<span class="check-pending">-</span>';
+                }
+            }
+            
+            return '<span class="check-no">✗</span>';
+        }
+
+        // Fungsi helper untuk mengekstrak ruangan dari log
+        function extractRoomsFromLog(log) {
+            if (!log.ruangan) return [];
+            
+            if (typeof log.ruangan === 'string') {
+                return [log.ruangan];
+            }
+            
+            if (Array.isArray(log.ruangan)) {
+                return log.ruangan.map(r => r.nama_ruangan);
+            }
+            
+            return [];
+        }
+
+        // Ambil parameter dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const roomParam = urlParams.get('room');
+        const dateParam = urlParams.get('date') || new Date().toISOString().split('T')[0];
+
+        // Tampilkan informasi dasar
+        document.getElementById('reportDate').textContent = formatDate(dateParam);
+
+        // Fungsi format tanggal
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('id-ID', options);
+        }
+
+        // Fungsi untuk memuat data laporan
+        async function loadReportData() {
+            try {
+                showLoadingState();
+                
+                const url = `${window.APP_CONFIG.API_BASE_URL}/api/rfid/logs?date=${dateParam}`;
+                console.log('📡 Fetching report data from:', url);
+                
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                
+                const data = await response.json();
+                console.log('✅ Report data received:', data);
+
+                if (data.success && data.data && data.data.length > 0) {
+                    allReportData = data.data;
+                    updateRoomsList(allReportData);
+                    populateRoomDropdown();
+                    
+                    // Set ruangan dari parameter URL jika ada
+                    if (roomParam) {
+                        document.getElementById('roomSelect').value = roomParam;
+                    }
+                    
+                    filterAndDisplayData();
+                    lastUpdateTime = new Date();
+                    updateLastUpdateTime();
+                    
+                } else {
+                    showNoDataMessage('Tidak ada data yang ditemukan untuk tanggal ini');
+                }
+            } catch (error) {
+                console.error('❌ Error loading report data:', error);
+                showErrorMessage('Gagal memuat data: ' + error.message);
+            }
+        }
+
+        // Update daftar ruangan
+        function updateRoomsList(data) {
+            const roomsSet = new Set();
+            
+            data.forEach(log => {
+                const rooms = extractRoomsFromLog(log);
+                rooms.forEach(room => {
+                    if (room && room !== 'Belum diassign') {
+                        roomsSet.add(room);
+                    }
+                });
+            });
+            
+            roomsList = Array.from(roomsSet).sort();
+            console.log('🏢 Daftar ruangan ditemukan:', roomsList);
+        }
+
+        // Isi dropdown ruangan
+        function populateRoomDropdown() {
+            const roomSelect = document.getElementById('roomSelect');
+            roomSelect.innerHTML = '<option value="">Semua Ruangan</option>';
+            
+            roomsList.forEach(room => {
+                const option = document.createElement('option');
+                option.value = room;
+                option.textContent = room;
+                roomSelect.appendChild(option);
+            });
+            
+            // Event listener untuk perubahan ruangan
+            roomSelect.addEventListener('change', filterAndDisplayData);
+        }
+
+        // Filter dan tampilkan data berdasarkan ruangan yang dipilih - VERSI DIPERBAIKI
+        function filterAndDisplayData() {
+            const selectedRoom = document.getElementById('roomSelect').value;
+            let filteredData = allReportData;
+            
+            if (selectedRoom) {
+                filteredData = allReportData.filter(log => {
+                    const roomsInLog = extractRoomsFromLog(log);
+                    return roomsInLog.includes(selectedRoom);
+                });
+            }
+            
+            displayDataInTable(filteredData, selectedRoom);
+        }
+
+        // Tampilkan data dalam tabel - VERSI DIPERBAIKI
+        function displayDataInTable(data, selectedRoom) {
+            const tbody = document.getElementById('reportData');
+            tbody.innerHTML = '';
+
+            // Update info ruangan
+            const roomInfo = document.getElementById('roomInfo');
+            const selectedRoomName = document.getElementById('selectedRoomName');
+            const totalDataCount = document.getElementById('totalDataCount');
+            
+            if (selectedRoom) {
+                roomInfo.style.display = 'block';
+                selectedRoomName.textContent = selectedRoom;
+                totalDataCount.textContent = data.length;
+                
+                // Update status berdasarkan data
+                if (data.length > 0) {
+                    const completedChecks = data.filter(log => 
+                        log.checklist_lantai !== null || 
+                        log.checklist_kaca_jendela !== null
+                    ).length;
+                    
+                    document.getElementById('reportStatus').textContent = 
+                        `Data Ditemukan (${completedChecks}/${data.length} sudah dicek)`;
+                    document.getElementById('reportStatus').className = 'badge bg-success';
+                } else {
+                    document.getElementById('reportStatus').textContent = 'Tidak Ada Data';
+                    document.getElementById('reportStatus').className = 'badge bg-warning';
+                }
+            } else {
+                roomInfo.style.display = 'block';
+                selectedRoomName.textContent = 'Semua Ruangan';
+                totalDataCount.textContent = data.length;
+                document.getElementById('reportStatus').textContent = 
+                    data.length > 0 ? `Semua Data (${data.length} records)` : 'Tidak Ada Data';
+                document.getElementById('reportStatus').className = data.length > 0 ? 
+                    'badge bg-success' : 'badge bg-warning';
+            }
+
+            if (data.length === 0) {
+                showNoDataMessage('Tidak ada data untuk ruangan dan tanggal yang dipilih');
+                return;
+            }
+
+            // Urutkan data berdasarkan waktu (terbaru pertama)
+            data.sort((a, b) => new Date(b.waktu) - new Date(a.waktu));
+
+            // Tampilkan data - HANYA RUANGAN YANG DIPILIH
+            data.forEach((log, index) => {
+                const row = document.createElement('tr');
+                
+                // Format ruangan untuk ditampilkan - HANYA YANG DIPILIH
+                let ruanganDisplay = selectedRoom || 'Tidak diketahui';
+                
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td><strong>${log.petugas_name || 'Tidak diketahui'}</strong></td>
+                    <td><span class="room-badge">${ruanganDisplay}</span></td>
+                    <td>${new Date(log.waktu).toLocaleString('id-ID')}</td>
+                    <td>${getCheckValue(log.checklist_lantai)}</td>
+                    <td>${getCheckValue(log.checklist_kaca_jendela)}</td>
+                    <td>${getCheckValue(log.checklist_pintu)}</td>
+                    <td>${getCheckValue(log.checklist_lawa_lawa)}</td>
+                    <td>${getCheckValue(log.checklist_lubang_angin)}</td>
+                    <td>${getCheckValue(log.checklist_kusen_jendela_dan_pintu)}</td>
+                    <td><strong>${log.checklist_keterangan || '-'}</strong></td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            console.log(`📊 Menampilkan ${data.length} records untuk ruangan: ${selectedRoom || 'Semua'}`);
+        }
+
+        // Fungsi utility untuk tampilan
+        function showLoadingState() {
+            document.getElementById('reportData').innerHTML = `
+                <tr>
+                    <td colspan="11" class="text-center py-4">
+                        <div class="loading-spinner"></div>
+                        <p class="mt-2">Memuat data laporan...</p>
+                    </td>
+                </tr>`;
+        }
+
+        function showNoDataMessage(message) {
+            document.getElementById('reportData').innerHTML = `
+                <tr>
+                    <td colspan="11" class="text-center py-4">
+                        <i class="fas fa-inbox fa-3x text-muted"></i>
+                        <p class="mt-2">${message}</p>
+                    </td>
+                </tr>`;
+        }
+
+        function showErrorMessage(message) {
+            document.getElementById('reportData').innerHTML = `
+                <tr>
+                    <td colspan="11" class="text-center py-4 text-danger">
+                        <i class="fas fa-exclamation-circle fa-2x"></i>
+                        <p class="mt-2">${message}</p>
+                        <button class="btn btn-sm btn-primary mt-2" onclick="loadReportData()">
+                            <i class="fas fa-redo"></i> Coba Lagi
+                        </button>
+                    </td>
+                </tr>`;
+        }
+
+        function updateLastUpdateTime() {
+            if (lastUpdateTime) {
+                document.getElementById('lastUpdateTime').textContent = 
+                    lastUpdateTime.toLocaleTimeString('id-ID');
+            }
+        }
+
+        function refreshData() {
+            loadReportData();
+        }
+
+        function showHelp() {
+            const helpModal = new bootstrap.Modal(document.getElementById('helpModal'));
+            helpModal.show();
+        }
+
+        // Auto-refresh setiap 30 detik
+        setInterval(() => {
+            if (!document.hidden) {
+                loadReportData();
+            }
+        }, 60000);
+
+        // Muat data saat halaman terbuka
+        document.addEventListener('DOMContentLoaded', loadReportData);
+    </script>
+</body>
+</html>

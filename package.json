@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "jspdf": "^3.0.3",
+    "qrcode": "^1.5.4"
+  }
+}

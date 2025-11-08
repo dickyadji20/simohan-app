@@ -1,0 +1,769 @@
+❌ Error saving report: error: null value in column "status_lama" of relation "laporan_kebersihan" violates not-null constraint
+    at C:\Users\Me\Desktop\project\backend\node_modules\pg\lib\client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\Me\Desktop\project\backend\routes\cleaning.js:175:28 {
+  length: 402,
+  severity: 'ERROR',
+  code: '23502',
+  detail: 'Failing row contains (53, Kesekretariatan, 2025-09-27, M. Nazar, SH, null, ok, cleaning-1758939980833-345076230.png, 2025-09-27 10:26:21.019408, belum_dicek, null, null, null, null, null, null, null).',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'laporan_kebersihan',
+  column: 'status_lama',
+  dataType: undefined,
+  constraint: undefined,
+  file: 'execMain.c',
+  line: '1988',
+  routine: 'ExecConstraints'
+}
+❌ Error saving report: error: null value in column "status_lama" of relation "laporan_kebersihan" violates not-null constraint
+    at C:\Users\Me\Desktop\project\backend\node_modules\pg\lib\client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\Me\Desktop\project\backend\routes\cleaning.js:175:28 {
+  length: 363,
+  severity: 'ERROR',
+  code: '23502',
+  detail: 'Failing row contains (54, Rg. Kesehatan, 2025-09-27, Sunardi, null, ok, null, 2025-09-27 11:01:21.061331, belum_dicek, null, null, null, null, null, null, null).',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'laporan_kebersihan',
+  column: 'status_lama',
+  dataType: undefined,
+  constraint: undefined,
+  file: 'execMain.c',
+  line: '1988',
+  routine: 'ExecConstraints'
+}
+❌ Error saving report: error: value too long for type character varying(100)
+    at C:\Users\Me\Desktop\project\backend\node_modules\pg\lib\client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\Me\Desktop\project\backend\routes\cleaning.js:216:24 {
+  length: 99,
+  severity: 'ERROR',
+  code: '22001',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'varchar.c',
+  line: '640',
+  routine: 'varchar'
+}
+❌ Error saving report: error: value too long for type character varying(100)
+    at C:\Users\Me\Desktop\project\backend\node_modules\pg\lib\client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\Me\Desktop\project\backend\routes\cleaning.js:216:24 {
+  length: 99,
+  severity: 'ERROR',
+  code: '22001',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'varchar.c',
+  line: '640',
+  routine: 'varchar'
+}
+❌ Error saving report: error: null value in column "status_lama" of relation "laporan_kebersihan" violates not-null constraint
+    at C:\Users\Me\Desktop\project\backend\node_modules\pg\lib\client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\Me\Desktop\project\backend\routes\cleaning.js:216:24 {
+  length: 474,
+  severity: 'ERROR',
+  code: '23502',
+  detail: 'Failing row contains (55, Rg. Panitera Pengganti, Koridor Atas Depan, Rg. Server, Koridor ..., 2025-09-27, Harits Fakhruni Zainuddin, S.Kom, null, ok, cleaning-1758946242337-109464967.PNG, 2025-09-27 12:10:42.937316, belum_dicek, null, null, null, null, null, null, null).',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'laporan_kebersihan',
+  column: 'status_lama',
+  dataType: undefined,
+  constraint: undefined,
+  file: 'execMain.c',
+  line: '1988',
+  routine: 'ExecConstraints'
+}
+Error updating checklist: error: column "checklist_at" of relation "laporan_kebersihan" does not exist
+    at C:\Users\Me\Desktop\project\backend\node_modules\pg\lib\client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\Me\Desktop\project\backend\routes\cleaning.js:308:24 {
+  length: 146,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '431',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'analyze.c',
+  line: '2536',
+  routine: 'transformUpdateTargetList'
+}
+Error updating checklist: error: column "checklist_at" of relation "laporan_kebersihan" does not exist
+    at C:\Users\Me\Desktop\project\backend\node_modules\pg\lib\client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\Me\Desktop\project\backend\routes\cleaning.js:308:24 {
+  length: 146,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '431',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'analyze.c',
+  line: '2536',
+  routine: 'transformUpdateTargetList'
+}
+Error updating checklist: error: column "checklist_at" of relation "laporan_kebersihan" does not exist
+    at C:\Users\Me\Desktop\project\backend\node_modules\pg\lib\client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\Me\Desktop\project\backend\routes\cleaning.js:308:24 {
+  length: 146,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '431',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'analyze.c',
+  line: '2536',
+  routine: 'transformUpdateTargetList'
+}
+Error updating checklist: error: column "checklist_at" of relation "laporan_kebersihan" does not exist
+    at C:\Users\Me\Desktop\project\backend\node_modules\pg\lib\client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\Me\Desktop\project\backend\routes\cleaning.js:308:24 {
+  length: 146,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '431',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'analyze.c',
+  line: '2536',
+  routine: 'transformUpdateTargetList'
+}
+Error updating checklist: error: column "checklist_at" of relation "laporan_kebersihan" does not exist
+    at C:\Users\Me\Desktop\project\backend\node_modules\pg\lib\client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\Me\Desktop\project\backend\routes\cleaning.js:316:24 {
+  length: 146,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '431',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'analyze.c',
+  line: '2536',
+  routine: 'transformUpdateTargetList'
+}
+Error updating checklist: error: column "checklist_at" of relation "laporan_kebersihan" does not exist
+    at C:\Users\Me\Desktop\project\backend\node_modules\pg\lib\client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\Me\Desktop\project\backend\routes\cleaning.js:316:24 {
+  length: 146,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '431',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'analyze.c',
+  line: '2536',
+  routine: 'transformUpdateTargetList'
+}
+❌ Error updating checklist: error: column "checklist_at" of relation "laporan_kebersihan" does not exist
+    at C:\Users\Me\Desktop\project\backend\node_modules\pg\lib\client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\Me\Desktop\project\backend\routes\cleaning.js:318:24 {
+  length: 146,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '431',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'analyze.c',
+  line: '2536',
+  routine: 'transformUpdateTargetList'
+}
+Error acquiring client error: the database system is starting up
+    at Parser.parseErrorMessage (C:\Users\Me\Desktop\project\backend\node_modules\pg-protocol\dist\parser.js:285:98)
+    at Parser.handlePacket (C:\Users\Me\Desktop\project\backend\node_modules\pg-protocol\dist\parser.js:122:29)
+    at Parser.parse (C:\Users\Me\Desktop\project\backend\node_modules\pg-protocol\dist\parser.js:35:38)
+    at Socket.<anonymous> (C:\Users\Me\Desktop\project\backend\node_modules\pg-protocol\dist\index.js:11:42)
+    at Socket.emit (node:events:518:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+Error fetching recent logs: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:464:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+❌ Error in recent-logs endpoint: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:471:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+❌ Error in recent-logs endpoint: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:471:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+❌ Error in recent-logs endpoint: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:471:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+❌ Error in recent-logs endpoint: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:471:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+❌ Error in recent-logs endpoint: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:471:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+❌ Error in recent-logs endpoint: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:471:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+❌ Error in recent-logs endpoint: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:471:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+❌ Error in recent-logs endpoint: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:471:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+❌ Error in recent-logs endpoint: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:471:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+❌ Error in recent-logs endpoint: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:471:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+❌ Error in recent-logs endpoint: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:471:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+❌ Error in recent-logs endpoint: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:471:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+❌ Error in recent-logs endpoint: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:471:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+❌ Error in recent-logs endpoint: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:471:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)
+❌ Error in recent-logs endpoint: ReferenceError: db is not defined
+    at C:\Users\Me\Desktop\project\backend\routes\rfid.js:471:24
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Me\Desktop\project\backend\node_modules\express\lib\router\index.js:47:12)

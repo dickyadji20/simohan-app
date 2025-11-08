@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Laporan Kebersihan - Petugas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS yang sama seperti sebelumnya, hanya menambahkan yang dibutuhkan */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .ruangan-display {
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                padding: 15px;
+                background-color: #f8f9fa;
+                margin-top: 10px;
+            }
+
+        .ruangan-display .alert {
+                margin-bottom: 0;
+            }
+
+            .ruangan-list {
+    font-size: 14px;
+            }
+
+        .ruangan-item {
+                padding: 8px 12px;
+                background: white;
+                border-radius: 4px;
+                margin-bottom: 5px;
+                border-left: 4px solid #28a745;
+            }
+
+        .ruangan-item i {
+                color: #28a745;
+                margin-right: 8px;
+            }
+
+        .text-muted {
+                font-style: italic;
+                padding: 10px;
+                background: #f8f9fa;
+                border-radius: 4px;
+            }
+
+        .form-check {
+                margin-bottom: 8px;
+                padding-left: 25px;
+            }
+
+        .form-check-input {
+                margin-left: -25px;
+                margin-top: 0.3em;
+            }
+
+        .form-check-label {
+                font-weight: normal;
+                cursor: pointer;
+            }
+        
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .form-container {
+            padding: 30px;
+        }
+        
+        .form-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-title i {
+            color: #1a2a6c;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .form-group label span.required {
+            color: #e74c3c;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(135deg, #2c3e50, #1a2a6c);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #7f8c8d, #95a5a6);
+        }
+        
+        .notification {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+            font-weight: 500;
+            animation: fadeIn 0.5s, fadeOut 0.5s 4.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .status-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 8px;
+        }
+        
+        .status-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .status-option:hover {
+            border-color: #3498db;
+        }
+        
+        .status-option.selected {
+            border-color: #1a2a6c;
+            background-color: #f5f7fa;
+        }
+        
+        .status-option input[type="radio"] {
+            display: none;
+        }
+        
+        .badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .badge-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .badge-warning {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .file-upload {
+            border: 2px dashed #ddd;
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .file-upload:hover {
+            border-color: #3498db;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .file-label {
+            display: block;
+            cursor: pointer;
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        .file-label i {
+            margin-right: 8px;
+        }
+        
+        .file-info {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 8px;
+        }
+        
+        .preview-container {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px auto;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+            
+            .status-options {
+                flex-direction: column;
+            }
+                        .button-group {
+                flex-direction: column;
+            }
+        .form-group.hidden {
+            display: none;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-title">
+                <i class="fas fa-broom"></i>
+                Form Laporan Kebersihan
+            </div>
+            
+            <div id="notification" class="notification"></div>
+            
+<form id="laporanForm" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="petugas">
+            <i class="fas fa-user"></i>
+            Nama Petugas <span class="required">*</span>
+        </label>
+        <select class="form-control" id="petugas" name="petugas" required>
+            <option value="" selected disabled>Pilih Nama Petugas</option>
+        </select>
+    </div>
+    
+<!-- UBAH: Ruangan ditampilkan sebagai daftar otomatis tanpa pilihan -->
+<div class="form-group">
+    <label>
+        <i class="fas fa-door-open"></i>
+        Ruangan/Lokasi <span class="required">*</span>
+    </label>
+    <div id="ruanganDisplay" class="ruangan-display" style="display: none;">
+        <div class="alert alert-success">
+            <strong><i class="fas fa-check-circle"></i> Ruangan untuk petugas terpilih:</strong>
+            <div id="daftarRuangan" class="ruangan-list mt-2"></div>
+        </div>
+        <input type="hidden" id="ruangan" name="ruangan" required>
+        <small class="text-muted">Ruangan otomatis sesuai data terdaftar pada sistem</small>
+    </div>
+    <div id="ruanganPlaceholder" class="text-muted">
+        <i class="fas fa-info-circle"></i> Pilih nama petugas terlebih dahulu untuk menampilkan ruangan
+    </div>
+</div>
+    
+    <div class="form-group">
+        <label for="tanggal">
+            <i class="fas fa-calendar-alt"></i>
+            Tanggal Pembersihan <span class="required">*</span>
+        </label>
+        <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="catatan">
+            <i class="fas fa-sticky-note"></i>
+            Catatan (Opsional)
+        </label>
+        <textarea class="form-control" id="catatan" name="catatan" placeholder="Tambahkan catatan jika diperlukan..."></textarea>
+    </div>
+    
+    <div class="form-group">
+        <label>
+            <i class="fas fa-camera"></i>
+            Foto Bukti
+        </label>
+        <div class="file-upload">
+            <input type="file" id="foto" name="foto" class="file-input" accept="image/*">
+            <label for="foto" class="file-label">
+                <i class="fas fa-upload"></i> Pilih File
+            </label>
+            <div class="file-info">Unggah foto kondisi ruangan (format JPG, PNG, maksimal 2MB)</div>
+        </div>
+        <div class="preview-container" id="previewContainer">
+            <img id="previewImage" class="preview-image" src="#" alt="Preview Gambar">
+        </div>
+    </div>
+    
+    <div class="button-group">
+        <button type="submit" class="btn">
+            <i class="fas fa-paper-plane"></i>
+            Kirim Laporan
+        </button>
+        <a href="index.html" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i>
+            Kembali
+        </a>
+    </div>
+</form>
+        </div>
+    </div>
+    <script src="js/config.js"></script>
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date().toISOString().substr(0, 10);
+    document.getElementById('tanggal').value = today;
+    
+    // Load data petugas dan ruangan
+    loadPetugasData();
+    
+    const form = document.getElementById('laporanForm');
+    const notification = document.getElementById('notification');
+    let petugasData = {};
+    let selectedRuangan = ''; // Untuk menyimpan ruangan yang dipilih
+    
+    // Event listener untuk perubahan pilihan petugas
+    document.getElementById('petugas').addEventListener('change', function() {
+        updateRuanganDisplay(this.value);
+    });
+    
+    // Fungsi untuk load data petugas
+    async function loadPetugasData() {
+        try {
+            console.log('🔄 Memuat data petugas dan ruangan...');
+            
+            const response = await fetch(`${window.APP_CONFIG.API_BASE_URL}/api/cleaning/daftar-petugas-ruangan`);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log('✅ Response dari server:', data);
+            
+            if (data.success && data.data) {
+                petugasData = data.data;
+                populatePetugasDropdown();
+                showNotification('Data petugas berhasil dimuat', 'success');
+            } else {
+                throw new Error(data.error || 'Format data tidak valid');
+            }
+        } catch (error) {
+            console.error('❌ Error loading petugas data:', error);
+            showNotification('Gagal memuat data petugas: ' + error.message, 'error');
+            loadFallbackData();
+        }
+    }
+    
+    function populatePetugasDropdown() {
+        const petugasSelect = document.getElementById('petugas');
+        petugasSelect.innerHTML = '<option value="" selected disabled>Pilih Nama Petugas</option>';
+        
+        // Urutkan nama petugas
+        Object.keys(petugasData).sort().forEach(petugas => {
+            const option = document.createElement('option');
+            option.value = petugas;
+            option.textContent = petugas;
+            petugasSelect.appendChild(option);
+        });
+    }
+    
+// FUNGSI BARU: Tampilkan ruangan otomatis TANPA radio button
+function updateRuanganDisplay(selectedPetugas) {
+    const ruanganDisplay = document.getElementById('ruanganDisplay');
+    const ruanganPlaceholder = document.getElementById('ruanganPlaceholder');
+    const daftarRuangan = document.getElementById('daftarRuangan');
+    const ruanganInput = document.getElementById('ruangan');
+    
+    // Reset
+    ruanganInput.value = '';
+    
+    if (selectedPetugas && petugasData[selectedPetugas] && petugasData[selectedPetugas].length > 0) {
+        const ruanganList = petugasData[selectedPetugas];
+        
+        // Tampilkan daftar ruangan sebagai list (bukan radio buttons)
+        daftarRuangan.innerHTML = '';
+        
+        // Jika petugas hanya memiliki 1 ruangan, gunakan ruangan itu
+        if (ruanganList.length === 1) {
+            const singleRuangan = ruanganList[0];
+            daftarRuangan.innerHTML = `
+                <div class="ruangan-item">
+                    <i class="fas fa-building"></i> ${singleRuangan}
+                </div>
+            `;
+            ruanganInput.value = singleRuangan;
+            
+        } else {
+            // Jika multiple ruangan, gabungkan semua dengan pemisah koma
+            const allRuangan = ruanganList.join(', ');
+            daftarRuangan.innerHTML = `
+                <div class="ruangan-item">
+                    <i class="fas fa-building"></i> ${allRuangan}
+                </div>
+            `;
+            // Untuk multiple ruangan, kita simpan sebagai string gabungan
+            ruanganInput.value = allRuangan;
+        }
+        
+        // Tampilkan panel ruangan, sembunyikan placeholder
+        ruanganDisplay.style.display = 'block';
+        ruanganPlaceholder.style.display = 'none';
+        
+        console.log(`✅ Menampilkan ${ruanganList.length} ruangan untuk ${selectedPetugas}`);
+        
+    } else {
+        // Sembunyikan panel ruangan, tampilkan placeholder
+        ruanganDisplay.style.display = 'none';
+        ruanganPlaceholder.style.display = 'block';
+        ruanganPlaceholder.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Petugas terpilih tidak memiliki ruangan terdaftar';
+    }
+}
+    
+    // Fallback data jika API tidak tersedia
+    function loadFallbackData() {
+        console.log('⚠️ Menggunakan data fallback...');
+        // Data contoh berdasarkan gambar Anda
+        petugasData = {
+            "M. Nazar, SH": ["Kesekretariatan", "Koridor Bawah Kiri", "Ruang Bendahara", "Ruang Mediasi"],
+            "Muh. Risal": ["Media Center", "Toilet Dilabel", "Koridor Atas Kanan", "Perpustakaan", "Koridor Atas Belakang"],
+            "Ahmad Yani": ["Ruang Ketua", "Ruang Wakil Ketua"],
+            "Siti Rahayu": ["Ruang Hakim", "Ruang Panitera"]
+        };
+        populatePetugasDropdown();
+        showNotification('Menggunakan data offline', 'warning');
+    }
+
+    // ... (kode untuk preview image tetap sama)
+    const fotoInput = document.getElementById('foto');
+    const previewContainer = document.getElementById('previewContainer');
+    const previewImage = document.getElementById('previewImage');
+    
+    fotoInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            if (!file.type.startsWith('image/')) {
+                showNotification('Hanya file gambar yang diizinkan!', 'error');
+                this.value = '';
+                previewContainer.style.display = 'none';
+                return;
+            }
+            
+            if (file.size > 2 * 1024 * 1024) {
+                showNotification('Ukuran file terlalu besar. Maksimal 2MB.', 'error');
+                this.value = '';
+                previewContainer.style.display = 'none';
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                previewContainer.style.display = 'block';
+            }
+            reader.onerror = function() {
+                showNotification('Error membaca file', 'error');
+                previewContainer.style.display = 'none';
+            }
+            reader.readAsDataURL(file);
+        } else {
+            previewContainer.style.display = 'none';
+        }
+    });
+    
+    // Form submission dengan validasi tambahan
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+        submitBtn.disabled = true;
+        
+        // Validasi form
+        const petugas = document.getElementById('petugas').value;
+        const ruangan = document.getElementById('ruangan').value;
+        const tanggal = document.getElementById('tanggal').value;
+        
+        if (!petugas || !ruangan || !tanggal) {
+            showNotification('Harap lengkapi semua field yang wajib diisi!', 'error');
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            return;
+        }
+        
+        const formData = new FormData(form);
+        
+        try {
+            console.log('📤 Mengirim data laporan...');
+            const response = await fetch(`${window.APP_CONFIG.API_BASE_URL}/api/cleaning`, {
+                method: 'POST',
+                body: formData
+            });
+            
+            let result;
+            try {
+                result = await response.json();
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+                throw new Error('Format respons server tidak valid');
+            }
+            
+            console.log('✅ Response dari server:', result);
+            
+            if (response.ok && result.success) {
+                showNotification('Laporan berhasil dikirim! Terima kasih atas kontribusi Anda.', 'success');
+                
+                // Reset form
+                form.reset();
+                document.getElementById('tanggal').value = today;
+                previewContainer.style.display = 'none';
+                document.getElementById('ruanganDisplay').style.display = 'none';
+                document.getElementById('ruanganPlaceholder').style.display = 'block';
+                
+                // Redirect setelah 3 detik
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 3000);
+            } else {
+                const errorMessage = result.error || result.message || 'Gagal mengirim laporan';
+                throw new Error(errorMessage);
+            }
+        } catch (error) {
+            console.error('❌ Error:', error);
+            showNotification('Gagal mengirim laporan: ' + error.message, 'error');
+            
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+    
+    function showNotification(message, type) {
+        notification.textContent = message;
+        notification.className = 'notification ' + type;
+        notification.style.display = 'block';
+        
+        if (type === 'error' || type === 'warning') {
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
+    }
+});
+
+// Fungsi untuk menghindari error debugChecklistData
+function debugChecklistData() {
+    console.log('⚠️ Fungsi ini hanya tersedia di halaman logRFID');
+}
+</script>
+</body>
+</html>

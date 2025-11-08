@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Ruangan - Si-Mohan</title>    <script>
+        // Cek login - jika belum login, redirect SEKARANG JUGA
+        const token = localStorage.getItem('authToken');
+        const userData = localStorage.getItem('userData');
+        
+        if (!token || !userData) {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .toast-container {
+            z-index: 1055;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+
+        .toast {
+            opacity: 1;
+        }
+        
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+        }
+        
+        .sidebar {
+            background-color: var(--dark-color);
+            color: white;
+            min-height: calc(100vh - 56px);
+            padding: 0;
+        }
+        
+        .sidebar .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 1rem 1.5rem;
+            border-left: 4px solid transparent;
+        }
+        
+        .sidebar .nav-link:hover {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar .nav-link.active {
+            color: white;
+            border-left-color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .main-content {
+            padding: 20px;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .card-header {
+            background-color: white;
+            border-bottom: 1px solid #eee;
+            font-weight: 600;
+        }
+        
+        .stats-card {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        
+        .stats-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .table th {
+            border-top: none;
+            font-weight: 600;
+            color: #6c757d;
+        }
+        
+        .badge-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-box input {
+            padding-left: 40px;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 12px;
+            color: #6c757d;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                min-height: auto;
+            }
+        }
+        
+        /* Custom styles for export button */
+        .export-btn {
+            background-color: #28a745 !important;
+            border-color: #28a745 !important;
+        }
+        
+        .export-btn:hover {
+            background-color: #218838 !important;
+            border-color: #1e7e34 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-broom"></i> Si-Mohan
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle"></i> Koordinator
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="index.html">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-2 col-md-3 d-md-block sidebar collapse">
+                <div class="pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="laporan.html">
+                                <i class="fas fa-list"></i> Laporan Kebersihan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="kebutuhan.html">
+                                <i class="fas fa-id-card"></i> Laporan Kebutuhan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logRFID.html">
+                                <i class="fas fa-users"></i> Log RFID
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="fas fa-door-open"></i> Daftar Ruangan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="PendaftaranKartu.html">
+                                <i class="fas fa-id-card"></i> Pendaftaran Kartu
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <main class="col-md-9 col-lg-10 main-content">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Daftar Ruangan</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="loadRuangan()">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#tambahRuanganModal">
+                                <i class="fas fa-plus"></i> Tambah
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card stats-card">
+                            <div class="stats-number" id="totalRuangan">0</div>
+                            <div class="stats-label">Total Ruangan</div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card stats-card">
+                            <div class="stats-number" id="ruanganTerisi">0</div>
+                            <div class="stats-label">Ruangan Terisi</div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card stats-card">
+                            <div class="stats-number" id="ruanganKosong">0</div>
+                            <div class="stats-label">Ruangan Kosong</div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card stats-card">
+                            <div class="stats-number" id="petugasTerdaftar">0</div>
+                            <div class="stats-label">Petugas Terdaftar</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter and Search -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="searchInput" class="form-control" placeholder="Cari berdasarkan nama ruangan atau petugas...">
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select" id="filterStatus">
+                                    <option value="">Semua Status</option>
+                                    <option value="terisi">Terisi</option>
+                                    <option value="kosong">Kosong</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-outline-secondary w-100" onclick="resetFilter()">
+                                    <i class="fas fa-undo"></i> Reset Filter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ruangan Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i> Daftar Ruangan
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover" id="ruanganTable">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Ruangan</th>
+                                        <th>Petugas Kebersihan</th>
+                                        <th>Penanggung Jawab</th>
+                                        <th>Koordinator</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ruanganBody">
+                                    <!-- Data akan diisi oleh JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center" id="pagination">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal Tambah Ruangan -->
+    <div class="modal fade" id="tambahRuanganModal" tabindex="-1" aria-labelledby="tambahRuanganModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambahRuanganModalLabel">Tambah Ruangan Baru</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="tambahRuanganForm">
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="nama_ruangan" class="form-label">Nama Ruangan</label>
+                                <input type="text" class="form-control" id="nama_ruangan" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="petugas_kebersihan" class="form-label">Petugas Kebersihan</label>
+                                <input type="text" class="form-control" id="petugas_kebersihan" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="penanggung_jawab" class="form-label">Penanggung Jawab</label>
+                                <input type="text" class="form-control" id="penanggung_jawab">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="koordinator_kebersihan" class="form-label">Koordinator Kebersihan</label>
+                                <input type="text" class="form-control" id="koordinator_kebersihan">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" onclick="tambahRuangan()">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit Ruangan -->
+    <div class="modal fade" id="editRuanganModal" tabindex="-1" aria-labelledby="editRuanganModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editRuanganModalLabel">Edit Data Ruangan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editRuanganForm">
+                        <input type="hidden" id="edit_id">
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="edit_nama_ruangan" class="form-label">Nama Ruangan</label>
+                                <input type="text" class="form-control" id="edit_nama_ruangan" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="edit_petugas_kebersihan" class="form-label">Petugas Kebersihan</label>
+                                <input type="text" class="form-control" id="edit_petugas_kebersihan" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="edit_penanggung_jawab" class="form-label">Penanggung Jawab</label>
+                                <input type="text" class="form-control" id="edit_penanggung_jawab">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="edit_koordinator_kebersihan" class="form-label">Koordinator Kebersihan</label>
+                                <input type="text" class="form-control" id="edit_koordinator_kebersihan">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" onclick="updateRuangan()">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/page-protector.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Variabel global untuk menyimpan data ruangan
+        let ruanganData = [];
+
+        // Fungsi untuk memuat data ruangan
+        function loadRuangan() {
+            fetch(`${window.APP_CONFIG.API_BASE_URL}/api/ruangan`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Data ruangan received:', data);
+                    
+                    if (data.success && data.data && data.data.length > 0) {
+                        ruanganData = data.data;
+                        populateRuanganTable(ruanganData);
+                        updateStats(ruanganData);
+                    } else {
+                        document.getElementById('ruanganBody').innerHTML = `
+                            <tr>
+                                <td colspan="7" class="text-center py-4">
+                                    <i class="fas fa-inbox fa-3x text-muted"></i>
+                                    <p class="mt-2">Tidak ada data ruangan</p>
+                                </td>
+                            </tr>`;
+                        updateStats([]);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('ruanganBody').innerHTML = `
+                        <tr>
+                            <td colspan="7" class="text-center py-4 text-danger">
+                                <i class="fas fa-exclamation-circle fa-2x"></i>
+                                <p class="mt-2">Gagal memuat data: ${error.message}</p>
+                                <button class="btn btn-sm btn-primary mt-2" onclick="loadRuangan()">
+                                    <i class="fas fa-redo"></i> Coba Lagi
+                                </button>
+                            </td>
+                        </tr>`;
+                });
+        }
+
+        // Fungsi untuk mengisi tabel ruangan
+        function populateRuanganTable(data) {
+            const tableBody = document.getElementById('ruanganBody');
+            tableBody.innerHTML = '';
+            
+            data.forEach((ruangan, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${ruangan.nama_ruangan}</td>
+                    <td>${ruangan.petugas_kebersihan || '-'}</td>
+                    <td>${ruangan.penanggung_jawab || '-'}</td>
+                    <td>${ruangan.koordinator_kebersihan || '-'}</td>
+                    <td>
+                        <span class="badge ${ruangan.petugas_kebersihan ? 'bg-success' : 'bg-secondary'} badge-status">
+                            ${ruangan.petugas_kebersihan ? 'Terisi' : 'Kosong'}
+                        </span>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary me-1" onclick="editRuangan(${ruangan.id})">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" onclick="deleteRuangan(${ruangan.id})">
+                            <i class="fas fa-trash"></i> Hapus
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Fungsi untuk memperbarui statistik
+        function updateStats(data) {
+            const totalRuangan = data.length;
+            const ruanganTerisi = data.filter(ruangan => ruangan.petugas_kebersihan).length;
+            const ruanganKosong = totalRuangan - ruanganTerisi;
+            
+            // Hitung jumlah petugas unik
+            const petugasSet = new Set();
+            data.forEach(ruangan => {
+                if (ruangan.petugas_kebersihan) {
+                    petugasSet.add(ruangan.petugas_kebersihan);
+                }
+            });
+            
+            document.getElementById('totalRuangan').textContent = totalRuangan;
+            document.getElementById('ruanganTerisi').textContent = ruanganTerisi;
+            document.getElementById('ruanganKosong').textContent = ruanganKosong;
+            document.getElementById('petugasTerdaftar').textContent = petugasSet.size;
+        }
+
+        // Fungsi untuk menambah ruangan
+        function tambahRuangan() {
+            const namaRuangan = document.getElementById('nama_ruangan').value;
+            const petugasKebersihan = document.getElementById('petugas_kebersihan').value;
+            const penanggungJawab = document.getElementById('penanggung_jawab').value;
+            const koordinatorKebersihan = document.getElementById('koordinator_kebersihan').value;
+            
+            if (!namaRuangan || !petugasKebersihan) {
+                showNotification('Nama Ruangan dan Petugas Kebersihan wajib diisi!', 'error');
+                return;
+            }
+            
+            const ruanganData = {
+                nama_ruangan: namaRuangan,
+                petugas_kebersihan: petugasKebersihan,
+                penanggung_jawab: penanggungJawab || null,
+                koordinator_kebersihan: koordinatorKebersihan || null
+            };
+            
+            fetch(`${window.APP_CONFIG.API_BASE_URL}/api/ruangan`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(ruanganData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    showNotification('Ruangan berhasil ditambahkan!', 'success');
+                    // Tutup modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('tambahRuanganModal'));
+                    modal.hide();
+                    // Muat ulang data
+                    loadRuangan();
+                    // Reset form
+                    document.getElementById('tambahRuanganForm').reset();
+                } else {
+                    showNotification('Gagal menambahkan ruangan: ' + data.error, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Terjadi kesalahan saat menambahkan ruangan.', 'error');
+            });
+        }
+
+        // Fungsi untuk mengedit ruangan
+        function editRuangan(id) {
+            const ruangan = ruanganData.find(r => r.id === id);
+            if (!ruangan) return;
+            
+            // Isi form edit dengan data ruangan
+            document.getElementById('edit_id').value = ruangan.id;
+            document.getElementById('edit_nama_ruangan').value = ruangan.nama_ruangan;
+            document.getElementById('edit_petugas_kebersihan').value = ruangan.petugas_kebersihan || '';
+            document.getElementById('edit_penanggung_jawab').value = ruangan.penanggung_jawab || '';
+            document.getElementById('edit_koordinator_kebersihan').value = ruangan.koordinator_kebersihan || '';
+            
+            // Tampilkan modal edit
+            const modal = new bootstrap.Modal(document.getElementById('editRuanganModal'));
+            modal.show();
+        }
+
+        // Fungsi untuk memperbarui ruangan
+        function updateRuangan() {
+            const id = document.getElementById('edit_id').value;
+            const namaRuangan = document.getElementById('edit_nama_ruangan').value;
+            const petugasKebersihan = document.getElementById('edit_petugas_kebersihan').value;
+            const penanggungJawab = document.getElementById('edit_penanggung_jawab').value;
+            const koordinatorKebersihan = document.getElementById('edit_koordinator_kebersihan').value;
+            
+            if (!namaRuangan || !petugasKebersihan) {
+                showNotification('Nama Ruangan dan Petugas Kebersihan wajib diisi!', 'error');
+                return;
+            }
+            
+            const ruanganData = {
+                nama_ruangan: namaRuangan,
+                petugas_kebersihan: petugasKebersihan,
+                penanggung_jawab: penanggungJawab || null,
+                koordinator_kebersihan: koordinatorKebersihan || null
+            };
+            
+            fetch(`${window.APP_CONFIG.API_BASE_URL}/api/ruangan/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(ruanganData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    showNotification('Ruangan berhasil diperbarui!', 'success');
+                    // Tutup modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('editRuanganModal'));
+                    modal.hide();
+                    // Muat ulang data
+                    loadRuangan();
+                } else {
+                    showNotification('Gagal memperbarui ruangan: ' + data.error, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Terjadi kesalahan saat memperbarui ruangan.', 'error');
+            });
+        }
+
+        // Fungsi untuk menghapus ruangan
+        function deleteRuangan(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus ruangan ini?')) {
+                fetch(`${window.APP_CONFIG.API_BASE_URL}/api/ruangan/${id}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        showNotification('Ruangan berhasil dihapus!', 'success');
+                        loadRuangan(); // Memuat ulang data setelah penghapusan
+                    } else {
+                        showNotification('Gagal menghapus ruangan: ' + data.error, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('Terjadi kesalahan saat menghapus ruangan.', 'error');
+                });
+            }
+        }
+
+        // Fungsi untuk mereset filter
+        function resetFilter() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('filterStatus').value = '';
+            populateRuanganTable(ruanganData);
+        }
+
+        // Fungsi untuk menampilkan notifikasi
+        function showNotification(message, type = 'info') {
+            // Buat elemen notifikasi jika belum ada
+            if (!document.getElementById('notification-toast')) {
+                const toastContainer = document.createElement('div');
+                toastContainer.innerHTML = `
+                    <div id="notification-toast" class="toast align-items-center text-white bg-${type === 'error' ? 'danger' : 'success'} border-0" 
+                         role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                ${message}
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(toastContainer.firstElementChild);
+            }
+
+            // Update pesan dan tampilkan notifikasi
+            const toastElement = document.getElementById('notification-toast');
+            toastElement.querySelector('.toast-body').textContent = message;
+            toastElement.className = `toast align-items-center text-white bg-${type === 'error' ? 'danger' : 'success'} border-0`;
+            
+            const toast = new bootstrap.Toast(toastElement);
+            toast.show();
+        }
+
+        // Panggil fungsi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRuangan();
+            
+            // Tambahkan event listener untuk search input
+            document.getElementById('searchInput').addEventListener('input', function() {
+                const searchText = this.value.toLowerCase();
+                const filteredData = ruanganData.filter(ruangan => 
+                    ruangan.nama_ruangan.toLowerCase().includes(searchText) || 
+                    (ruangan.petugas_kebersihan && ruangan.petugas_kebersihan.toLowerCase().includes(searchText))
+                );
+                populateRuanganTable(filteredData);
+            });
+            
+            // Tambahkan event listener untuk filter status
+            document.getElementById('filterStatus').addEventListener('change', function() {
+                const status = this.value;
+                let filteredData = ruanganData;
+                
+                if (status === 'terisi') {
+                    filteredData = ruanganData.filter(ruangan => ruangan.petugas_kebersihan);
+                } else if (status === 'kosong') {
+                    filteredData = ruanganData.filter(ruangan => !ruangan.petugas_kebersihan);
+                }
+                
+                populateRuanganTable(filteredData);
+            });
+        });
+    </script>
+</body>
+</html>

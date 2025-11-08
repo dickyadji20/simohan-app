@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Penanggung Jawab - SI-MOHAN</title>
+          <script>
+        // Cek jika sudah login, redirect ke dashboard
+        const token = localStorage.getItem('authToken');
+        const userData = localStorage.getItem('userData');
+        
+        if (token && userData) {
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a2a6c;
+            --secondary: #2c3e50;
+            --accent: #1abc9c;
+            --light: #ecf0f1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .login-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header h2 {
+            color: var(--secondary);
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        
+        .header h3 {
+            color: #7f8c8d;
+            font-size: 1em;
+            font-weight: normal;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: var(--secondary);
+        }
+        
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef5350;
+        }
+        
+        .success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #66bb6a;
+        }
+        
+        .role-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="header">
+            <h1>SI-MOHAN</h1>
+            <h2>Login Penanggung Jawab</h2>
+            <h3>Pengadilan Agama Takalar</h3>
+            <div class="role-badge">Akses Khusus Penanggung Jawab</div>
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login sebagai Penanggung Jawab</button>
+        </form>
+        <div id="message" class="message"></div>
+        
+        <div style="margin-top: 20px; font-size: 0.9em; color: #7f8c8d;">
+            <p>Kembali ke <a href="index.html" style="color: var(--primary);">halaman utama</a></p>
+        </div>
+    </div>
+
+    <!-- Script auth.js -->
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Fungsi untuk menampilkan pesan
+        function showMessage(message, type) {
+            const messageDiv = document.getElementById('message');
+            if (messageDiv) {
+                messageDiv.textContent = message;
+                messageDiv.className = 'message ' + type;
+                messageDiv.style.display = 'block';
+                
+                // Sembunyikan pesan setelah 5 detik
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // Fungsi untuk mendapatkan parameter dari URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cek jika objek Auth sudah terdefinisi
+            if (typeof Auth === 'undefined') {
+                showMessage('Error: Auth library tidak dimuat dengan benar', 'error');
+                console.error('Auth object is not defined. Check the auth.js file.');
+                return;
+            }
+            
+            // Jika sudah login, redirect ke dashboard
+            if (Auth.isLoggedIn && Auth.isLoggedIn() && !Auth.isTokenExpired()) {
+                window.location.href = 'dashboard-pj.html'; // Dashboard khusus penanggung jawab
+                return;
+            }
+            
+            // Dapatkan role dari parameter URL
+            const role = getQueryParam('role');
+            
+            // Handle form submission
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const username = document.getElementById('username').value;
+                    const password = document.getElementById('password').value;
+                    
+                    // Validasi input
+                    if (!username || !password) {
+                        showMessage('Username dan password harus diisi', 'error');
+                        return;
+                    }
+                    
+                    try {
+                        // Tampilkan loading state
+                        const submitBtn = loginForm.querySelector('button[type="submit"]');
+                        const originalText = submitBtn.textContent;
+                        submitBtn.textContent = 'Loading...';
+                        submitBtn.disabled = true;
+                        
+                        // Kirim permintaan login dengan role penanggung_jawab
+                        const response = await fetch(`${window.APP_CONFIG.API_BASE_URL}/api/auth/login`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ 
+                                username: username, 
+                                password: password,
+                                role: 'penanggung_jawab' // Role tetap penanggung_jawab
+                            })
+                        });
+                        
+                        // Kembalikan state tombol
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                        
+                        if (!response.ok) {
+                            const errorText = await response.text();
+                            throw new Error(`Server error: ${response.status} ${errorText}`);
+                        }
+                        
+                        const result = await response.json();
+                        
+                        if (result.success) {
+                            // Simpan token dan data user
+                            Auth.login(result.token, result.user);
+                            
+                            // Tampilkan pesan sukses
+                            showMessage('Login berhasil! Mengarahkan ke dashboard...', 'success');
+                            
+                            // Redirect ke dashboard khusus penanggung jawab setelah 1 detik
+                            setTimeout(() => {
+                                window.location.href = 'dashboard-pj.html';
+                            }, 1000);
+                        } else {
+                            showMessage('Login gagal: ' + result.message, 'error');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        showMessage('Terjadi kesalahan saat login: ' + error.message, 'error');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

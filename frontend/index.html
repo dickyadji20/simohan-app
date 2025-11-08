@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SI-MOHAN - Pengadilan Agama Takalar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #1abc9c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--light);
+        }
+        
+        .header h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            color: var(--light);
+        }
+        
+        .role-selection {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .role-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .role-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .role-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: white;
+            background: var(--primary);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .role-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .role-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .role-selection {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header h2 {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .role-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Selamat Datang di SI-MOHAN</h1>
+            <h2>Sistem Informasi Monitoring Kebersihan Pengadilan</h2>
+            <h3>Pengadilan Agama Takalar</h3>
+            <p>Silahkan pilih peran Anda untuk melanjutkan:</p>
+        </div>
+        
+        <div class="role-selection">
+            <div class="role-card" onclick="selectRole('koordinator')">
+                <div class="role-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="role-name">Koordinator Kebersihan</div>
+                <div class="role-desc">Mengawasi dan mengelola seluruh proses kebersihan</div>
+            </div>
+            
+            <div class="role-card" onclick="selectRole('petugas')">
+                <div class="role-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <div class="role-name">Petugas Kebersihan</div>
+                <div class="role-desc">Melaksanakan tugas kebersihan harian</div>
+            </div>
+            
+            <div class="role-card" onclick="selectRole('pengguna')">
+                <div class="role-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="role-name">Pengguna Ruangan</div>
+                <div class="role-desc">Memantau dan melaporkan kebersihan ruangan</div>
+            </div>
+            
+            <div class="role-card" onclick="selectRole('penanggung_jawab')">
+                <div class="role-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="role-name">Penanggung Jawab</div>
+                <div class="role-desc">Bertanggung jawab atas standar kebersihan</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2025 Pengadilan Agama Takalar. TIM Sistem Si-Mohan</p>
+        </div>
+    </div>
+        <script src="js/config.js"></script>
+        <script>
+        function selectRole(role) {
+            // Hapus semua data login yang mungkin tersimpan
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userData');
+            localStorage.removeItem('expirationTime');
+            
+            // Simpan role yang dipilih ke localStorage
+            localStorage.setItem('selectedRole', role);
+            
+            // Arahkan ke halaman yang sesuai
+            switch(role) {
+                case 'koordinator':
+                    window.location.href = 'login.html?role=koordinator';
+                    break;
+                case 'petugas':
+                    window.location.href = 'petugas.html';
+                    break;
+                case 'pengguna':
+                    window.location.href = 'pengguna.html';
+                    break;
+                case 'penanggung_jawab':
+                    window.location.href = 'login-pj.html?role=penanggung_jawab';
+                    break;
+            }
+        }
+        
+        // Pastikan tidak ada autentikasi yang diperiksa di index.html
+        // Halaman index harus selalu dapat diakses tanpa login
+    </script>
+
+    <script>
+    // ... kode lainnya ...
+    
+    // Inisialisasi navigasi
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof Auth !== 'undefined') {
+            Auth.initNavigation();
+        }
+    });
+</script>
+</body>
+</html>

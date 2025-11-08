@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Laporan Kebersihan - Petugas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .form-container {
+            padding: 30px;
+        }
+        
+        .form-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-title i {
+            color: #1a2a6c;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .form-group label span.required {
+            color: #e74c3c;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(135deg, #2c3e50, #1a2a6c);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #7f8c8d, #95a5a6);
+        }
+        
+        .notification {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+            font-weight: 500;
+            animation: fadeIn 0.5s, fadeOut 0.5s 4.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .status-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 8px;
+        }
+        
+        .status-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .status-option:hover {
+            border-color: #3498db;
+        }
+        
+        .status-option.selected {
+            border-color: #1a2a6c;
+            background-color: #f5f7fa;
+        }
+        
+        .status-option input[type="radio"] {
+            display: none;
+        }
+        
+        .badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .badge-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .badge-warning {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .file-upload {
+            border: 2px dashed #ddd;
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .file-upload:hover {
+            border-color: #3498db;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .file-label {
+            display: block;
+            cursor: pointer;
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        .file-label i {
+            margin-right: 8px;
+        }
+        
+        .file-info {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 8px;
+        }
+        
+        .preview-container {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px auto;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+            
+            .status-options {
+                flex-direction: column;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-title">
+                <i class="fas fa-broom"></i>
+                Form Laporan Kebersihan
+            </div>
+            
+            <div id="notification" class="notification"></div>
+            
+            <form id="laporanForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="room">
+                        <i class="fas fa-door-open"></i>
+                        Ruangan/Lokasi <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="room" name="room" required>
+                        <option value="" selected disabled>Pilih Ruangan</option>
+                        <option value="Ruang Ketua">Ruang Ketua</option>
+                        <option value="Ruang Wakil Ketua">Ruang Wakil Ketua</option>
+                        <option value="Ruang Hakim">Ruang Hakim</option>
+                        <option value="Ruang Sekretaris">Ruang Sekretaris</option>
+                        <option value="Ruang Panitera">Ruang Panitera</option>
+                        <option value="Ruang Staff Sekretariat">Ruang Staff Sekretariat</option>
+                        <option value="Ruang Panitera Pengganti 1">Ruang Panitera Pengganti 1</option>
+                        <option value="Ruang Panitera Pengganti 2">Ruang Panitera Pengganti 2</option>
+                        <option value="Ruang Mediasi">Ruang Mediasi</option>
+                        <option value="Ruang Tunggu Para Pihak">Ruang Tunggu Para Pihak</option>
+                        <option value="Ruang Laktasi">Ruang Laktasi</option>
+                        <option value="Lobby Utama">Lobby Utama</option>
+                        <option value="Lobby Bawah Kanan">Lobby Bawah Kanan</option>
+                        <option value="Lobby Bawah Kiri">Lobby Bawah Kiri</option>
+                        <option value="Lobby Atas Kanan">Lobby Atas Kanan</option>
+                        <option value="Lobby Atas Kiri">Lobby Atas Kiri</option>
+                        <option value="Ruang Arsip">Ruang Arsip</option>
+                        <option value="Ruang Media Center">Ruang Media Center</option>
+                        <option value="Perpustakaan">Perpustakaan</option>
+                        <option value="Kasir">Kasir</option>
+                        <option value="Toilet Bawah Perempuan">Toilet Bawah Perempuan</option>
+                        <option value="Toilet Bawah Laki-Laki">Toilet Bawah Laki-Laki</option>
+                        <option value="Toilet Atas Perempuan">Toilet Atas Perempuan</option>
+                        <option value="Toilet Atas Laki-Laki">Toilet Atas Laki-Laki</option>
+                        <option value="Ruang PTSP">Ruang PTSP</option>
+                        <option value="Halaman Depan">Halaman Depan</option>
+                        <option value="Halaman Belakang">Halaman Belakang</option>
+                        <option value="Halaman Samping Kiri">Halaman Samping Kiri</option>
+                        <option value="Halaman Samping Kanan">Halaman Samping Kanan</option>
+                        <option value="Pantry">Pantry</option>
+                        <option value="Ruang Sidang Utama">Ruang Sidang Utama</option>
+                        <option value="Ruang Sidang Kalabbirang">Ruang Sidang Kalabbirang</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">
+                        <i class="fas fa-calendar-alt"></i>
+                        Tanggal Pembersihan <span class="required">*</span>
+                    </label>
+                    <input type="date" class="form-control" id="date" name="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cleaner">
+                        <i class="fas fa-user"></i>
+                        Nama Petugas <span class="required">*</span>
+                    </label>
+                    <input type="text" class="form-control" id="cleaner" name="cleaner" placeholder="Masukkan nama petugas" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-check-circle"></i>
+                        Status Kebersihan <span class="required">*</span>
+                    </label>
+                    <div class="status-options">
+                        <label class="status-option" for="statusBersih">
+                            <input type="radio" id="statusBersih" name="status" value="bersih" required>
+                            <span class="badge badge-success">Bersih</span>
+                        </label>
+                        <label class="status-option" for="statusKotor">
+                            <input type="radio" id="statusKotor" name="status" value="kotor">
+                            <span class="badge badge-danger">Kotor</span>
+                        </label>
+                        <label class="status-option" for="statusSedang">
+                            <input type="radio" id="statusSedang" name="status" value="sedang">
+                            <span class="badge badge-warning">Sedang</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">
+                        <i class="fas fa-sticky-note"></i>
+                        Catatan (Opsional)
+                    </label>
+                    <textarea class="form-control" id="notes" name="notes" placeholder="Tambahkan catatan jika diperlukan..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-camera"></i>
+                        Foto Bukti
+                    </label>
+                    <div class="file-upload">
+                        <input type="file" id="photo" name="photo" class="file-input" accept="image/*">
+                        <label for="photo" class="file-label">
+                            <i class="fas fa-upload"></i> Pilih File
+                        </label>
+                        <div class="file-info">Unggah foto kondisi ruangan (format JPG, PNG, maksimal 2MB)</div>
+                    </div>
+                    <div class="preview-container" id="previewContainer">
+                        <img id="previewImage" class="preview-image" src="#" alt="Preview Gambar">
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button type="submit" class="btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Kirim Laporan
+                    </button>
+                    <a href="index.html" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        Kembali
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set tanggal hari ini sebagai default
+            const today = new Date().toISOString().substr(0, 10);
+            document.getElementById('date').value = today;
+            
+            // Handle form submission
+            const form = document.getElementById('laporanForm');
+            const notification = document.getElementById('notification');
+            
+            // Preview image
+            const photoInput = document.getElementById('photo');
+            const previewContainer = document.getElementById('previewContainer');
+            const previewImage = document.getElementById('previewImage');
+            
+            photoInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    // Validasi tipe file
+                    if (!file.type.startsWith('image/')) {
+                        showNotification('Hanya file gambar yang diizinkan!', 'error');
+                        this.value = '';
+                        previewContainer.style.display = 'none';
+                        return;
+                    }
+                    
+                    // Validasi ukuran file
+                    if (file.size > 2 * 1024 * 1024) {
+                        showNotification('Ukuran file terlalu besar. Maksimal 2MB.', 'error');
+                        this.value = '';
+                        previewContainer.style.display = 'none';
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImage.src = e.target.result;
+                        previewContainer.style.display = 'block';
+                    }
+                    reader.onerror = function() {
+                        showNotification('Error membaca file', 'error');
+                        previewContainer.style.display = 'none';
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    previewContainer.style.display = 'none';
+                }
+            });
+            
+            // Status option selection
+            const statusOptions = document.querySelectorAll('.status-option');
+            statusOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    statusOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    const radio = this.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                });
+            });
+            
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Tampilkan loading state
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+                submitBtn.disabled = true;
+                
+                // Buat FormData untuk mengirim file
+                const formData = new FormData(form);
+                
+                try {
+                    const response = await fetch(`${window.APP_CONFIG.API_BASE_URL}/api/cleaning`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    let result;
+                    try {
+                        result = await response.json();
+                    } catch (error) {
+                        console.error('Error parsing JSON:', error);
+                        throw new Error('Format respons server tidak valid');
+                    }
+                    
+                    if (response.ok) {
+                        showNotification('Laporan berhasil dikirim! Terima kasih atas kontribusi Anda.', 'success');
+                        
+                        // Reset form setelah berhasil
+                        form.reset();
+                        document.getElementById('date').value = today;
+                        previewContainer.style.display = 'none';
+                        
+                        // Reset status options
+                        statusOptions.forEach(opt => opt.classList.remove('selected'));
+                        
+                        // Redirect setelah 3 detik
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 3000);
+                    } else {
+                        // Tangani error dari server
+                        const errorMessage = result.error || result.message || 'Gagal mengirim laporan';
+                        showNotification('Gagal mengirim laporan: ' + errorMessage, 'error');
+                        
+                        // Kembalikan ke state semula
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showNotification('Terjadi kesalahan jaringan. Silakan coba lagi.', 'error');
+                    
+                    // Kembalikan ke state semula
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
+            
+            function showNotification(message, type) {
+                notification.textContent = message;
+                notification.className = 'notification ' + type;
+                notification.style.display = 'block';
+                
+                // Hanya sembunyikan notifikasi untuk error, untuk sukses akan diarahkan ke halaman lain
+                if (type === 'error') {
+                    setTimeout(() => {
+                        notification.style.display = 'none';
+                    }, 5000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

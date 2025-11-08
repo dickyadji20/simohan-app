@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Kebutuhan - SI-MOHAN</title>
+        <script>
+        // Cek login - jika belum login, redirect SEKARANG JUGA
+        const token = localStorage.getItem('authToken');
+        const userData = localStorage.getItem('userData');
+        
+        if (!token || !userData) {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 10px;
+        }
+        
+        .controls {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-group label {
+            font-weight: 500;
+        }
+        
+        select, input, button {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button {
+            background: #1a2a6c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        button:hover {
+            background: #2c3e50;
+        }
+        
+        .laporan-table {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background-color: #1a2a6c;
+            color: white;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .loading, .error, .empty {
+            text-align: center;
+            padding: 30px;
+            font-style: italic;
+            color: #777;
+        }
+        
+        .error {
+            color: #e74c3c;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .btn-edit {
+            background: #f39c12;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .btn-delete {
+            background: #e74c3c;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .priority-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .priority-high {
+            background: #ffebee;
+            color: #e74c3c;
+        }
+        
+        .priority-medium {
+            background: #fff3e0;
+            color: #f39c12;
+        }
+        
+        .priority-low {
+            background: #e8f5e9;
+            color: #2ecc71;
+        }
+        
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-clipboard-list"></i> Laporan Kebutuhan Ruangan</h1>
+            <p>Pengadilan Agama Takalar - Sistem Informasi Monitoring Kebutuhan Ruangan</p>
+        </header>
+        
+        <div class="controls">
+            <div class="filter-group">
+                <label for="filterTanggal">Tanggal:</label>
+                <input type="date" id="filterTanggal">
+            </div>
+            
+            <div class="filter-group">
+                <label for="filterRuangan">Ruangan:</label>
+                <select id="filterRuangan">
+                    <option value="">Semua Ruangan</option>
+                    <option value="Ruang Sidang Utama">Ruang Sidang Utama</option>
+                    <option value="Ruang Hakim">Ruang Hakim</option>
+                    <option value="Ruang Panitera">Ruang Panitera</option>
+                    <option value="Ruang Administrasi">Ruang Administrasi</option>
+                    <option value="Ruang Tunggu">Ruang Tunggu</option>
+                    <option value="Ruang Arsip">Ruang Arsip</option>
+                    <option value="Toilet">Toilet</option>
+                    <option value="Ruang Lainnya">Ruang Lainnya</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="filterPrioritas">Prioritas:</label>
+                <select id="filterPrioritas">
+                    <option value="">Semua Prioritas</option>
+                    <option value="high">Tinggi</option>
+                    <option value="medium">Sedang</option>
+                    <option value="low">Rendah</option>
+                </select>
+            </div>
+            
+            <button id="btnRefresh">
+                <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+            
+            <button id="btnExport">
+                <i class="fas fa-download"></i> Export
+            </button>
+            
+            <button id="btnKembali" onclick="window.location.href='dashboard.html'">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </button>
+        </div>
+        
+        <div class="laporan-table">
+            <div id="loading" class="loading">Memuat data laporan...</div>
+            <div id="error" class="error" style="display: none;"></div>
+            <div id="empty" class="empty" style="display: none;">Tidak ada data laporan</div>
+            
+            <table id="tabelLaporan" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Pengguna</th>
+                        <th>Ruangan</th>
+                        <th>Prioritas</th>
+                        <th>Catatan Kebutuhan</th>
+                        <th>Dibuat Pada</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyLaporan">
+                    <!-- Data akan diisi oleh JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+<script src="js/config.js"></script>
+<script>
+        // Variabel global untuk menyimpan data
+        let allLaporanData = [];
+
+        // Fungsi untuk memuat data laporan dari server
+        async function loadLaporanData() {
+            try {
+                document.getElementById('loading').style.display = 'block';
+                document.getElementById('error').style.display = 'none';
+                document.getElementById('empty').style.display = 'none';
+                document.getElementById('tabelLaporan').style.display = 'none';
+
+                const response = await fetch(`${window.APP_CONFIG.API_BASE_URL}/api/laporan`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Simpan data ke variabel global
+                    allLaporanData = result.data;
+                    
+                    // Tampilkan data
+                    displayLaporanData(allLaporanData);
+                } else {
+                    throw new Error(result.message || 'Gagal memuat data');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('error').textContent = 'Gagal memuat data: ' + error.message;
+            }
+        }
+
+        // Fungsi untuk menampilkan data laporan dalam tabel
+        function displayLaporanData(laporan) {
+            const tbody = document.getElementById('tbodyLaporan');
+            tbody.innerHTML = '';
+            
+            if (!laporan || laporan.length === 0) {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('empty').style.display = 'block';
+                document.getElementById('tabelLaporan').style.display = 'none';
+                return;
+            }
+            
+            laporan.forEach(item => {
+                const row = document.createElement('tr');
+                
+                // Format tanggal untuk tampilan
+                const tanggalObj = new Date(item.tanggal);
+                const tanggalFormatted = tanggalObj.toLocaleDateString('id-ID', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                // Format created_at untuk tampilan
+                const createdObj = new Date(item.created_at);
+                const createdFormatted = createdObj.toLocaleDateString('id-ID', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                }) + ' ' + createdObj.toLocaleTimeString('id-ID', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                // Tentukan prioritas berdasarkan isi catatan (contoh sederhana)
+                let prioritas = 'low';
+                let prioritasClass = 'priority-low';
+                let prioritasText = 'Rendah';
+                
+                if (item.catatan) {
+                    const catatan = item.catatan.toLowerCase();
+                    if (catatan.includes('segera') || catatan.includes('penting') || catatan.includes('urgent')) {
+                        prioritas = 'high';
+                        prioritasClass = 'priority-high';
+                        prioritasText = 'Tinggi';
+                    } else if (catatan.includes('hari ini') || catatan.includes('besok')) {
+                        prioritas = 'medium';
+                        prioritasClass = 'priority-medium';
+                        prioritasText = 'Sedang';
+                    }
+                }
+                
+                row.innerHTML = `
+                    <td>${tanggalFormatted}</td>
+                    <td>${item.pengguna}</td>
+                    <td>${item.ruangan}</td>
+                    <td><span class="priority-badge ${prioritasClass}">${prioritasText}</span></td>
+                    <td>${item.catatan || '-'}</td>
+                    <td>${createdFormatted}</td>
+                    <td class="action-buttons">
+                        <button class="btn-edit" onclick="tandaiSelesai(${item.id})"><i class="fas fa-check"></i> Tandai Selesai</button>
+                        <button class="btn-delete" onclick="hapusLaporan(${item.id})"><i class="fas fa-trash"></i> Hapus</button>
+                    </td>
+                `;
+                
+                tbody.appendChild(row);
+            });
+            
+            // Sembunyikan loading, tampilkan tabel
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('tabelLaporan').style.display = 'table';
+        }
+
+        // Fungsi untuk menghapus laporan - VERSI DIPERBAIKI
+        async function hapusLaporan(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus laporan ini?')) {
+                try {
+                    console.log('Menghapus laporan dengan ID:', id);
+                    
+                    // Kirim permintaan DELETE ke endpoint yang benar
+                    const response = await fetch(`${window.APP_CONFIG.API_BASE_URL}/api/laporan/${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    
+                    // Periksa status response
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => ({}));
+                        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+                    }
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        alert('Laporan berhasil dihapus');
+                        loadLaporanData(); // Muat ulang data
+                    } else {
+                        throw new Error(result.message || 'Gagal menghapus laporan');
+                    }
+                } catch (error) {
+                    console.error('Error detail:', error);
+                    alert('Gagal menghapus laporan: ' + error.message);
+                    
+                    // Tampilkan informasi debugging di konsol
+                    console.log('ID laporan yang gagal dihapus:', id);
+                    console.log('Endpoint yang digunakan:', `${window.APP_CONFIG.API_BASE_URL}/api/laporan/${id}`);
+                }
+            }
+        }
+
+        // Fungsi untuk menandai laporan sebagai selesai
+        async function tandaiSelesai(id) {
+            if (confirm('Apakah Anda yakin ingin menandai laporan ini sebagai selesai?')) {
+                try {
+                    // Untuk implementasi nyata, Anda mungkin perlu membuat endpoint API khusus
+                    // atau mengupdate field status di database
+                    alert('Fitur menandai selesai akan mengupdate status di database. Implementasi tergantung backend.');
+                    
+                    // Contoh implementasi jika ada endpoint untuk update
+                    /*
+                    const response = await fetch(`http://localhost:3000/api/laporan/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ status: 'selesai' })
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (response.ok && result.success) {
+                        alert('Laporan berhasil ditandai sebagai selesai');
+                        loadLaporanData(); // Muat ulang data
+                    } else {
+                        throw new Error(result.message || 'Gagal mengupdate laporan');
+                    }
+                    */
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Gagal mengupdate laporan: ' + error.message);
+                }
+            }
+        }
+
+        // Event listener untuk filter dan tombol refresh
+        document.addEventListener('DOMContentLoaded', function() {
+            // Muat data saat halaman dimuat
+            loadLaporanData();
+            
+            // Event listener untuk filter
+            document.getElementById('filterTanggal').addEventListener('change', applyFilters);
+            document.getElementById('filterRuangan').addEventListener('change', applyFilters);
+            document.getElementById('filterPrioritas').addEventListener('change', applyFilters);
+            document.getElementById('btnRefresh').addEventListener('click', loadLaporanData);
+            
+            // Event listener untuk export
+            document.getElementById('btnExport').addEventListener('click', exportToExcel);
+        });
+
+        // Fungsi untuk menerapkan filter
+        function applyFilters() {
+            const filterTanggal = document.getElementById('filterTanggal').value;
+            const filterRuangan = document.getElementById('filterRuangan').value;
+            const filterPrioritas = document.getElementById('filterPrioritas').value;
+            
+            let filteredData = allLaporanData;
+            
+            if (filterTanggal) {
+                filteredData = filteredData.filter(item => item.tanggal === filterTanggal);
+            }
+            
+            if (filterRuangan) {
+                filteredData = filteredData.filter(item => item.ruangan === filterRuangan);
+            }
+            
+            if (filterPrioritas) {
+                // Filter berdasarkan prioritas (contoh sederhana)
+                filteredData = filteredData.filter(item => {
+                    if (!item.catatan) return filterPrioritas === 'low';
+                    
+                    const catatan = item.catatan.toLowerCase();
+                    if (filterPrioritas === 'high') {
+                        return catatan.includes('segera') || catatan.includes('penting') || catatan.includes('urgent');
+                    } else if (filterPrioritas === 'medium') {
+                        return catatan.includes('hari ini') || catatan.includes('besok');
+                    } else {
+                        return !catatan.includes('segera') && !catatan.includes('penting') && 
+                               !catatan.includes('urgent') && !catatan.includes('hari ini') && 
+                               !catatan.includes('besok');
+                    }
+                });
+            }
+            
+            displayLaporanData(filteredData);
+        }
+
+        // Fungsi untuk export data ke Excel (format CSV)
+        function exportToExcel() {
+            // Header CSV
+            let csv = 'Tanggal,Pengguna,Ruangan,Prioritas,Catatan,Dibuat Pada\n';
+            
+            // Data rows
+            allLaporanData.forEach(item => {
+                const tanggal = new Date(item.tanggal).toLocaleDateString('id-ID');
+                const created = new Date(item.created_at).toLocaleDateString('id-ID');
+                
+                // Tentukan prioritas
+                let prioritas = 'Rendah';
+                if (item.catatan) {
+                    const catatan = item.catatan.toLowerCase();
+                    if (catatan.includes('segera') || catatan.includes('penting') || catatan.includes('urgent')) {
+                        prioritas = 'Tinggi';
+                    } else if (catatan.includes('hari ini') || catatan.includes('besok')) {
+                        prioritas = 'Sedang';
+                    }
+                }
+                
+                // Escape quotes in catatan
+                const catatanEscaped = item.catatan ? `"${item.catatan.replace(/"/g, '""')}"` : '';
+                
+                csv += `${tanggal},${item.pengguna},${item.ruangan},${prioritas},${catatanEscaped},${created}\n`;
+            });
+            
+            // Create download link
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'laporan_kebutuhan.csv');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>

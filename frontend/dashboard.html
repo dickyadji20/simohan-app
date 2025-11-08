@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Koordinator - SI-MOHAN</title>
+        <script>
+        // Cek login - jika belum login, redirect SEKARANG JUGA
+        const token = localStorage.getItem('authToken');
+        const userData = localStorage.getItem('userData');
+        
+        if (!token || !userData) {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a2a6c;
+            --secondary: #2c3e50;
+            --accent: #3498db;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #f5f7fa;
+            --dark: #2d3436;
+            --gray: #636e72;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            background: var(--primary);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 250px;
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        .logo {
+            padding: 0 20px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .logo p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        .menu {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .menu-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+        
+        .menu-item:hover, .menu-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .menu-item i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Main Content Styles */
+        .main-content {
+            grid-column: 2;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+              
+        /* Dashboard Cards */
+        .dashboard-title {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .icon-bersih {
+            background: var(--success);
+        }
+        
+        .icon-petugas {
+            background: var(--accent);
+        }
+        
+        .icon-perlu {
+            background: var(--warning);
+        }
+        
+        .icon-belum {
+            background: var(--danger);
+        }
+        
+        .stat-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .stat-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Charts and Activities */
+        .charts-activities {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .chart-container, .activities-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Activity List */
+        .activity-list {
+            list-style: none;
+        }
+        
+        .activity-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 12px;
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-time {
+            font-weight: 500;
+            color: var(--primary);
+            min-width: 50px;
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        /* Recent Reports */
+        .reports-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .reports-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .reports-table th, .reports-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .reports-table th {
+            background-color: #f8f9fa;
+            color: var(--primary);
+        }
+        
+        .reports-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-perlu {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-bersih {
+            background: #e8f5e9;
+            color: var(--success);
+        }
+        
+        .status-belum {
+            background: #ffebee;
+            color: var(--danger);
+        }
+        
+        .laporan-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .laporan-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-group select, .filter-group input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+        }
+        
+        .loading, .error, .empty {
+            text-align: center;
+            padding: 30px;
+            font-style: italic;
+            color: #777;
+        }
+        
+        .error {
+            color: var(--danger);
+        }
+        
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+            
+            .main-content {
+                grid-column: 1;
+            }
+            
+            .charts-activities {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .laporan-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        /* Toast notification */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+        }
+        
+        .toast {
+            background-color: var(--success);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        .toast.error {
+            background-color: var(--danger);
+        }
+        
+        .toast.warning {
+            background-color: var(--warning);
+        }
+        
+        .toast-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .toast-close {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+            /* Animasi untuk menu sidebar */
+    .menu-item {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .menu-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    .menu-item:hover::before {
+        left: 100%;
+    }
+
+    .menu-item i {
+        transition: transform 0.3s ease;
+    }
+
+    .menu-item:hover i {
+        transform: scale(1.2);
+    }
+
+    .menu-item.active i {
+        transform: scale(1.2) rotate(15deg);
+        color: var(--accent);
+    }
+
+    /* Animasi logo di sidebar */
+    .logo {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .logo::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+            to bottom right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        transform: rotate(30deg);
+        transition: all 0.5s;
+    }
+
+    .logo:hover::after {
+        animation: shine 1.5s;
+    }
+
+    @keyframes shine {
+        0% {
+            transform: translateX(-100%) translateY(-100%) rotate(30deg);
+        }
+        100% {
+            transform: translateX(100%) translateY(100%) rotate(30deg);
+        }
+    }
+
+    /* Animasi untuk stat cards */
+    .stat-card {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .stat-card:hover::before {
+        opacity: 1;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Animasi untuk chart bars */
+    #chart-bersih,
+    #chart-perlu,
+    #chart-belum {
+        transition: height 1s ease-in-out;
+    }
+
+    /* Animasi loading untuk konten yang dimuat */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .stats-cards,
+    .laporan-section,
+    .charts-activities {
+        animation: fadeInUp 0.5s ease-out;
+    }
+
+    .stats-cards {
+        animation-delay: 0.1s;
+    }
+
+    .laporan-section {
+        animation-delay: 0.2s;
+    }
+
+    .charts-activities {
+        animation-delay: 0.3s;
+    }
+
+    /* Animasi untuk tabel */
+    .reports-table tr {
+        transition: all 0.3s ease;
+    }
+
+    .reports-table tr:hover {
+        background-color: #f0f7ff !important;
+        transform: scale(1.01);
+    }
+
+    /* Animasi untuk tombol */
+    .btn {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s;
+    }
+
+    .btn::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 5px;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.5);
+        opacity: 0;
+        border-radius: 100%;
+        transform: scale(1, 1) translate(-50%);
+        transform-origin: 50% 50%;
+    }
+
+    .btn:focus:not(:active)::after {
+        animation: ripple 1s ease-out;
+    }
+
+    @keyframes ripple {
+        0% {
+            transform: scale(0, 0);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(20, 20);
+            opacity: 0;
+        }
+    }
+
+    /* Animasi untuk status badges */
+    .status-badge {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .status-badge::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: left 0.5s;
+    }
+
+    .status-badge:hover::before {
+        left: 100%;
+    }
+
+    /* Animasi loading untuk dashboard */
+    .dashboard-loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 200px;
+    }
+
+    .dashboard-spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(26, 42, 108, 0.2);
+        border-radius: 50%;
+        border-top-color: var(--primary);
+        animation: spin 1s ease-in-out infinite;
+        margin-bottom: 15px;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Animasi untuk filter controls */
+    .filter-group {
+        transition: all 0.3s ease;
+    }
+
+    .filter-group:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Animasi untuk user info */
+    .user-info {
+        transition: all 0.3s ease;
+    }
+
+    .user-info:hover {
+        transform: scale(1.05);
+    }
+
+    .user-avatar {
+        transition: all 0.3s ease;
+    }
+
+    .user-info:hover .user-avatar {
+        transform: rotate(10deg);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h1>SI-MOHAN</h1>
+                <p>Pengadilan Agama Takalar</p>
+            </div>
+            
+            <ul class="menu">
+                <li class="menu-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-broom"></i>
+                    <span>Laporan Kebersihan</span>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Laporan Kebutuhan Ruangan</span>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-door-open"></i>
+                    <span>Log RFID</span>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Pendaftaran kartu</span>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Daftar Ruangan</span>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h2>Sistem informasi Monitoring Kebersihan Pengadilan</h2>
+                <div class="user-info">
+                    <div class="user-avatar">K</div>
+                    <div>
+                        <div>Koordinator Kebersihan</div>
+                        <small>Admin</small>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="dashboard-title">Ringkasan Monitoring Kebersihan</h2>
+            
+            <!-- Stats Cards -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon icon-bersih">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="count-bersih">0</h3>
+                        <p>Ruangan Bersih</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon icon-petugas">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="count-petugas">0</h3>
+                        <p>Petugas Aktif</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon icon-perlu">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="count-perlu">0</h3>
+                        <p>Perlu Pembersihan</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon icon-belum">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="count-belum">0</h3>
+                        <p>Belum Dicek</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Laporan Kebersihan Section -->
+            <div class="laporan-section">
+                <h3 class="section-title">
+                    <i class="fas fa-clipboard-list"></i>
+                    Laporan Kebersihan Terbaru
+                </h3>
+                
+    <div class="laporan-controls">
+    <div class="filter-group">
+        <label for="filterTanggal">Tanggal:</label>
+        <input type="date" id="filterTanggal">
+    </div>
+    
+    <div class="filter-group">
+        <label for="filterRuangan">Ruangan:</label>
+        <select id="filterRuangan">
+            <option value="">Semua Ruangan</option>
+            <option value="Ketua">Ketua</option>
+            <option value="Wakil Ketua">Wakil Ketua</option>
+            <!-- ... opsi ruangan lainnya ... -->
+        </select>
+    </div>
+    
+    <div class="filter-group">
+        <label for="filterPetugas">Petugas:</label>
+        <select id="filterPetugas">
+            <option value="">Semua Petugas</option>
+            <!-- Opsi akan diisi melalui JavaScript -->
+        </select>
+    </div>
+    
+    <button id="btnRefresh" class="btn">
+        <i class="fas fa-sync-alt"></i> Refresh
+    </button>
+</div>
+                
+                <div id="laporanContainer">
+                    <div class="loading">Memuat data laporan...</div>
+                </div>
+            </div>
+            
+            <!-- Charts and Activities -->
+            <div class="charts-activities">
+                <div class="chart-container">
+                    <h3 class="section-title">
+                        <i class="fas fa-chart-pie"></i>
+                        Distribusi Kebersihan
+                    </h3>
+                    <div class="chart">
+                        <!-- Simple chart representation -->
+                        <div style="display: flex; height: 200px; align-items: flex-end; gap: 10px; justify-content: center;">
+                            <div id="chart-bersih" style="width: 40px; background: var(--success); height: 70%; display: flex; justify-content: center; border-radius: 5px 5px 0 0;">
+                                <span style="margin-top: -25px; color: var(--dark); font-weight: 500;">70%</span>
+                            </div>
+                            <div id="chart-perlu" style="width: 40px; background: var(--warning); height: 20%; display: flex; justify-content: center; border-radius: 5px 5px 0 0;">
+                                <span style="margin-top: -25px; color: var(--dark); font-weight: 500;">20%</span>
+                            </div>
+                            <div id="chart-belum" style="width: 40px; background: var(--danger); height: 10%; display: flex; justify-content: center; border-radius: 5px 5px 0 0;">
+                                <span style="margin-top: -25px; color: var(--dark); font-weight: 500;">10%</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 15px;">
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <div style="width: 15px; height: 15px; background: var(--success); border-radius: 3px;"></div>
+                                <small>Bersih</small>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <div style="width: 15px; height: 15px; background: var(--warning); border-radius: 3px;"></div>
+                                <small>Perlu Dibersihkan</small>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <div style="width: 15px; height: 15px; background: var(--danger); border-radius: 3px;"></div>
+                                <small>Belum Dicek</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activities-container">
+                    <h3 class="section-title">
+                        <i class="fas fa-history"></i>
+                        Aktivitas Terbaru
+                    </h3>
+                    <div id="activitiesList">
+                        <div class="loading">Memuat aktivitas terbaru...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fungsi untuk menangani navigasi menu
+            function setupMenuNavigation() {
+                const menuItems = document.querySelectorAll('.menu-item');
+                
+                menuItems.forEach((item, index) => {
+                    item.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Hapus class active dari semua item
+                        menuItems.forEach(i => i.classList.remove('active'));
+                        
+                        // Tambahkan class active ke item yang diklik
+                        this.classList.add('active');
+                        
+                        // Navigasi berdasarkan menu yang dipilih
+                        switch(index) {
+                            case 0: // Dashboard
+                                window.location.href = 'dashboard.html';
+                                break;
+                            case 1: // Laporan Kebersihan
+                                window.location.href = 'laporan.html';
+                                break;
+                            case 2: // Laporan Kebutuhan Ruangan
+                                window.location.href = 'kebutuhan.html';
+                                break;
+                            case 3: // LogRFID
+                                window.location.href = 'LogRFID.html';
+                                break;
+                            case 4: // Pendaftaran Kartu
+                                window.location.href = 'PendaftaranKartu.html';
+                                break;
+                            case 5: // daftar ruangan
+                                window.location.href = 'daftarRuangan.html';
+                                break;
+                            case 6: // Logout
+                                logout();
+                                break;
+                        }
+                    });
+                });
+            }
+            
+            // Fungsi logout
+            function logout() {
+                if (confirm('Apakah Anda yakin ingin logout?')) {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('userRole');
+                    window.location.href = 'index.html';
+                }
+            }
+            
+            // Fungsi untuk menampilkan notifikasi
+            function showToast(message, type = 'success') {
+                const toastContainer = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                toast.innerHTML = `
+                    <div class="toast-content">
+                        <i class="fas ${type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle'}"></i>
+                        <span>${message}</span>
+                    </div>
+                    <button class="toast-close" onclick="this.parentElement.remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                
+                toastContainer.appendChild(toast);
+                
+                // Hapus otomatis setelah 5 detik
+                setTimeout(() => {
+                    if (toast.parentElement) {
+                        toast.remove();
+                    }
+                }, 5000);
+            }
+
+            // Fungsi untuk menangani animasi menu
+function setupMenuAnimations() {
+    const menuItems = document.querySelectorAll('.menu-item');
+    
+    menuItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(5px)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0)';
+        });
+        
+        item.addEventListener('click', function(e) {
+            // Hapus class active dari semua item
+            menuItems.forEach(i => i.classList.remove('active'));
+            
+            // Tambahkan class active ke item yang diklik
+            this.classList.add('active');
+            
+            // Tambahkan efek klik
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+    });
+}
+
+// Fungsi untuk animasi stat cards saat data dimuat
+function animateStatsCards() {
+    const statCards = document.querySelectorAll('.stat-card');
+    
+    statCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            card.style.transition = 'all 0.5s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+}
+
+            
+        // Fungsi untuk memuat data ringkasan dashboard
+// Fungsi untuk memuat data ringkasan dashboard dengan error handling
+function loadDashboardSummary() {
+    const filterTanggal = document.getElementById('filterTanggal').value;
+    const filterRuangan = document.getElementById('filterRuangan').value;
+    const filterPetugas = document.getElementById('filterPetugas') ? document.getElementById('filterPetugas').value : '';
+    
+    let url = `${window.APP_CONFIG.API_BASE_URL}/api/rfid/dashboard/summary`;
+    const params = [];
+    
+    if (filterTanggal) params.push(`tanggal=${filterTanggal}`);
+    if (filterRuangan && filterRuangan !== '') params.push(`ruangan=${encodeURIComponent(filterRuangan)}`);
+    if (filterPetugas) params.push(`petugas=${encodeURIComponent(filterPetugas)}`);
+    
+    if (params.length > 0) {
+        url += '?' + params.join('&');
+    }
+    
+    console.log('📊 Fetching dashboard data from:', url);
+    
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('✅ Dashboard data received:', data);
+            
+            if (data.success) {
+                // Update statistik cards
+                document.getElementById('count-bersih').textContent = data.data.ruangan_bersih || 0;
+                document.getElementById('count-petugas').textContent = data.data.petugas_aktif || 0;
+                document.getElementById('count-perlu').textContent = data.data.perlu_pembersihan || 0;
+                document.getElementById('count-belum').textContent = data.data.belum_dicek || 0;
+                
+                // Update chart distribusi kebersihan
+                updateChart(data.data);
+            } else {
+                throw new Error(data.error || 'Unknown error from server');
+            }
+        })
+        .catch(error => {
+            console.error('❌ Error fetching dashboard data:', error);
+            showToast('Gagal memuat data dashboard: ' + error.message, 'error');
+            
+            // Set default values jika error
+            document.getElementById('count-bersih').textContent = '0';
+            document.getElementById('count-petugas').textContent = '0';
+            document.getElementById('count-perlu').textContent = '0';
+            document.getElementById('count-belum').textContent = '0';
+            updateChart({ ruangan_bersih: 0, perlu_pembersihan: 0, belum_dicek: 0 });
+        });
+    }
+
+// Fungsi untuk memperbarui chart distribusi kebersihan 
+function updateChart(data) {
+    const total = data.ruangan_bersih + data.perlu_pembersihan + data.belum_dicek;
+    
+    // Jika total 0, set semua ke 0%
+    if (total === 0) {
+        document.getElementById('chart-bersih').style.height = '0%';
+        document.getElementById('chart-bersih').querySelector('span').textContent = '0%';
+        document.getElementById('chart-perlu').style.height = '0%';
+        document.getElementById('chart-perlu').querySelector('span').textContent = '0%';
+        document.getElementById('chart-belum').style.height = '0%';
+        document.getElementById('chart-belum').querySelector('span').textContent = '0%';
+        return;
+    }
+    
+    const bersihPercent = Math.round((data.ruangan_bersih / total) * 100);
+    const perluPercent = Math.round((data.perlu_pembersihan / total) * 100);
+    const belumPercent = Math.round((data.belum_dicek / total) * 100);
+    
+    // Update chart visual
+    const chartBersih = document.getElementById('chart-bersih');
+    const chartPerlu = document.getElementById('chart-perlu');
+    const chartBelum = document.getElementById('chart-belum');
+    
+    if (chartBersih && chartPerlu && chartBelum) {
+        chartBersih.style.height = `${bersihPercent}%`;
+        chartBersih.querySelector('span').textContent = `${bersihPercent}%`;
+        
+        chartPerlu.style.height = `${perluPercent}%`;
+        chartPerlu.querySelector('span').textContent = `${perluPercent}%`;
+        
+        chartBelum.style.height = `${belumPercent}%`;
+        chartBelum.querySelector('span').textContent = `${belumPercent}%`;
+    }
+}
+
+// Fungsi untuk memuat laporan terbaru dengan filter
+function loadRecentReports() {
+    const filterTanggal = document.getElementById('filterTanggal').value;
+    const filterRuangan = document.getElementById('filterRuangan').value;
+    const filterPetugas = document.getElementById('filterPetugas') ? document.getElementById('filterPetugas').value : '';
+    
+    let url = `${window.APP_CONFIG.API_BASE_URL}/api/rfid/recent-logs`;
+    const params = [];
+    
+    if (filterTanggal) params.push(`tanggal=${filterTanggal}`);
+    if (filterRuangan && filterRuangan !== '') params.push(`ruangan=${encodeURIComponent(filterRuangan)}`);
+    if (filterPetugas) params.push(`petugas=${encodeURIComponent(filterPetugas)}`);
+    
+    if (params.length > 0) {
+        url += '?' + params.join('&');
+    }
+    
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                displayRecentReports(data.data);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching recent reports:', error);
+            document.getElementById('laporanContainer').innerHTML = `
+                <div class="error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Gagal memuat data laporan</p>
+                </div>`;
+        });
+}
+            
+          // Fungsi untuk menampilkan laporan terbaru dengan status yang benar
+    function displayRecentReports(logs) {
+    const container = document.getElementById('laporanContainer');
+    
+    if (!logs || logs.length === 0) {
+        container.innerHTML = `
+            <div class="empty">
+                <i class="fas fa-inbox"></i>
+                <p>Belum ada laporan kebersihan</p>
+            </div>`;
+        return;
+    }
+    
+    let html = `
+        <div class="table-responsive">
+            <table class="reports-table">
+                <thead>
+                    <tr>
+                        <th>Waktu</th>
+                        <th>Petugas</th>
+                        <th>Ruangan</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+    
+    logs.forEach(log => {
+        // Tentukan status berdasarkan data log
+        let statusText = 'Pending';
+        let statusClass = 'status-belum';
+        
+        if (log.status === 'selesai') {
+            statusText = 'Bersih';
+            statusClass = 'status-bersih';
+        } else if (log.status === 'tercatat') {
+            statusText = 'Tercatat';
+            statusClass = 'status-perlu';
+        }
+        
+        // Format ruangan - ambil semua ruangan dari relasi
+        let ruanganDisplay = '-';
+        if (log.ruangan) {
+            if (typeof log.ruangan === 'string') {
+                ruanganDisplay = log.ruangan;
+            } else if (Array.isArray(log.ruangan)) {
+                ruanganDisplay = log.ruangan.map(r => r.nama_ruangan).join(', ');
+            }
+        }
+        
+        html += `
+            <tr>
+                <td>${new Date(log.waktu).toLocaleString('id-ID')}</td>
+                <td>${log.petugas_name || 'Tidak diketahui'}</td>
+                <td>${ruanganDisplay}</td>
+                <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+            </tr>`;
+    });
+    
+    html += `
+                </tbody>
+            </table>
+        </div>`;
+    
+    container.innerHTML = html;
+}
+
+// Fungsi untuk memuat opsi petugas
+function loadPetugasOptions() {
+    fetch(`${window.APP_CONFIG.API_BASE_URL}/api/ruangan/petugas/list`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success && data.data.length > 0) {
+                const petugasSelect = document.getElementById('filterPetugas');
+                data.data.forEach(petugas => {
+                    const option = document.createElement('option');
+                    option.value = petugas.nama;
+                    option.textContent = petugas.nama;
+                    petugasSelect.appendChild(option);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error loading petugas options:', error);
+        });
+}
+            
+            // Fungsi untuk memuat aktivitas terbaru
+            function loadRecentActivities() {
+                fetch(`${window.APP_CONFIG.API_BASE_URL}/api/rfid/recent-logs?limit=5`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            displayRecentActivities(data.data);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching recent activities:', error);
+                        document.getElementById('activitiesList').innerHTML = `
+                            <div class="error">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <p>Gagal memuat aktivitas terbaru</p>
+                            </div>`;
+                    });
+            }
+            
+            // Fungsi untuk menampilkan aktivitas terbaru
+            function displayRecentActivities(logs) {
+                const container = document.getElementById('activitiesList');
+                
+                if (!logs || logs.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty">
+                            <i class="fas fa-inbox"></i>
+                            <p>Belum ada aktivitas hari ini</p>
+                        </div>`;
+                    return;
+                }
+                
+                let html = `<ul class="activity-list">`;
+                
+                logs.forEach(log => {
+                    const time = new Date(log.waktu).toLocaleTimeString('id-ID', { 
+                        hour: '2-digit', 
+                        minute: '2-digit' 
+                    });
+                    
+                    html += `
+                        <li class="activity-item">
+                            <div class="activity-time">${time}</div>
+                            <div class="activity-content">
+                                <strong>${log.petugas_name || 'Petugas'}</strong> membersihkan ruangan <strong>${log.ruangan || 'Tidak diketahui'}</strong>
+                            </div>
+                        </li>`;
+                });
+                
+                html += `</ul>`;
+                
+                container.innerHTML = html;
+            }
+            
+     
+// Fungsi untuk inisialisasi dashboard
+function initDashboard() {
+    // Muat opsi petugas terlebih dahulu
+    loadPetugasOptions();
+    
+    // Set tanggal default ke hari ini
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('filterTanggal').value = today;
+    
+    // Muat data saat halaman dimuat
+    loadDashboardSummary();
+    loadRecentReports();
+    loadRecentActivities();
+    
+    // ✅ PERBAIKAN: Deklarasi variabel isPageVisible
+    let isPageVisible = !document.hidden;
+    
+    // Set interval untuk pembaruan otomatis setiap 30 detik
+    setInterval(() => {
+        if (isPageVisible) {
+            loadDashboardSummary();
+            loadRecentReports();
+            loadRecentActivities();
+        }
+    }, 30000);
+    
+    // ✅ PERBAIKAN: Track page visibility untuk optimasi polling
+    document.addEventListener('visibilitychange', function() {
+        isPageVisible = !document.hidden;
+        console.log('📊 Page visibility changed:', isPageVisible ? 'Visible' : 'Hidden');
+    });
+    
+    // Tambahkan event listener untuk tombol refresh
+    document.getElementById('btnRefresh').addEventListener('click', function() {
+        loadDashboardSummary();
+        loadRecentReports();
+        loadRecentActivities();
+        showToast('Data diperbarui');
+    });
+    
+    // Tambahkan event listener untuk semua filter
+    document.getElementById('filterTanggal').addEventListener('change', function() {
+        loadDashboardSummary();
+        loadRecentReports();
+        loadRecentActivities();
+    });
+    
+    document.getElementById('filterRuangan').addEventListener('change', function() {
+        loadDashboardSummary();
+        loadRecentReports();
+        loadRecentActivities();
+    });
+    
+    document.getElementById('filterPetugas').addEventListener('change', function() {
+        loadDashboardSummary();
+        loadRecentReports();
+        loadRecentActivities();
+    });
+}
+            
+            // Jalankan setup menu
+            setupMenuNavigation();
+            
+            // Inisialisasi dashboard
+            initDashboard();
+        });
+    </script>
+</body>
+</html>

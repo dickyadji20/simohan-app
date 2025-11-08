@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Kebersihan - SI-MOHAN</title>
+    <script>
+        // Cek login - jika belum login, redirect SEKARANG JUGA
+        const token = localStorage.getItem('authToken');
+        const userData = localStorage.getItem('userData');
+        
+        if (!token || !userData) {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 10px;
+        }
+        
+        .controls {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-group label {
+            font-weight: 500;
+        }
+        
+        select, input, button {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button {
+            background: #1a2a6c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #2c3e50;
+        }
+        
+        .laporan-table {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background-color: #1a2a6c;
+            color: white;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .status-bersih {
+            background: #e8f5e9;
+            color: #2ecc71;
+        }
+        
+        .status-kotor {
+            background: #ffebee;
+            color: #e74c3c;
+        }
+        
+        .loading, .error, .empty {
+            text-align: center;
+            padding: 30px;
+            font-style: italic;
+            color: #777;
+        }
+        
+        .error {
+            color: #e74c3c;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .btn-delete {
+            background: #e74c3c;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .btn-view {
+            background: #3498db;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .btn-export {
+            background: #27ae60;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: #000;
+        }
+        
+        .modal-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+        
+        .checklist-form {
+            margin-top: 20px;
+        }
+        
+        .checklist-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        
+        .checklist-item label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .modal-footer {
+            margin-top: 20px;
+            text-align: right;
+        }
+        
+        .btn-primary {
+            background: #1a2a6c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-clipboard-list"></i> Laporan Kebersihan</h1>
+            <p>Pengadilan Agama Takalar - Sistem Informasi Monitoring Kebersihan Ruangan</p>
+        </header>
+        
+        <div class="controls">
+            <div class="filter-group">
+                <label for="filterTanggal">Tanggal:</label>
+                <input type="date" id="filterTanggal">
+            </div>
+            
+            <div class="filter-group">
+                <label for="filterRuangan">Ruangan:</label>
+                <select id="filterRuangan">
+                    <option value="">Semua Ruangan</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="filterStatus">Status:</label>
+                <select id="filterStatus">
+                    <option value="">Semua Status</option>
+                    <option value="sudah_dicek">Sudah Dicek</option>
+                    <option value="belum_dicek">Belum Dicek</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="filterPetugas">Petugas:</label>
+                <select id="filterPetugas">
+                    <option value="">Semua Petugas</option>
+                </select>
+            </div>
+            
+            <button id="btnRefresh">
+                <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+            
+            <button id="btnExportPDF" class="btn-export">
+                <i class="fas fa-file-pdf"></i> Export PDF
+            </button>
+            
+            <button id="btnKembali" onclick="window.location.href='dashboard.html'">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </button>
+        </div>
+        
+        <div class="laporan-table">
+            <div id="loading" class="loading">Memuat data laporan...</div>
+            <div id="error" class="error" style="display: none;"></div>
+            <div id="empty" class="empty" style="display: none;">Tidak ada data laporan.</div>
+            
+            <table id="tabelLaporan" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Petugas</th>
+                        <th>Ruangan</th>
+                        <th>Catatan</th>
+                        <th>Foto</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyLaporan">
+                    <!-- Data akan diisi oleh JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal untuk melihat foto -->
+    <div id="fotoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Foto Bukti Kebersihan</h3>
+            <img id="modalFoto" class="modal-image" src="" alt="Foto Bukti" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjOTk5Ij5Gb3RvIHRpZGFrIGRpdGVtdWthbjwvdGV4dD48L3N2Zz4='">
+        </div>
+    </div>
+
+    <!-- Modal untuk detail laporan dan checklist -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Detail Laporan Kebersihan</h3>
+            <div id="detailContent">
+                <!-- Detail akan diisi oleh JavaScript -->
+            </div>
+            
+            <div class="checklist-form">
+                <h4>Checklist Kebersihan</h4>
+                <form id="checklistForm">
+                    <div class="checklist-item">
+                        <label>
+                            <input type="checkbox" name="checklist_lantai" id="checklist_lantai">
+                            Lantai
+                        </label>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <label>
+                            <input type="checkbox" name="checklist_kaca_jendela" id="checklist_kaca_jendela">
+                            Kaca Jendela
+                        </label>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <label>
+                            <input type="checkbox" name="checklist_pintu" id="checklist_pintu">
+                            Pintu
+                        </label>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <label>
+                            <input type="checkbox" name="checklist_lawa_lawa" id="checklist_lawa_lawa">
+                            Lawa-lawa
+                        </label>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <label>
+                            <input type="checkbox" name="checklist_lubang_angin" id="checklist_lubang_angin">
+                            Lubang Angin
+                        </label>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <label>
+                            <input type="checkbox" name="checklist_kusen_jendela_dan_pintu" id="checklist_kusen_jendela_dan_pintu">
+                            Kusen Jendela dan Pintu
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="checklist_keterangan">Keterangan:</label>
+                        <select name="checklist_keterangan" id="checklist_keterangan">
+                            <option value="">Pilih Keterangan</option>
+                            <option value="B">B (Baik)</option>
+                            <option value="K">K (Kurang)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" id="btnTutupModal">Tutup</button>
+                        <button type="submit" class="btn-primary">Simpan Checklist</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal untuk filter export PDF -->
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Export Laporan PDF</h3>
+            <form id="exportForm">
+                <div class="form-group">
+                    <label for="exportTanggal">Tanggal:</label>
+                    <input type="date" id="exportTanggal" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exportPetugas">Petugas:</label>
+                    <select id="exportPetugas">
+                        <option value="">Semua Petugas</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exportRuangan">Ruangan:</label>
+                    <select id="exportRuangan">
+                        <option value="">Semua Ruangan</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exportTipe">Tipe Laporan:</label>
+                    <select id="exportTipe">
+                        <option value="per-ruangan">Per Ruangan (Terpisah)</option>
+                        <option value="gabungan">Gabungan Semua Ruangan</option>
+                    </select>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" id="btnBatalExport">Batal</button>
+                    <button type="submit" class="btn-primary">Export PDF</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script src="js/config.js"></script>
+<script>
+// Variabel global untuk menyimpan data
+let allLaporanData = [];
+let currentLaporanId = null;
+let allPetugasData = [];
+let allRuanganData = [];
+let petugasRuanganMapping = {};
+
+// Fungsi untuk memuat data petugas dari laporan_kebersihan
+async function loadPetugasData() {
+    try {
+        console.log('📡 Loading petugas data...');
+        const response = await fetch(`${window.APP_CONFIG.API_BASE_URL}/api/cleaning/unique-petugas`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        if (data.success) {
+            allPetugasData = data.data;
+            console.log('✅ Petugas data loaded:', allPetugasData);
+            return true;
+        } else {
+            throw new Error(data.error || 'Failed to load petugas data');
+        }
+    } catch (error) {
+        console.error('❌ Error loading petugas data:', error);
+        // Fallback ke data sample
+        allPetugasData = [
+            "Sunardi", "Syamsuddin", "NURHAEDA, S.ag", "Muh. Risal", 
+            "M. Nazar, SH", "Hasanuddin", "Harits Fakhruni Zainuddin, S.Kom"
+        ];
+        console.log('⚠️ Using fallback petugas data');
+        return true;
+    }
+}
+
+// Fungsi untuk memuat data ruangan dari daftar_ruangan
+async function loadRuanganData() {
+    try {
+        console.log('📡 Loading ruangan data...');
+        const response = await fetch(`${window.APP_CONFIG.API_BASE_URL}/api/cleaning/unique-ruangan`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        if (data.success) {
+            allRuanganData = data.data;
+            console.log('✅ Ruangan data loaded:', allRuanganData);
+            return true;
+        } else {
+            throw new Error(data.error || 'Failed to load ruangan data');
+        }
+    } catch (error) {
+        console.error('❌ Error loading ruangan data:', error);
+        // Fallback ke data sample
+        allRuanganData = [
+            "Ketua", "Wakil Ketua", "Ruang Hakim", "Ruang Panitera", 
+            "Ketua Sekretaris", "Sekretariat", "Bendahara", "PTSP",
+            "Ruang Sidang Utama", "Ruang Sidang Kalabbirang", 
+            "Toilet Bawah", "Toilet Atas", "Ruang Mediasi"
+        ];
+        console.log('⚠️ Using fallback ruangan data');
+        return true;
+    }
+}
+
+// Fungsi untuk memuat mapping petugas-ruangan dari daftar_ruangan
+async function loadPetugasRuanganMapping() {
+    try {
+        console.log('📡 Loading petugas-ruangan mapping...');
+        const response = await fetch(`${window.APP_CONFIG.API_BASE_URL}/api/cleaning/petugas-ruangan-daftar`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        if (data.success) {
+            petugasRuanganMapping = data.data;
+            console.log('✅ Petugas-ruangan mapping loaded:', petugasRuanganMapping);
+            return true;
+        } else {
+            throw new Error(data.error || 'Failed to load mapping');
+        }
+    } catch (error) {
+        console.error('❌ Error loading petugas-ruangan mapping:', error);
+        // Fallback ke data sample
+        petugasRuanganMapping = {
+            "Harits Fakhruni Zainuddin, S.Kom": [
+                "Rg. Panitera Pengganti", "Koridor Atas Depan", "Rg. Server", 
+                "Koridor Atas Kiri", "Toilet Atas Pria", "Rg. Pantry"
+            ],
+            "M. Nazar, SH": [
+                "Kesekretariatan", "Koridor Bawah Kiri", "Ruang Bendahara", "Ruang Mediasi"
+            ],
+            "Muh. Risal": [
+                "Media Center", "Toilet Dilabel", "Koridor Atas Kanan", 
+                "Perpustakaan", "Koridor Atas Belakang"
+            ]
+        };
+        console.log('⚠️ Using fallback mapping data');
+        return true;
+    }
+}
+
+// Fungsi untuk memuat data laporan dari server
+async function loadLaporanData() {
+    try {
+        document.getElementById('loading').style.display = 'block';
+        document.getElementById('error').style.display = 'none';
+        document.getElementById('empty').style.display = 'none';
+        document.getElementById('tabelLaporan').style.display = 'none';
+
+        // Load semua data terlebih dahulu
+        await Promise.all([
+            loadPetugasData(),
+            loadRuanganData(),
+            loadPetugasRuanganMapping()
+        ]);
+
+        const token = localStorage.getItem('authToken');
+        
+        const url = `${window.APP_CONFIG.API_BASE_URL}/api/cleaning`;
+        console.log('📡 Mengambil data dari laporan_kebersihan:', url);
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            if (response.status === 401) {
+                window.location.href = 'login.html';
+                return;
+            }
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        // Simpan data ke variabel global
+        allLaporanData = data;
+        console.log('✅ Laporan data loaded:', allLaporanData);
+        
+        // Isi dropdown filter
+        fillFilterDropdowns(data);
+        
+        // Tampilkan data
+        displayLaporanData(allLaporanData);
+        
+    } catch (error) {
+        console.error('❌ Error:', error);
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('error').style.display = 'block';
+        document.getElementById('error').textContent = 'Gagal memuat data: ' + error.message;
+    }
+}
+
+// Fungsi untuk memuat data petugas lengkap dengan foto
+async function loadPetugasLengkap() {
+    try {
+        console.log('📡 Loading petugas lengkap data...');
+        const response = await fetch(`${window.APP_CONFIG.API_BASE_URL}/api/cleaning/petugas-lengkap`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        if (data.success) {
+            console.log('✅ Petugas lengkap data loaded:', data.data);
+            return data.data;
+        } else {
+            throw new Error(data.error || 'Failed to load petugas data');
+        }
+    } catch (error) {
+        console.error('❌ Error loading petugas lengkap:', error);
+        return [];
+    }
+}
+
+// Fungsi untuk mendapatkan path gambar yang DIPERBAIKI
+function getImagePath(nama, type) {
+    // Gunakan path relatif dari root website
+    const basePath = window.location.origin;
+    
+    if (type === 'logo') {
+        return `${basePath}/assets/logo/logo_pengadilan.png`;
+    } else if (type === 'ttd') {
+        return `${basePath}/assets/ttd/ttd_dicky.png`;
+    } else if (type === 'foto_petugas') {
+        if (!nama) return null;
+        // Format nama file yang lebih robust
+        const fileName = nama
+            .toLowerCase()
+            .replace(/\s*,\s*/g, '') // Hapus koma
+            .replace(/\s+/g, '_')
+            .replace(/[^a-z0-9_]/g, '') + '.jpg';
+        return `${basePath}/assets/foto_petugas/${fileName}`;
+    } else if (type === 'foto_pengawas') {
+        return `${basePath}/assets/foto_pengawas/dicky_adji_nugraha.jpg`;
+    }
+    return null;
+}
+
+// Fungsi untuk memuat gambar dengan transparansi yang DIPERBAIKI
+function loadImageAsBase64(url) {
+    return new Promise((resolve, reject) => {
+        // Skip jika URL null atau undefined
+        if (!url) {
+            reject(new Error('URL gambar tidak valid'));
+            return;
+        }
+
+        const img = new Image();
+        
+        // Handle CORS issues
+        img.crossOrigin = 'Anonymous';
+        
+        img.onload = function() {
+            try {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                // Clear canvas dengan transparan
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Gambar image dengan transparansi
+                ctx.drawImage(img, 0, 0);
+                
+                // Convert ke PNG untuk menjaga transparansi
+                const dataURL = canvas.toDataURL('image/png');
+                resolve(dataURL);
+            } catch (e) {
+                reject(new Error('Gagal mengkonversi gambar: ' + e.message));
+            }
+        };
+        
+        img.onerror = function() {
+            reject(new Error('Gagal memuat gambar dari: ' + url));
+        };
+        
+        // Timeout setelah 5 detik
+        const timeout = setTimeout(() => {
+            reject(new Error('Timeout memuat gambar'));
+        }, 5000);
+        
+        img.onload = function() {
+            clearTimeout(timeout);
+            try {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                // Clear canvas dengan transparan
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Gambar image dengan transparansi
+                ctx.drawImage(img, 0, 0);
+                
+                // Convert ke PNG untuk menjaga transparansi
+                const dataURL = canvas.toDataURL('image/png');
+                resolve(dataURL);
+            } catch (e) {
+                reject(new Error('Gagal mengkonversi gambar: ' + e.message));
+            }
+        };
+        
+        img.src = url;
+        
+        // Jika gambar sudah di-cache, trigger onload manually
+        if (img.complete) {
+            img.onload();
+        }
+    });
+}
+
+// Fungsi untuk mendapatkan URL foto petugas berdasarkan nama
+function getFotoPetugasUrl(namaPetugas) {
+    if (!namaPetugas) return null;
+    
+    // Format nama file: ubah ke lowercase, ganti spasi dengan underscore, hapus karakter khusus
+    const fileName = namaPetugas
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, '')
+        .replace(/\s+/g, '_') + '.jpg';
+    
+    return `assets/foto_petugas/${fileName}`;
+}
+
+// Fungsi untuk mendapatkan URL logo
+function getLogoUrl() {
+    return 'assets/logo/logo_pengadilan.png';
+}
+
+// Fungsi untuk mengisi dropdown filter
+function fillFilterDropdowns(data) {
+    const ruanganSet = new Set();
+    const petugasSet = new Set();
+    
+    data.forEach(item => {
+        if (item.ruangan) ruanganSet.add(item.ruangan);
+        if (item.petugas) petugasSet.add(item.petugas);
+    });
+    
+    // Isi dropdown ruangan dari data laporan
+    const ruanganSelect = document.getElementById('filterRuangan');
+    ruanganSelect.innerHTML = '<option value="">Semua Ruangan</option>';
+    ruanganSet.forEach(ruangan => {
+        const option = document.createElement('option');
+        option.value = ruangan;
+        option.textContent = ruangan;
+        ruanganSelect.appendChild(option);
+    });
+    
+    // Isi dropdown petugas dari data laporan
+    const petugasSelect = document.getElementById('filterPetugas');
+    petugasSelect.innerHTML = '<option value="">Semua Petugas</option>';
+    petugasSet.forEach(petugas => {
+        const option = document.createElement('option');
+        option.value = petugas;
+        option.textContent = petugas;
+        petugasSelect.appendChild(option);
+    });
+    
+    // Isi dropdown untuk export modal - menggunakan semua data petugas
+    const exportPetugasSelect = document.getElementById('exportPetugas');
+    exportPetugasSelect.innerHTML = '<option value="">Semua Petugas</option>';
+    
+    allPetugasData.forEach(petugas => {
+        const option = document.createElement('option');
+        option.value = petugas;
+        option.textContent = petugas;
+        exportPetugasSelect.appendChild(option);
+    });
+    
+    // Event listener untuk perubahan petugas di export modal
+    exportPetugasSelect.addEventListener('change', function() {
+        const selectedPetugas = this.value;
+        const exportRuanganSelect = document.getElementById('exportRuangan');
+        exportRuanganSelect.innerHTML = '<option value="">Semua Ruangan</option>';
+        
+        // Jika petugas dipilih, tampilkan ruangan yang terkait dari mapping
+        if (selectedPetugas && petugasRuanganMapping[selectedPetugas]) {
+            petugasRuanganMapping[selectedPetugas].forEach(ruangan => {
+                const option = document.createElement('option');
+                option.value = ruangan;
+                option.textContent = ruangan;
+                exportRuanganSelect.appendChild(option);
+            });
+        } else {
+            // Jika tidak, tampilkan semua ruangan
+            allRuanganData.forEach(ruangan => {
+                const option = document.createElement('option');
+                option.value = ruangan;
+                option.textContent = ruangan;
+                exportRuanganSelect.appendChild(option);
+            });
+        }
+    });
+    
+    // Isi dropdown ruangan untuk export dengan semua ruangan
+    const exportRuanganSelect = document.getElementById('exportRuangan');
+    exportRuanganSelect.innerHTML = '<option value="">Semua Ruangan</option>';
+    allRuanganData.forEach(ruangan => {
+        const option = document.createElement('option');
+        option.value = ruangan;
+        option.textContent = ruangan;
+        exportRuanganSelect.appendChild(option);
+    });
+}
+
+// Fungsi untuk menampilkan data laporan ke tabel
+function displayLaporanData(laporan) {
+    const tbody = document.getElementById('tbodyLaporan');
+    tbody.innerHTML = '';
+    
+    if (laporan.length === 0) {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('empty').style.display = 'block';
+        return;
+    }
+    
+    laporan.forEach(item => {
+        const row = document.createElement('tr');
+        const tanggalObj = new Date(item.tanggal);
+        const tanggalFormatted = tanggalObj.toLocaleDateString('id-ID', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Status badge berdasarkan validasi
+        let statusClass = item.status_validasi === 'sudah_dicek' ? 'status-bersih' : 'status-kotor';
+        let statusText = item.status_validasi === 'sudah_dicek' ? 'Sudah Dicek' : 'Belum Dicek';
+        
+        row.innerHTML = `
+            <td>${tanggalFormatted}</td>
+            <td>${item.petugas}</td>
+            <td>${item.ruangan}</td>
+            <td>${item.catatan || '-'}</td>
+            <td>
+                ${item.foto ? 
+                    `<button class="btn-view" onclick="viewFoto('${item.foto}')">
+                        <i class="fas fa-eye"></i> Lihat
+                    </button>` : 
+                    '-'
+                }
+            </td>
+            <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+            <td class="action-buttons">
+                <button class="btn-view" onclick="showDetailModal(${item.id})">
+                    <i class="fas fa-eye"></i> Detail
+                </button>
+                <button class="btn-delete" onclick="hapusLaporan(${item.id})">
+                    <i class="fas fa-trash"></i> Hapus
+                </button>
+            </td>
+        `;
+        
+        tbody.appendChild(row);
+    });
+    
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('tabelLaporan').style.display = 'table';
+}
+
+// Fungsi untuk melihat foto - DIPERBAIKI PATH
+function viewFoto(foto) {
+    const modal = document.getElementById('fotoModal');
+    const modalImg = document.getElementById('modalFoto');
+    
+    // Path yang benar untuk foto - gunakan path relatif dari root
+    const fotoUrl = `${window.APP_CONFIG.API_BASE_URL}/assets/uploads/${foto}`;
+    console.log('🔍 Mencoba memuat foto dari:', fotoUrl);
+    
+    modalImg.src = fotoUrl;
+    modal.style.display = 'block';
+    
+    // Tutup modal ketika klik close
+    const span = document.querySelector('#fotoModal .close');
+    span.onclick = function() {
+        modal.style.display = 'none';
+    }
+    
+    // Tutup modal ketika klik di luar gambar
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+}
+
+// Fungsi untuk menampilkan detail laporan dan form checklist
+function showDetailModal(id) {
+    const laporan = allLaporanData.find(item => item.id === id);
+    if (!laporan) return;
+    
+    currentLaporanId = id;
+    
+    const tanggalObj = new Date(laporan.tanggal);
+    const tanggalFormatted = tanggalObj.toLocaleDateString('id-ID', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    
+    const detailContent = document.getElementById('detailContent');
+    detailContent.innerHTML = `
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+                <p><strong>Tanggal:</strong> ${tanggalFormatted}</p>
+                <p><strong>Petugas:</strong> ${laporan.petugas}</p>
+            </div>
+            <div>
+                <p><strong>Ruangan:</strong> ${laporan.ruangan}</p>
+                <p><strong>Status:</strong> <span class="status-badge ${laporan.status_validasi === 'sudah_dicek' ? 'status-bersih' : 'status-kotor'}">${laporan.status_validasi === 'sudah_dicek' ? 'Sudah Dicek' : 'Belum Dicek'}</span></p>
+            </div>
+        </div>
+        <p><strong>Catatan:</strong> ${laporan.catatan || '-'}</p>
+        
+        ${laporan.foto ? `
+            <div>
+                <strong>Foto Bukti:</strong><br>
+                <img src="${window.APP_CONFIG.API_BASE_URL}/assets/uploads/${laporan.foto}" alt="Foto Bukti" style="max-width: 100%; max-height: 200px; margin-top: 10px;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjOTk5Ij5Gb3RvIHRpZGFrIGRpdGVtdWthbjwvdGV4dD48L3N2Zz4='">
+            </div>
+        ` : ''}
+    `;
+    
+    // Isi form checklist dengan data yang ada
+    document.getElementById('checklist_lantai').checked = laporan.checklist_lantai === true;
+    document.getElementById('checklist_kaca_jendela').checked = laporan.checklist_kaca_jendela === true;
+    document.getElementById('checklist_pintu').checked = laporan.checklist_pintu === true;
+    document.getElementById('checklist_lawa_lawa').checked = laporan.checklist_lawa_lawa === true;
+    document.getElementById('checklist_lubang_angin').checked = laporan.checklist_lubang_angin === true;
+    document.getElementById('checklist_kusen_jendela_dan_pintu').checked = laporan.checklist_kusen_jendela_dan_pintu === true;
+    document.getElementById('checklist_keterangan').value = laporan.checklist_keterangan || '';
+    
+    const modal = document.getElementById('detailModal');
+    modal.style.display = 'block';
+    
+    // Tutup modal ketika klik close
+    const span = document.querySelector('#detailModal .close');
+    span.onclick = function() {
+        modal.style.display = 'none';
+    }
+    
+    // Tutup modal ketika klik tombol tutup
+    document.getElementById('btnTutupModal').onclick = function() {
+        modal.style.display = 'none';
+    }
+    
+    // Tutup modal ketika klik di luar konten
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+}
+
+// Fungsi untuk menyimpan checklist
+async function saveChecklist(event) {
+    event.preventDefault();
+    
+    if (!currentLaporanId) {
+        alert('Tidak ada laporan yang dipilih');
+        return;
+    }
+    
+    const checklistData = {
+        checklist_lantai: document.getElementById('checklist_lantai').checked,
+        checklist_kaca_jendela: document.getElementById('checklist_kaca_jendela').checked,
+        checklist_pintu: document.getElementById('checklist_pintu').checked,
+        checklist_lawa_lawa: document.getElementById('checklist_lawa_lawa').checked,
+        checklist_lubang_angin: document.getElementById('checklist_lubang_angin').checked,
+        checklist_kusen_jendela_dan_pintu: document.getElementById('checklist_kusen_jendela_dan_pintu').checked,
+        checklist_keterangan: document.getElementById('checklist_keterangan').value
+    };
+    
+    console.log('💾 Menyimpan checklist untuk ID', currentLaporanId, ':', checklistData);
+    
+    try {
+        const token = localStorage.getItem('authToken');
+        const response = await fetch(`${window.APP_CONFIG.API_BASE_URL}/api/cleaning/${currentLaporanId}/checklist`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(checklistData)
+        });
+        
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP ${response.status}: ${errorText}`);
+        }
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            alert('Checklist berhasil disimpan!');
+            // Tutup modal
+            document.getElementById('detailModal').style.display = 'none';
+            // Muat ulang data
+            loadLaporanData();
+        } else {
+            throw new Error(result.error || 'Gagal menyimpan checklist');
+        }
+    } catch (error) {
+        console.error('❌ Error:', error);
+        alert('Gagal menyimpan checklist: ' + error.message);
+    }
+}
+
+// Fungsi untuk menghapus laporan
+async function hapusLaporan(id) {
+    if (confirm('Apakah Anda yakin ingin menghapus laporan ini?')) {
+        try {
+            const token = localStorage.getItem('authToken');
+            const response = await fetch(`${window.APP_CONFIG.API_BASE_URL}/api/cleaning/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error('Gagal menghapus laporan');
+            }
+            
+            alert('Laporan berhasil dihapus');
+            loadLaporanData();
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Gagal menghapus laporan: ' + error.message);
+        }
+    }
+}
+
+// Event listener untuk filter dan tombol refresh
+document.addEventListener('DOMContentLoaded', function() {
+    // Muat data saat halaman dimuat
+    loadLaporanData();
+    
+    // Event listener untuk filter
+    document.getElementById('filterTanggal').addEventListener('change', applyFilters);
+    document.getElementById('filterRuangan').addEventListener('change', applyFilters);
+    document.getElementById('filterStatus').addEventListener('change', applyFilters);
+    document.getElementById('filterPetugas').addEventListener('change', applyFilters);
+    document.getElementById('btnRefresh').addEventListener('click', loadLaporanData);
+    document.getElementById('btnExportPDF').addEventListener('click', showExportModal);
+    
+    // Event listener untuk form checklist
+    document.getElementById('checklistForm').addEventListener('submit', saveChecklist);
+    
+    // Event listener untuk form export
+    document.getElementById('exportForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        exportLaporanPDF();
+    });
+    
+    // Event listener untuk tombol batal export
+    document.getElementById('btnBatalExport').addEventListener('click', function() {
+        document.getElementById('exportModal').style.display = 'none';
+    });
+});
+
+// Fungsi untuk menerapkan filter
+function applyFilters() {
+    const filterTanggal = document.getElementById('filterTanggal').value;
+    const filterRuangan = document.getElementById('filterRuangan').value;
+    const filterStatus = document.getElementById('filterStatus').value;
+    const filterPetugas = document.getElementById('filterPetugas').value;
+    
+    let filteredData = allLaporanData;
+    
+    if (filterTanggal) {
+        filteredData = filteredData.filter(item => {
+            const itemDate = new Date(item.tanggal).toISOString().split('T')[0];
+            return itemDate === filterTanggal;
+        });
+    }
+    
+    if (filterRuangan) {
+        filteredData = filteredData.filter(item => item.ruangan === filterRuangan);
+    }
+    
+    if (filterStatus) {
+        filteredData = filteredData.filter(item => item.status_validasi === filterStatus);
+    }
+    
+    if (filterPetugas) {
+        filteredData = filteredData.filter(item => item.petugas === filterPetugas);
+    }
+    
+    displayLaporanData(filteredData);
+}
+
+// Fungsi untuk menampilkan modal export
+function showExportModal() {
+    // Set tanggal default ke hari ini
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('exportTanggal').value = today;
+    
+    const modal = document.getElementById('exportModal');
+    modal.style.display = 'block';
+    
+    // Tutup modal ketika klik close
+    const span = document.querySelector('#exportModal .close');
+    span.onclick = function() {
+        modal.style.display = 'none';
+    }
+    
+    // Tutup modal ketika klik di luar konten
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+}
+
+// GET endpoint untuk data export PDF - VERSI ASYNC
+async function exportLaporanPDF() {
+    const exportTanggal = document.getElementById('exportTanggal').value;
+    const exportPetugas = document.getElementById('exportPetugas').value;
+    const exportRuangan = document.getElementById('exportRuangan').value;
+    const exportTipe = document.getElementById('exportTipe').value;
+    
+    if (!exportTanggal) {
+        alert('Tanggal harus diisi');
+        return;
+    }
+    
+    console.log('🚀 Memulai export dengan parameter:', {
+        tanggal: exportTanggal,
+        petugas: exportPetugas,
+        ruangan: exportRuangan,
+        tipe: exportTipe
+    });
+    
+    try {
+        if (!window.jspdf) {
+            throw new Error('Library jsPDF tidak ditemukan.');
+        }
+        
+        const token = localStorage.getItem('authToken');
+        
+        let url = `${window.APP_CONFIG.API_BASE_URL}/api/cleaning/export-data?tanggal=${exportTanggal}`;
+        
+        if (exportPetugas) url += `&petugas=${encodeURIComponent(exportPetugas)}`;
+        if (exportRuangan) url += `&ruangan=${encodeURIComponent(exportRuangan)}`;
+        
+        console.log('🔗 URL export:', url);
+        
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        console.log('📡 Response status:', response.status, response.statusText);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const result = await response.json();
+        console.log('📦 Data dari server:', result);
+        
+        if (!result.success) {
+            throw new Error(result.error || 'Gagal mengambil data export');
+        }
+        
+        const filteredData = result.data;
+        console.log('📊 Data filtered for export:', filteredData);
+        
+        if (!filteredData || filteredData.length === 0) {
+            alert('Tidak ada data untuk filter yang dipilih');
+            return;
+        }
+        
+        // Tampilkan loading
+        const exportButton = document.querySelector('#exportForm button[type="submit"]');
+        const originalText = exportButton.textContent;
+        exportButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+        exportButton.disabled = true;
+        
+        // Pilih tipe export
+        try {
+            if (exportTipe === 'per-ruangan') {
+                await generateSeparateRoomReports(filteredData, exportTanggal, exportPetugas, exportRuangan);
+            } else {
+                await generateSinglePDFReport(filteredData, exportTanggal, exportPetugas, exportRuangan);
+            }
+        } catch (pdfError) {
+            console.error('💥 Error dalam generate PDF:', pdfError);
+            throw new Error('Gagal membuat PDF: ' + pdfError.message);
+        }
+        
+        // Tutup modal export
+        document.getElementById('exportModal').style.display = 'none';
+        alert('✅ PDF berhasil di-generate!');
+        
+    } catch (error) {
+        console.error('💥 Error dalam export PDF:', error);
+        alert('❌ Gagal melakukan export: ' + error.message);
+    } finally {
+        // Reset button state
+        const exportButton = document.querySelector('#exportForm button[type="submit"]');
+        if (exportButton) {
+            exportButton.innerHTML = '<i class="fas fa-file-pdf"></i> Export PDF';
+            exportButton.disabled = false;
+        }
+    }
+}
+
+// Generate PDF terpisah untuk setiap ruangan - VERSI FIXED
+function generateSeparateRoomReports(data, tanggal, petugas, ruanganFilter) {
+    try {
+        console.log('🏠 Generating separate room reports for:', data.length, 'records');
+        
+        // Untuk data dengan ruangan multiple (dipisah koma), kita perlu proses khusus
+        const roomReports = {};
+        
+        data.forEach(item => {
+            if (!item.ruangan) return;
+            
+            // Pisahkan ruangan yang multiple
+            const ruanganList = item.ruangan.split(',').map(r => r.trim());
+            
+            ruanganList.forEach(ruanganName => {
+                if (!roomReports[ruanganName]) {
+                    roomReports[ruanganName] = [];
+                }
+                
+                // Buat salinan item untuk ruangan ini
+                const itemForRoom = {
+                    ...item,
+                    ruangan: ruanganName // Hanya tampilkan satu ruangan
+                };
+                
+                roomReports[ruanganName].push(itemForRoom);
+            });
+        });
+        
+        console.log('📋 Room groups:', Object.keys(roomReports));
+        
+        // Generate PDF untuk setiap ruangan
+        Object.keys(roomReports).forEach(ruangan => {
+            // Jika ada filter ruangan spesifik, hanya generate untuk ruangan tersebut
+            if (!ruanganFilter || ruangan.includes(ruanganFilter)) {
+                generateSinglePDFReport(roomReports[ruangan], tanggal, petugas, ruangan);
+            }
+        });
+        
+    } catch (error) {
+        console.error('💥 Error in generateSeparateRoomReports:', error);
+        throw error;
+    }
+}
+
+// Fungsi utama generate PDF dengan gambar real
+async function generateSinglePDFReport(data, tanggal, petugas, ruangan) {
+    try {
+        const { jsPDF } = window.jspdf;
+        
+        if (!window.jspdf) {
+            throw new Error('Library jsPDF tidak terload.');
+        }
+        
+        const doc = new jsPDF({
+            orientation: 'landscape',
+            unit: 'mm',
+            format: 'a4'
+        });
+        
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const pageHeight = doc.internal.pageSize.getHeight();
+        const centerX = pageWidth / 2;
+
+        console.log('📄 Starting PDF generation with data:', data);
+
+        // === MUAT SEMUA GAMBAR DENGAN ERROR HANDLING ===
+        let logoBase64 = null;
+        let ttdBase64 = null;
+        let fotoPetugasBase64 = null;
+        let fotoPengawasBase64 = null;
+
+        const firstLog = data[0];
+        const namaPetugas = firstLog?.petugas;
+
+        console.log('🔄 Loading images for:', { namaPetugas });
+
+        // Muat semua gambar secara paralel dengan error handling
+        try {
+            [logoBase64, ttdBase64, fotoPetugasBase64, fotoPengawasBase64] = await Promise.allSettled([
+                loadImageAsBase64(getImagePath('', 'logo')),
+                loadImageAsBase64(getImagePath('', 'ttd')),
+                namaPetugas ? loadImageAsBase64(getImagePath(namaPetugas, 'foto_petugas')) : Promise.resolve(null),
+                loadImageAsBase64(getImagePath('', 'foto_pengawas'))
+            ]).then(results => results.map(result => 
+                result.status === 'fulfilled' ? result.value : null
+            ));
+        } catch (error) {
+            console.log('⚠️ Beberapa gambar gagal dimuat, menggunakan fallback');
+        }
+
+        // Debug info
+        console.log('🖼️ Image loading results:', {
+            logo: !!logoBase64,
+            ttd: !!ttdBase64,
+            fotoPetugas: !!fotoPetugasBase64,
+            fotoPengawas: !!fotoPengawasBase64
+        });
+
+        // === HEADER DENGAN LOGO YANG DIPOSISIKAN DENGAN BENAR ===
+        const headerStartY = 10;
+
+        // Header teks - DIPERBAIKI: Posisi teks header disesuaikan
+        const textStartY = headerStartY + 5;
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.text('MAHKAMAH AGUNG REPUBLIK INDONESIA', centerX, 15, { align: 'center' });
+        doc.text('DIREKTORAT JENDERAL BADAN PERADILAN AGAMA', centerX, 20, { align: 'center' });
+        doc.text('PENGADILAN TINGGI AGAMA MAKASSAR', centerX, 25, { align: 'center' });
+        doc.text('PENGADILAN AGAMA TAKALAR', centerX, 30, { align: 'center' });
+
+        doc.setFontSize(7);
+        doc.text('Jl. Diponegoro No. 5, Keli. Bajeng, Kec. Pattallassang, Kab. Takalar Sulawesi Selatan 92211', centerX, 37, { align: 'center' });
+        doc.text('https://pa-takalar.go.id/ | patakalar307470@gmail.com | Phone/Fax: (0418)21022', centerX, 42, { align: 'center' });
+        
+        // === GARIS PEMBATAS GANDA ===
+        doc.setDrawColor(0, 0, 0);
+        doc.setLineWidth(0.5);
+        doc.line(10, 45, pageWidth - 10, 45);
+
+        // Judul laporan
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'bold');
+        doc.text('KEBERSIHAN LANTAI, KACA JENDELA, PINTU / LAWA-LAWA / LUBANG ANGIN / KUSEN JENDELA DAN PINTU', centerX, 55, { align: 'center' });
+        
+        // Format tanggal Indonesia
+        const hari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        const bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 
+                      'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        const dateObj = new Date(tanggal);
+        const hariStr = hari[dateObj.getDay()];
+        const tanggalStr = `${dateObj.getDate()} ${bulan[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+        
+        // Informasi filter
+        let filterInfo = `Hari/Tanggal: ${hariStr}, ${tanggalStr}`;
+        
+        doc.setFontSize(8);
+        doc.setFont(undefined, 'normal');
+        doc.text(filterInfo, 20, 65);
+        doc.text(`Dicetak pada: ${new Date().toLocaleDateString('id-ID')} ${new Date().toLocaleTimeString('id-ID')}`, pageWidth - 20, 65, { align: 'right' });
+
+        // === DATA TABEL ===
+        const tableData = data.map((item, index) => {
+            let ruanganDisplay = item.ruangan || 'Tidak diketahui';
+            
+            if (ruangan && ruanganDisplay.includes(ruangan)) {
+                ruanganDisplay = ruangan;
+            } else if (ruanganDisplay.includes(',')) {
+                ruanganDisplay = ruanganDisplay.split(',')[0].trim() + ' (dan lainnya)';
+            }
+            
+            const tanggalDisplay = item.tanggal_display || `${hariStr}, ${tanggalStr}`;
+            const waktu = item.waktu || '00:00';
+            
+            const convertChecklistValue = (value) => {
+                if (value === true || value === 1 || value === 'true' || value === '1') return 'V';
+                if (value === false || value === 0 || value === 'false' || value === '0') return 'X';
+                return '-';
+            };
+            
+            return [
+                ruanganDisplay,
+                tanggalDisplay,
+                waktu,
+                convertChecklistValue(item.checklist_lantai),
+                convertChecklistValue(item.checklist_kaca_jendela),
+                convertChecklistValue(item.checklist_pintu),
+                convertChecklistValue(item.checklist_lawa_lawa),
+                convertChecklistValue(item.checklist_lubang_angin),
+                convertChecklistValue(item.checklist_kusen_jendela_dan_pintu),
+                item.checklist_keterangan || '-'
+            ];
+        });
+        
+        // Header tabel
+        const headers = ['LOKASI', 'HARI/TGL', 'JAM', 'LANTAI', 'KACA JENDELA', 'PINTU', 'LAWA-LAWA', 'LUBANG ANGIN', 'KUSEN', 'KETERANGAN'];
+        
+        // Generate tabel
+        doc.autoTable({
+            startY: 70,
+            head: [headers],
+            body: tableData,
+            theme: 'grid',
+            headStyles: { 
+                fillColor: [41, 128, 185], 
+                textColor: 255, 
+                fontSize: 6,
+                fontStyle: 'bold',
+                halign: 'center'
+            },
+            bodyStyles: { 
+                fontSize: 6,
+                cellPadding: 2,
+                textColor: [0, 0, 0],
+                halign: 'center'
+            },
+            styles: { 
+                cellPadding: 1, 
+                fontSize: 6,
+                lineColor: [0, 0, 0],
+                lineWidth: 0.1
+            },
+            margin: { left: 10, right: 10 }
+        });
+        
+        // Keterangan simbol
+        const finalY = doc.lastAutoTable.finalY + 5;
+        doc.setFontSize(6);
+        doc.text('Keterangan: V = Sudah dibersihkan, X = Tidak bersih, - = Belum dicek | B = Baik, K = Kurang', 10, finalY);
+        
+        // === BAGIAN TANDA TANGAN DENGAN FOTO REAL ===
+        const signatureY = finalY + 15;
+        
+        // Foto Petugas - DIPERBAIKI: Tanpa border
+        if (namaPetugas) {
+            const fotoPetugasX = 20;
+            const fotoPetugasY = signatureY;
+            
+            if (fotoPetugasBase64) {
+                try {
+                    doc.addImage(fotoPetugasBase64, 'PNG', fotoPetugasX, fotoPetugasY, 20, 25);
+                    console.log('✅ Foto petugas berhasil ditambahkan:', namaPetugas);
+                } catch (e) {
+                    console.log('❌ Gagal menambahkan foto petugas:', e.message);
+                    // Fallback placeholder tanpa border
+                    doc.setFillColor(240, 240, 240);
+                    doc.rect(fotoPetugasX, fotoPetugasY, 20, 25, 'F');
+                    doc.setFontSize(5);
+                    doc.setTextColor(150, 150, 150);
+                    doc.text('FOTO PETUGAS', fotoPetugasX + 10, fotoPetugasY + 12, { align: 'center' });
+                }
+            } else {
+                // Fallback placeholder tanpa border
+                doc.setFillColor(240, 240, 240);
+                doc.rect(fotoPetugasX, fotoPetugasY, 20, 25, 'F');
+                doc.setFontSize(5);
+                doc.setTextColor(150, 150, 150);
+                doc.text('FOTO PETUGAS', fotoPetugasX + 10, fotoPetugasY + 12, { align: 'center' });
+            }
+            
+            doc.setFontSize(7);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`Nama Petugas: ${firstLog.petugas}`, 45, signatureY + 8);
+            doc.text('Nomor Hp: -', 45, signatureY + 13);
+        }
+        
+        // Foto Pengawas - DIPERBAIKI: Tanpa border
+        if (fotoPengawasBase64) {
+            doc.addImage(fotoPengawasBase64, 'PNG', 20, signatureY + 30, 20, 25);
+        } else {
+            // Fallback placeholder tanpa border
+            doc.setFillColor(240, 240, 240);
+            doc.rect(20, signatureY + 30, 20, 25, 'F');
+            doc.setFontSize(5);
+            doc.setTextColor(150, 150, 150);
+            doc.text('FOTO PENGAWAS', 30, signatureY + 42, { align: 'center' });
+        }
+        
+        doc.setFontSize(7);
+        doc.setTextColor(0, 0, 0);
+        doc.text('Nama Pengawas: Dicky Adji Nugraha', 45, signatureY + 33);
+        doc.text('Nomor Hp: -', 45, signatureY + 38);
+        
+        // === BAGIAN TANDA TANGAN DIBUAT OLEH ===
+        const dibuatOlehY = signatureY + 30;
+        const ttdX = pageWidth - 60;
+        
+        // Tanda Tangan - DIPERBAIKI: Tanpa border dan dengan transparansi
+        if (ttdBase64) {
+            try {
+                doc.addImage(ttdBase64, 'PNG', ttdX, dibuatOlehY, 20, 25);
+                console.log('✅ TTD berhasil ditambahkan dengan transparansi');
+            } catch (e) {
+                console.log('❌ Gagal menambahkan TTD:', e.message);
+                // Fallback placeholder tanpa border
+                doc.setFillColor(255, 255, 255);
+                doc.rect(ttdX, dibuatOlehY, 20, 25, 'F');
+                doc.setFontSize(5);
+                doc.setTextColor(0, 0, 0);
+                doc.text('TANDA TANGAN', ttdX + 10, dibuatOlehY + 12, { align: 'center' });
+                
+                // Tambahkan garis untuk tanda tangan
+                doc.setDrawColor(0, 0, 0);
+                doc.setLineWidth(0.3);
+                doc.line(ttdX + 5, dibuatOlehY + 20, ttdX + 15, dibuatOlehY + 20);
+            }
+        } else {
+            // Fallback placeholder tanpa border
+            doc.setFillColor(255, 255, 255);
+            doc.rect(ttdX, dibuatOlehY, 20, 25, 'F');
+            doc.setFontSize(5);
+            doc.setTextColor(0, 0, 0);
+            doc.text('TANDA TANGAN', ttdX + 10, dibuatOlehY + 12, { align: 'center' });
+            
+            // Garis tanda tangan
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.3);
+            doc.line(ttdX + 5, dibuatOlehY + 20, ttdX + 15, dibuatOlehY + 20);
+        }
+        
+        doc.setFontSize(7);
+        doc.setTextColor(0, 0, 0);
+        doc.text('Dibuat Oleh:', ttdX, dibuatOlehY + 30);
+        doc.text('Teknisi Sarana dan Prasana', ttdX, dibuatOlehY + 35);
+        doc.text('Dicky Adji Nugraha', ttdX, dibuatOlehY + 40);
+        
+        // Footer halaman
+        const pageCount = doc.internal.getNumberOfPages();
+        for (let i = 1; i <= pageCount; i++) {
+            doc.setPage(i);
+            doc.setFontSize(6);
+            doc.text(`Halaman ${i} dari ${pageCount}`, centerX, pageHeight - 10, { align: 'center' });
+        }
+
+        // Simpan PDF
+        const fileName = `Laporan_Kebersihan_${formatTanggalFile(tanggal)}${petugas ? '_' + petugas.replace(/[^a-zA-Z0-9]/g, '_') : ''}${ruangan ? '_' + ruangan.replace(/[^a-zA-Z0-9]/g, '_') : ''}.pdf`;
+        
+        console.log('💾 Saving PDF as:', fileName);
+        doc.save(fileName);
+        
+        console.log('✅ PDF generated successfully with real images!');
+        
+    } catch (error) {
+        console.error('💥 Error in generateSinglePDFReport:', error);
+        // Fallback ke versi tanpa gambar jika ada error
+        await generateSinglePDFReportFallback(data, tanggal, petugas, ruangan);
+    }
+}
+
+// Fungsi mapping nama petugas ke nama file foto
+function mapNamaPetugasKeFile(namaPetugas) {
+    const mapping = {
+        'NURHAEDA, S.ag': 'nurhaeda_s_ag',
+        'Harits Fakhruni Zainuddin, S.Kom': 'harits_fakhruni_zainuddin_s_kom',
+        'M. Nazar, SH': 'm_nazar_sh',
+        'Muh. Risal': 'muh_risal',
+        'Sunardi': 'sunardi',
+        'Syamsuddin': 'syamsuddin',
+        'Hasanuddin': 'hasanuddin'
+        // Tambahkan mapping lainnya sesuai kebutuhan
+    };
+    
+    return mapping[namaPetugas] || namaPetugas.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+}
+
+// Update fungsi getImagePath untuk menggunakan mapping
+function getImagePath(nama, type) {
+    const basePath = window.location.origin;
+    
+    if (type === 'logo') {
+        return `${basePath}/assets/logo/logo_pengadilan.png`;
+    } else if (type === 'ttd') {
+        return `${basePath}/assets/ttd/ttd_dicky.png`;
+    } else if (type === 'foto_petugas') {
+        if (!nama) return null;
+        const mappedName = mapNamaPetugasKeFile(nama);
+        return `${basePath}/assets/foto_petugas/${mappedName}.jpg`;
+    } else if (type === 'foto_pengawas') {
+        return `${basePath}/assets/foto_pengawas/dicky_adji_nugraha.jpg`;
+    }
+    return null;
+}
+
+// Helper functions
+function formatTanggalDisplay(tanggalString) {
+    try {
+        const tanggal = new Date(tanggalString);
+        return tanggal.toLocaleDateString('id-ID', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+    } catch (e) {
+        return tanggalString;
+    }
+}
+
+function formatTanggalFile(tanggalString) {
+    try {
+        const tanggal = new Date(tanggalString);
+        return tanggal.toISOString().split('T')[0].replace(/-/g, '');
+    } catch (e) {
+        return tanggalString.replace(/-/g, '');
+    }
+}
+
+// FALLBACK: Export langsung dari data frontend
+function exportFallback() {
+    const exportTanggal = document.getElementById('exportTanggal').value;
+    const exportPetugas = document.getElementById('exportPetugas').value;
+    const exportRuangan = document.getElementById('exportRuangan').value;
+    const exportTipe = document.getElementById('exportTipe').value;
+    
+    console.log('🔄 Using fallback export with frontend data');
+    
+    // Filter dari allLaporanData dengan matching tanggal yang tepat
+    let filteredData = allLaporanData.filter(item => {
+        const itemDate = new Date(item.tanggal);
+        const filterDate = new Date(exportTanggal);
+        
+        return itemDate.getFullYear() === filterDate.getFullYear() &&
+               itemDate.getMonth() === filterDate.getMonth() &&
+               itemDate.getDate() === filterDate.getDate();
+    });
+    
+    console.log('📊 Fallback filtered data:', filteredData);
+    
+    if (filteredData.length === 0) {
+        alert('Tidak ada data untuk tanggal: ' + exportTanggal);
+        return;
+    }
+    
+    if (exportTipe === 'per-ruangan') {
+        generateSeparateRoomReports(filteredData, exportTanggal, exportPetugas, exportRuangan);
+    } else {
+        generateSinglePDFReport(filteredData, exportTanggal, exportPetugas, exportRuangan);
+    }
+    
+    alert('✅ PDF generated (fallback mode)!');
+}
+
+// Ganti event listener untuk menggunakan fallback jika perlu
+document.getElementById('exportForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    // Coba method utama dulu, jika error gunakan backup
+    const token = localStorage.getItem('authToken');
+    const exportTanggal = document.getElementById('exportTanggal').value;
+    
+    // Test koneksi endpoint
+    fetch(`${window.APP_CONFIG.API_BASE_URL}/api/cleaning/export-data?tanggal=${exportTanggal}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json().then(data => {
+                if (data.success && data.data && data.data.length > 0) {
+                    exportLaporanPDF(); // Method utama
+                } else {
+                    exportFallback(); // Backup method
+                }
+            });
+        } else {
+            exportFallback(); // Backup method
+        }
+    })
+    .catch(error => {
+        console.log('🔀 Fallback ke backup method:', error);
+        exportFallback(); // Backup method
+    });
+});
+
+// Di dalam event listener export
+document.getElementById('exportForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const exportTanggal = document.getElementById('exportTanggal').value;
+    const exportPetugas = document.getElementById('exportPetugas').value;
+    const exportRuangan = document.getElementById('exportRuangan').value;
+    const exportTipe = document.getElementById('exportTipe').value;
+    
+    // Gunakan fungsi yang sudah diperbaiki
+    if (exportTipe === 'per-ruangan') {
+        generateSeparateRoomReports(filteredData, exportTanggal, exportPetugas, exportRuangan);
+    } else {
+        generateSinglePDFReport(filteredData, exportTanggal, exportPetugas, exportRuangan);
+    }
+});
+
+// Fungsi fallback untuk generate PDF tanpa gambar
+async function generateSinglePDFReportFallback(data, tanggal, petugas, ruangan) {
+    try {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({
+            orientation: 'landscape',
+            unit: 'mm',
+            format: 'a4'
+        });
+        
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const pageHeight = doc.internal.pageSize.getHeight();
+        const centerX = pageWidth / 2;
+
+        // Header sederhana tanpa logo
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.text('MAHKAMAH AGUNG REPUBLIK INDONESIA', centerX, 15, { align: 'center' });
+        doc.text('DIREKTORAT JENDERAL BADAN PERADILAN AGAMA', centerX, 20, { align: 'center' });
+        doc.text('PENGADILAN TINGGI AGAMA MAKASSAR', centerX, 25, { align: 'center' });
+        doc.text('PENGADILAN AGAMA TAKALAR', centerX, 30, { align: 'center' });
+
+        // ... (sisa kode fallback tetap sama)
+        
+        const fileName = `Laporan_Kebersihan_${formatTanggalFile(tanggal)}${petugas ? '_' + petugas.replace(/[^a-zA-Z0-9]/g, '_') : ''}${ruangan ? '_' + ruangan.replace(/[^a-zA-Z0-9]/g, '_') : ''}.pdf`;
+        doc.save(fileName);
+        
+    } catch (error) {
+        console.error('💥 Error in fallback PDF generation:', error);
+        alert('Gagal membuat PDF: ' + error.message);
+    }
+}
+
+</script>
+</body>
+</html>

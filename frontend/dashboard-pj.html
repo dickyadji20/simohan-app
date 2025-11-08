@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Penanggung Jawab - SI-MOHAN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a2a6c;
+            --secondary: #2c3e50;
+            --accent: #3498db;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #f5f7fa;
+            --dark: #2d3436;
+            --gray: #636e72;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            background: var(--primary);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 250px;
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        .logo {
+            padding: 0 20px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .logo p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        .menu {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .menu-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+        
+        .menu-item:hover, .menu-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .menu-item i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Main Content Styles */
+        .main-content {
+            grid-column: 2;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* Dashboard Cards */
+        .dashboard-title {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .icon-bersih {
+            background: var(--success);
+        }
+        
+        .icon-petugas {
+            background: var(--accent);
+        }
+        
+        .icon-perlu {
+            background: var(--warning);
+        }
+        
+        .icon-belum {
+            background: var(--danger);
+        }
+        
+        .stat-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .stat-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Charts and Activities */
+        .charts-activities {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .chart-container, .activities-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Activity List */
+        .activity-list {
+            list-style: none;
+        }
+        
+        .activity-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 12px;
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-time {
+            font-weight: 500;
+            color: var(--primary);
+            min-width: 50px;
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        /* Recent Reports */
+        .reports-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .reports-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .reports-table th, .reports-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .reports-table th {
+            background-color: #f8f9fa;
+            color: var(--primary);
+        }
+        
+        .reports-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .status-bersih {
+            background: #e8f5e9;
+            color: var(--success);
+        }
+        
+        .status-belum {
+            background: #ffebee;
+            color: var(--danger);
+        }
+        
+        .laporan-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .laporan-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-group select, .filter-group input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+        }
+        
+        .loading, .error, .empty {
+            text-align: center;
+            padding: 30px;
+            font-style: italic;
+            color: #777;
+        }
+        
+        .error {
+            color: var(--danger);
+        }
+        
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+            
+            .main-content {
+                grid-column: 1;
+            }
+            
+            .charts-activities {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .laporan-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h1>SI-MOHAN</h1>
+                <p>Pengadilan Agama Takalar</p>
+            </div>
+            
+            <ul class="menu">
+                <li class="menu-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-broom"></i>
+                    <span>Laporan Kebersihan</span>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Laporan Kebutuhan Ruangan</span>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-door-open"></i>
+                    <span>Daftar Ruangan</span>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Statistik</span>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Pengaturan</span>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h2>Sistem informasi Monitoring Kebersihan Pengadilan</h2>
+                <div class="user-info">
+                    <div class="user-avatar">P</div>
+                    <div>
+                        <div>Penanggung Jawab</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="dashboard-title">Ringkasan Monitoring Kebersihan</h2>
+            
+            <!-- Stats Cards -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon icon-bersih">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="count-bersih">17</h3>
+                        <p>Ruangan Bersih</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon icon-petugas">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="count-petugas">5</h3>
+                        <p>Petugas Aktif</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon icon-perlu">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="count-perlu">8</h3>
+                        <p>Perlu Pembersihan</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon icon-belum">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="count-belum">3</h3>
+                        <p>Belum Dicek</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Laporan Kebersihan Section -->
+            <div class="laporan-section">
+                <h3 class="section-title">
+                    <i class="fas fa-clipboard-list"></i>
+                    Laporan Kebersihan Terbaru
+                </h3>
+                
+                <div class="laporan-controls">
+                    <div class="filter-group">
+                        <label for="filterTanggal">Tanggal:</label>
+                        <input type="date" id="filterTanggal">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="filterRuangan">Ruangan:</label>
+                        <select id="filterRuangan">
+                            <option value="">Semua Ruangan</option>
+                            <option value="Ketua">Ketua</option>
+                            <option value="Wakil Ketua">Wakil Ketua</option>
+                            <option value="Ruang Hakim">Ruang Hakim</option>
+                            <option value="Ruang Panitera">Ruang Panitera</option>
+                            <option value="Ketua Sekretaris">Ketua Sekretaris</option>
+                            <option value="Sekretariat">Sekretariat</option>
+                            <option value="Bendahara">Bendahara</option>
+                            <option value="PTSP">PTSP</option>
+                            <option value="Ruang Sidang Utama">Ruang Sidang Utama</option>
+                            <option value="Ruang Sidang Kalabbirang">Ruang Sidang Kalabbirang</option>
+                            <option value="Toilet Bawah">Toilet Bawah</option>
+                            <option value="Toilet Atas">Toilet Atas</option>
+                            <option value="Ruang Mediasi">Ruang Mediasi</option>
+                        </select>
+                    </div>
+                    
+                    <button id="btnRefresh" class="btn">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+                
+                <div id="laporanContainer">
+                    <div class="loading">Memuat data laporan...</div>
+                </div>
+            </div>
+            
+            <!-- Charts and Activities -->
+            <div class="charts-activities">
+                <div class="chart-container">
+                    <h3 class="section-title">
+                        <i class="fas fa-chart-pie"></i>
+                        Distribusi Kebersihan
+                    </h3>
+                    <div class="chart">
+                        <!-- Simple chart representation -->
+                        <div style="display: flex; height: 200px; align-items: flex-end; gap: 10px; justify-content: center;">
+                            <div style="width: 40px; background: var(--success); height: 70%; display: flex; justify-content: center; border-radius: 5px 5px 0 0;">
+                                <span style="margin-top: -25px; color: var(--dark); font-weight: 500;">70%</span>
+                            </div>
+                            <div style="width: 40px; background: var(--warning); height: 20%; display: flex; justify-content: center; border-radius: 5px 5px 0 0;">
+                                <span style="margin-top: -25px; color: var(--dark); font-weight: 500;">20%</span>
+                            </div>
+                            <div style="width: 40px; background: var(--danger); height: 10%; display: flex; justify-content: center; border-radius: 5px 5px 0 0;">
+                                <span style="margin-top: -25px; color: var(--dark); font-weight: 500;">10%</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 15px;">
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <div style="width: 15px; height: 15px; background: var(--success); border-radius: 3px;"></div>
+                                <small>Bersih</small>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <div style="width: 15px; height: 15px; background: var(--warning); border-radius: 3px;"></div>
+                                <small>Perlu Dibersihkan</small>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <div style="width: 15px; height: 15px; background: var(--danger); border-radius: 3px;"></div>
+                                <small>Belum Dicek</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activities-container">
+                    <h3 class="section-title">
+                        <i class="fas fa-history"></i>
+                        Aktivitas Terbaru
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/auth-check.js"></script>
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Fungsi untuk menangani navigasi menu
+    function setupMenuNavigation() {
+        const menuItems = document.querySelectorAll('.menu-item');
+        
+        menuItems.forEach((item, index) => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Hapus class active dari semua item
+                menuItems.forEach(i => i.classList.remove('active'));
+                
+                // Tambahkan class active ke item yang diklik
+                this.classList.add('active');
+                
+                // Navigasi berdasarkan menu yang dipilih
+                switch(index) {
+                    case 0: // Dashboard
+                        window.location.href = 'dashboard.html';
+                        break;
+                    case 1: // Laporan Kebersihan
+                        window.location.href = 'laporan.html';
+                        break;
+                    case 2: // Laporan Kebutuhan Ruangan
+                        window.location.href = 'kebutuhan.html';
+                        break;
+                    case 3: // Daftar Ruangan
+                        alert('Fitur daftar ruangan akan segera tersedia');
+                        break;
+                    case 4: // Statistik
+                        alert('Fitur statistik akan segera tersedia');
+                        break;
+                    case 5: // Pengaturan
+                        alert('Fitur pengaturan akan segera tersedia');
+                        break;
+                    case 6: // Logout
+                        logout();
+                        break;
+                }
+            });
+        });
+    }
+    
+    // Fungsi logout
+    function logout() {
+        if (confirm('Apakah Anda yakin ingin logout?')) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('userRole');
+            window.location.href = 'index.html';
+        }
+    }
+    
+    // Jalankan setup menu
+    setupMenuNavigation();
+});
+</script>
+
+<script src="js/auth.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Check authentication
+  if (!Auth.validateAuth()) {
+    return;
+  }
+  
+  // Handle logout button
+  const logoutBtn = document.getElementById('logoutBtn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', function() {
+      Auth.logout();
+    });
+  }
+  
+  // Handle browser navigation
+  window.addEventListener('popstate', function(event) {
+    // Jika user mencoba navigasi kembali, arahkan ke dashboard
+    if (!window.location.pathname.endsWith('dashboard.html')) {
+      window.history.pushState(null, '', 'dashboard.html');
+      window.location.reload();
+    }
+  });
+  
+  // Initialize history state
+  window.history.replaceState({ authenticated: true }, '', 'dashboard.html');
+});
+
+// Prevent caching of sensitive pages
+window.onpageshow = function(event) {
+  if (event.persisted) {
+    window.location.reload();
+  }
+};
+</script>
+<script src="assets/js/auth.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Check authentication
+  if (!Auth.validateAuth()) {
+    return;
+  }
+  
+  // Handle logout button
+  const logoutBtn = document.getElementById('logoutBtn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', function() {
+      Auth.logout();
+    });
+  }
+  
+  // Handle browser navigation
+  window.addEventListener('popstate', function(event) {
+    // Jika user mencoba navigasi kembali, arahkan ke dashboard
+    if (!window.location.pathname.endsWith('dashboard.html')) {
+      window.history.pushState(null, '', 'dashboard.html');
+      window.location.reload();
+    }
+  });
+  
+  // Initialize history state
+  window.history.replaceState({ authenticated: true }, '', 'dashboard.html');
+});
+
+// Prevent caching of sensitive pages
+window.onpageshow = function(event) {
+  if (event.persisted) {
+    window.location.reload();
+  }
+};
+</script>
+</body>
+</html>

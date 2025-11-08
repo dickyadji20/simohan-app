@@ -1,0 +1,1558 @@
+2025-09-26 18:24:11 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-26 18:24:11 - Started 1540
+2025-09-27 09:18:01 - Stopping websitenodeserver.exe
+2025-09-27 09:18:01 - ProcessKill 1540
+2025-09-27 09:18:01 - Found child process: 8024 Name: conhost.exe
+2025-09-27 09:18:01 - Found child process: 6008 Name: node.exe
+2025-09-27 09:18:02 - Stopping process 8024
+2025-09-27 09:18:02 - Send SIGINT 8024
+2025-09-27 09:18:02 - SIGINT to 8024 failed - Killing as fallback
+2025-09-27 09:18:02 - Stopping process 6008
+2025-09-27 09:18:02 - Send SIGINT 6008
+2025-09-27 09:18:02 - SIGINT to 6008 failed - Killing as fallback
+2025-09-27 09:18:02 - Stopping process 1540
+2025-09-27 09:18:02 - Send SIGINT 1540
+2025-09-27 09:18:02 - SIGINT to 1540 failed - Killing as fallback
+2025-09-27 09:18:02 - Finished websitenodeserver.exe
+2025-09-27 09:18:05 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 09:18:05 - Started 12864
+2025-09-27 09:59:09 - Stopping websitenodeserver.exe
+2025-09-27 09:59:09 - ProcessKill 12864
+2025-09-27 09:59:09 - Found child process: 5976 Name: conhost.exe
+2025-09-27 09:59:09 - Found child process: 1576 Name: node.exe
+2025-09-27 09:59:09 - Stopping process 5976
+2025-09-27 09:59:09 - Send SIGINT 5976
+2025-09-27 09:59:09 - SIGINT to 5976 failed - Killing as fallback
+2025-09-27 09:59:10 - Stopping process 1576
+2025-09-27 09:59:10 - Send SIGINT 1576
+2025-09-27 09:59:10 - SIGINT to 1576 failed - Killing as fallback
+2025-09-27 09:59:10 - Stopping process 12864
+2025-09-27 09:59:10 - Send SIGINT 12864
+2025-09-27 09:59:10 - SIGINT to 12864 failed - Killing as fallback
+2025-09-27 09:59:10 - Finished websitenodeserver.exe
+2025-09-27 09:59:13 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 09:59:13 - Started 1056
+2025-09-27 10:25:01 - Stopping websitenodeserver.exe
+2025-09-27 10:25:01 - ProcessKill 1056
+2025-09-27 10:25:01 - Found child process: 15908 Name: conhost.exe
+2025-09-27 10:25:01 - Found child process: 16684 Name: node.exe
+2025-09-27 10:25:02 - Stopping process 15908
+2025-09-27 10:25:02 - Send SIGINT 15908
+2025-09-27 10:25:02 - SIGINT to 15908 failed - Killing as fallback
+2025-09-27 10:25:02 - Stopping process 16684
+2025-09-27 10:25:02 - Send SIGINT 16684
+2025-09-27 10:25:02 - SIGINT to 16684 failed - Killing as fallback
+2025-09-27 10:25:02 - Stopping process 1056
+2025-09-27 10:25:02 - Send SIGINT 1056
+2025-09-27 10:25:02 - SIGINT to 1056 failed - Killing as fallback
+2025-09-27 10:25:02 - Finished websitenodeserver.exe
+2025-09-27 10:25:03 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 10:25:04 - Started 13092
+2025-09-27 11:42:46 - Stopping websitenodeserver.exe
+2025-09-27 11:42:46 - ProcessKill 13092
+2025-09-27 11:42:47 - Found child process: 10672 Name: conhost.exe
+2025-09-27 11:42:47 - Found child process: 12612 Name: node.exe
+2025-09-27 11:42:47 - Stopping process 10672
+2025-09-27 11:42:47 - Send SIGINT 10672
+2025-09-27 11:42:47 - SIGINT to 10672 failed - Killing as fallback
+2025-09-27 11:42:47 - Stopping process 12612
+2025-09-27 11:42:47 - Send SIGINT 12612
+2025-09-27 11:42:47 - SIGINT to 12612 failed - Killing as fallback
+2025-09-27 11:42:47 - Stopping process 13092
+2025-09-27 11:42:47 - Send SIGINT 13092
+2025-09-27 11:42:47 - SIGINT to 13092 failed - Killing as fallback
+2025-09-27 11:42:47 - Finished websitenodeserver.exe
+2025-09-27 11:42:50 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 11:42:50 - Started 16108
+2025-09-27 11:53:10 - Stopping websitenodeserver.exe
+2025-09-27 11:53:10 - ProcessKill 16108
+2025-09-27 11:53:13 - Found child process: 1824 Name: conhost.exe
+2025-09-27 11:53:13 - Found child process: 17248 Name: node.exe
+2025-09-27 11:53:13 - Stopping process 1824
+2025-09-27 11:53:13 - Send SIGINT 1824
+2025-09-27 11:53:13 - SIGINT to 1824 failed - Killing as fallback
+2025-09-27 11:53:13 - Stopping process 17248
+2025-09-27 11:53:13 - Send SIGINT 17248
+2025-09-27 11:53:13 - SIGINT to 17248 failed - Killing as fallback
+2025-09-27 11:53:13 - Stopping process 16108
+2025-09-27 11:53:13 - Send SIGINT 16108
+2025-09-27 11:53:13 - SIGINT to 16108 failed - Killing as fallback
+2025-09-27 11:53:13 - Finished websitenodeserver.exe
+2025-09-27 11:53:18 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 11:53:18 - Started 10064
+2025-09-27 12:09:54 - Stopping websitenodeserver.exe
+2025-09-27 12:09:54 - ProcessKill 10064
+2025-09-27 12:09:55 - Found child process: 1568 Name: conhost.exe
+2025-09-27 12:09:55 - Found child process: 17184 Name: node.exe
+2025-09-27 12:09:55 - Stopping process 1568
+2025-09-27 12:09:55 - Send SIGINT 1568
+2025-09-27 12:09:55 - SIGINT to 1568 failed - Killing as fallback
+2025-09-27 12:09:55 - Stopping process 17184
+2025-09-27 12:09:55 - Send SIGINT 17184
+2025-09-27 12:09:55 - SIGINT to 17184 failed - Killing as fallback
+2025-09-27 12:09:55 - Stopping process 10064
+2025-09-27 12:09:55 - Send SIGINT 10064
+2025-09-27 12:09:55 - SIGINT to 10064 failed - Killing as fallback
+2025-09-27 12:09:55 - Finished websitenodeserver.exe
+2025-09-27 12:09:58 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 12:09:58 - Started 17836
+2025-09-27 12:18:15 - Stopping websitenodeserver.exe
+2025-09-27 12:18:15 - ProcessKill 17836
+2025-09-27 12:18:16 - Found child process: 17944 Name: conhost.exe
+2025-09-27 12:18:16 - Found child process: 12152 Name: node.exe
+2025-09-27 12:18:16 - Stopping process 17944
+2025-09-27 12:18:16 - Send SIGINT 17944
+2025-09-27 12:18:16 - SIGINT to 17944 failed - Killing as fallback
+2025-09-27 12:18:17 - Stopping process 12152
+2025-09-27 12:18:17 - Send SIGINT 12152
+2025-09-27 12:18:17 - SIGINT to 12152 failed - Killing as fallback
+2025-09-27 12:18:17 - Stopping process 17836
+2025-09-27 12:18:17 - Send SIGINT 17836
+2025-09-27 12:18:17 - SIGINT to 17836 failed - Killing as fallback
+2025-09-27 12:18:17 - Finished websitenodeserver.exe
+2025-09-27 12:18:21 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 12:18:21 - Started 14820
+2025-09-27 13:10:09 - Stopping websitenodeserver.exe
+2025-09-27 13:10:09 - ProcessKill 14820
+2025-09-27 13:10:10 - Found child process: 6248 Name: conhost.exe
+2025-09-27 13:10:10 - Found child process: 17012 Name: node.exe
+2025-09-27 13:10:10 - Stopping process 6248
+2025-09-27 13:10:10 - Send SIGINT 6248
+2025-09-27 13:10:10 - SIGINT to 6248 failed - Killing as fallback
+2025-09-27 13:10:10 - Stopping process 17012
+2025-09-27 13:10:10 - Send SIGINT 17012
+2025-09-27 13:10:10 - SIGINT to 17012 failed - Killing as fallback
+2025-09-27 13:10:10 - Stopping process 14820
+2025-09-27 13:10:11 - Send SIGINT 14820
+2025-09-27 13:10:11 - SIGINT to 14820 failed - Killing as fallback
+2025-09-27 13:10:11 - Finished websitenodeserver.exe
+2025-09-27 13:10:12 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 13:10:12 - Started 19400
+2025-09-27 15:45:06 - Stopping websitenodeserver.exe
+2025-09-27 15:45:06 - ProcessKill 19400
+2025-09-27 15:45:07 - Found child process: 6456 Name: conhost.exe
+2025-09-27 15:45:07 - Found child process: 12920 Name: node.exe
+2025-09-27 15:45:07 - Stopping process 6456
+2025-09-27 15:45:07 - Send SIGINT 6456
+2025-09-27 15:45:07 - SIGINT to 6456 failed - Killing as fallback
+2025-09-27 15:45:07 - Stopping process 12920
+2025-09-27 15:45:07 - Send SIGINT 12920
+2025-09-27 15:45:07 - SIGINT to 12920 failed - Killing as fallback
+2025-09-27 15:45:07 - Stopping process 19400
+2025-09-27 15:45:07 - Send SIGINT 19400
+2025-09-27 15:45:07 - SIGINT to 19400 failed - Killing as fallback
+2025-09-27 15:45:07 - Finished websitenodeserver.exe
+2025-09-27 15:45:09 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 15:45:09 - Started 13256
+2025-09-27 20:03:40 - Stopping websitenodeserver.exe
+2025-09-27 20:03:40 - ProcessKill 13256
+2025-09-27 20:03:40 - Found child process: 5816 Name: conhost.exe
+2025-09-27 20:03:40 - Found child process: 18848 Name: node.exe
+2025-09-27 20:03:40 - Stopping process 5816
+2025-09-27 20:03:40 - Send SIGINT 5816
+2025-09-27 20:03:40 - SIGINT to 5816 failed - Killing as fallback
+2025-09-27 20:03:41 - Stopping process 18848
+2025-09-27 20:03:41 - Send SIGINT 18848
+2025-09-27 20:03:41 - SIGINT to 18848 failed - Killing as fallback
+2025-09-27 20:03:41 - Stopping process 13256
+2025-09-27 20:03:41 - Send SIGINT 13256
+2025-09-27 20:03:41 - SIGINT to 13256 failed - Killing as fallback
+2025-09-27 20:03:41 - Finished websitenodeserver.exe
+2025-09-27 20:03:43 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 20:03:43 - Started 19200
+2025-09-27 20:44:11 - Stopping websitenodeserver.exe
+2025-09-27 20:44:11 - ProcessKill 19200
+2025-09-27 20:44:11 - Found child process: 17332 Name: conhost.exe
+2025-09-27 20:44:11 - Found child process: 21244 Name: node.exe
+2025-09-27 20:44:11 - Stopping process 17332
+2025-09-27 20:44:11 - Send SIGINT 17332
+2025-09-27 20:44:11 - SIGINT to 17332 failed - Killing as fallback
+2025-09-27 20:44:11 - Stopping process 21244
+2025-09-27 20:44:11 - Send SIGINT 21244
+2025-09-27 20:44:11 - SIGINT to 21244 failed - Killing as fallback
+2025-09-27 20:44:11 - Stopping process 19200
+2025-09-27 20:44:11 - Send SIGINT 19200
+2025-09-27 20:44:11 - SIGINT to 19200 failed - Killing as fallback
+2025-09-27 20:44:11 - Finished websitenodeserver.exe
+2025-09-27 20:44:14 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 20:44:14 - Started 21004
+2025-09-27 20:48:22 - Stopping websitenodeserver.exe
+2025-09-27 20:48:22 - ProcessKill 21004
+2025-09-27 20:48:23 - Found child process: 16884 Name: conhost.exe
+2025-09-27 20:48:23 - Found child process: 9136 Name: node.exe
+2025-09-27 20:48:23 - Stopping process 16884
+2025-09-27 20:48:23 - Send SIGINT 16884
+2025-09-27 20:48:23 - SIGINT to 16884 failed - Killing as fallback
+2025-09-27 20:48:23 - Stopping process 9136
+2025-09-27 20:48:23 - Send SIGINT 9136
+2025-09-27 20:48:23 - SIGINT to 9136 failed - Killing as fallback
+2025-09-27 20:48:23 - Stopping process 21004
+2025-09-27 20:48:23 - Send SIGINT 21004
+2025-09-27 20:48:23 - SIGINT to 21004 failed - Killing as fallback
+2025-09-27 20:48:23 - Finished websitenodeserver.exe
+2025-09-27 20:48:39 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 20:48:39 - Started 4292
+2025-09-27 21:22:05 - Stopping websitenodeserver.exe
+2025-09-27 21:22:05 - ProcessKill 4292
+2025-09-27 21:22:06 - Found child process: 20112 Name: conhost.exe
+2025-09-27 21:22:06 - Found child process: 3604 Name: node.exe
+2025-09-27 21:22:06 - Stopping process 20112
+2025-09-27 21:22:06 - Send SIGINT 20112
+2025-09-27 21:22:06 - SIGINT to 20112 failed - Killing as fallback
+2025-09-27 21:22:06 - Stopping process 3604
+2025-09-27 21:22:06 - Send SIGINT 3604
+2025-09-27 21:22:06 - SIGINT to 3604 failed - Killing as fallback
+2025-09-27 21:22:06 - Stopping process 4292
+2025-09-27 21:22:06 - Send SIGINT 4292
+2025-09-27 21:22:06 - SIGINT to 4292 failed - Killing as fallback
+2025-09-27 21:22:06 - Finished websitenodeserver.exe
+2025-09-27 21:22:08 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 21:22:08 - Started 6196
+2025-09-27 21:23:27 - Stopping websitenodeserver.exe
+2025-09-27 21:23:27 - ProcessKill 6196
+2025-09-27 21:23:28 - Found child process: 7116 Name: conhost.exe
+2025-09-27 21:23:28 - Found child process: 9708 Name: node.exe
+2025-09-27 21:23:28 - Stopping process 7116
+2025-09-27 21:23:28 - Send SIGINT 7116
+2025-09-27 21:23:28 - SIGINT to 7116 failed - Killing as fallback
+2025-09-27 21:23:28 - Stopping process 9708
+2025-09-27 21:23:28 - Send SIGINT 9708
+2025-09-27 21:23:28 - SIGINT to 9708 failed - Killing as fallback
+2025-09-27 21:23:28 - Stopping process 6196
+2025-09-27 21:23:28 - Send SIGINT 6196
+2025-09-27 21:23:28 - SIGINT to 6196 failed - Killing as fallback
+2025-09-27 21:23:28 - Finished websitenodeserver.exe
+2025-09-27 21:23:30 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 21:23:30 - Started 14680
+2025-09-27 21:28:07 - Stopping websitenodeserver.exe
+2025-09-27 21:28:07 - ProcessKill 14680
+2025-09-27 21:28:07 - Found child process: 20288 Name: conhost.exe
+2025-09-27 21:28:07 - Found child process: 19716 Name: node.exe
+2025-09-27 21:28:08 - Stopping process 20288
+2025-09-27 21:28:08 - Send SIGINT 20288
+2025-09-27 21:28:08 - SIGINT to 20288 failed - Killing as fallback
+2025-09-27 21:28:08 - Stopping process 19716
+2025-09-27 21:28:08 - Send SIGINT 19716
+2025-09-27 21:28:08 - SIGINT to 19716 failed - Killing as fallback
+2025-09-27 21:28:08 - Stopping process 14680
+2025-09-27 21:28:08 - Send SIGINT 14680
+2025-09-27 21:28:08 - SIGINT to 14680 failed - Killing as fallback
+2025-09-27 21:28:08 - Finished websitenodeserver.exe
+2025-09-27 21:28:10 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 21:28:10 - Started 12984
+2025-09-27 21:34:16 - Stopping websitenodeserver.exe
+2025-09-27 21:34:16 - ProcessKill 12984
+2025-09-27 21:34:16 - Found child process: 12252 Name: conhost.exe
+2025-09-27 21:34:16 - Found child process: 13132 Name: node.exe
+2025-09-27 21:34:16 - Stopping process 12252
+2025-09-27 21:34:16 - Send SIGINT 12252
+2025-09-27 21:34:16 - SIGINT to 12252 failed - Killing as fallback
+2025-09-27 21:34:17 - Stopping process 13132
+2025-09-27 21:34:17 - Send SIGINT 13132
+2025-09-27 21:34:17 - SIGINT to 13132 failed - Killing as fallback
+2025-09-27 21:34:17 - Stopping process 12984
+2025-09-27 21:34:17 - Send SIGINT 12984
+2025-09-27 21:34:17 - SIGINT to 12984 failed - Killing as fallback
+2025-09-27 21:34:17 - Finished websitenodeserver.exe
+2025-09-27 21:34:19 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 21:34:19 - Started 7628
+2025-09-27 23:23:35 - Stopping websitenodeserver.exe
+2025-09-27 23:23:35 - ProcessKill 7628
+2025-09-27 23:23:35 - Found child process: 7240 Name: conhost.exe
+2025-09-27 23:23:35 - Found child process: 5320 Name: node.exe
+2025-09-27 23:23:35 - Stopping process 7240
+2025-09-27 23:23:35 - Send SIGINT 7240
+2025-09-27 23:23:35 - SIGINT to 7240 failed - Killing as fallback
+2025-09-27 23:23:35 - Stopping process 5320
+2025-09-27 23:23:36 - Send SIGINT 5320
+2025-09-27 23:23:36 - SIGINT to 5320 failed - Killing as fallback
+2025-09-27 23:23:36 - Stopping process 7628
+2025-09-27 23:23:36 - Send SIGINT 7628
+2025-09-27 23:23:36 - SIGINT to 7628 failed - Killing as fallback
+2025-09-27 23:23:36 - Finished websitenodeserver.exe
+2025-09-27 23:23:37 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 23:23:37 - Started 7184
+2025-09-27 23:36:05 - Stopping websitenodeserver.exe
+2025-09-27 23:36:05 - ProcessKill 7184
+2025-09-27 23:36:05 - Found child process: 14160 Name: conhost.exe
+2025-09-27 23:36:05 - Found child process: 15564 Name: node.exe
+2025-09-27 23:36:05 - Stopping process 14160
+2025-09-27 23:36:05 - Send SIGINT 14160
+2025-09-27 23:36:05 - SIGINT to 14160 failed - Killing as fallback
+2025-09-27 23:36:05 - Stopping process 15564
+2025-09-27 23:36:05 - Send SIGINT 15564
+2025-09-27 23:36:05 - SIGINT to 15564 failed - Killing as fallback
+2025-09-27 23:36:05 - Stopping process 7184
+2025-09-27 23:36:05 - Send SIGINT 7184
+2025-09-27 23:36:05 - SIGINT to 7184 failed - Killing as fallback
+2025-09-27 23:36:05 - Finished websitenodeserver.exe
+2025-09-27 23:36:08 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-27 23:36:08 - Started 10928
+2025-09-28 00:25:09 - Stopping websitenodeserver.exe
+2025-09-28 00:25:09 - ProcessKill 10928
+2025-09-28 00:25:09 - Found child process: 18948 Name: conhost.exe
+2025-09-28 00:25:09 - Found child process: 6532 Name: node.exe
+2025-09-28 00:25:09 - Stopping process 18948
+2025-09-28 00:25:09 - Send SIGINT 18948
+2025-09-28 00:25:09 - SIGINT to 18948 failed - Killing as fallback
+2025-09-28 00:25:10 - Stopping process 6532
+2025-09-28 00:25:10 - Send SIGINT 6532
+2025-09-28 00:25:10 - SIGINT to 6532 failed - Killing as fallback
+2025-09-28 00:25:10 - Stopping process 10928
+2025-09-28 00:25:10 - Send SIGINT 10928
+2025-09-28 00:25:10 - SIGINT to 10928 failed - Killing as fallback
+2025-09-28 00:25:10 - Finished websitenodeserver.exe
+2025-09-28 00:25:12 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 00:25:12 - Started 12724
+2025-09-28 00:44:35 - Stopping websitenodeserver.exe
+2025-09-28 00:44:35 - ProcessKill 12724
+2025-09-28 00:44:35 - Found child process: 15672 Name: conhost.exe
+2025-09-28 00:44:35 - Found child process: 20916 Name: node.exe
+2025-09-28 00:44:35 - Stopping process 15672
+2025-09-28 00:44:35 - Send SIGINT 15672
+2025-09-28 00:44:35 - SIGINT to 15672 failed - Killing as fallback
+2025-09-28 00:44:35 - Stopping process 20916
+2025-09-28 00:44:35 - Send SIGINT 20916
+2025-09-28 00:44:35 - SIGINT to 20916 failed - Killing as fallback
+2025-09-28 00:44:35 - Stopping process 12724
+2025-09-28 00:44:35 - Send SIGINT 12724
+2025-09-28 00:44:35 - SIGINT to 12724 failed - Killing as fallback
+2025-09-28 00:44:35 - Finished websitenodeserver.exe
+2025-09-28 00:44:38 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 00:44:38 - Started 13272
+2025-09-28 00:46:53 - Stopping websitenodeserver.exe
+2025-09-28 00:46:53 - ProcessKill 13272
+2025-09-28 00:46:54 - Found child process: 1132 Name: conhost.exe
+2025-09-28 00:46:54 - Found child process: 19784 Name: node.exe
+2025-09-28 00:46:54 - Stopping process 1132
+2025-09-28 00:46:54 - Send SIGINT 1132
+2025-09-28 00:46:54 - SIGINT to 1132 failed - Killing as fallback
+2025-09-28 00:46:54 - Stopping process 19784
+2025-09-28 00:46:54 - Send SIGINT 19784
+2025-09-28 00:46:54 - SIGINT to 19784 failed - Killing as fallback
+2025-09-28 00:46:54 - Stopping process 13272
+2025-09-28 00:46:54 - Send SIGINT 13272
+2025-09-28 00:46:54 - SIGINT to 13272 failed - Killing as fallback
+2025-09-28 00:46:54 - Finished websitenodeserver.exe
+2025-09-28 00:46:56 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 00:46:56 - Started 19028
+2025-09-28 00:47:19 - Stopping websitenodeserver.exe
+2025-09-28 00:47:19 - ProcessKill 19028
+2025-09-28 00:47:19 - Found child process: 10908 Name: conhost.exe
+2025-09-28 00:47:19 - Found child process: 20196 Name: node.exe
+2025-09-28 00:47:19 - Stopping process 10908
+2025-09-28 00:47:19 - Send SIGINT 10908
+2025-09-28 00:47:19 - SIGINT to 10908 failed - Killing as fallback
+2025-09-28 00:47:20 - Stopping process 20196
+2025-09-28 00:47:20 - Send SIGINT 20196
+2025-09-28 00:47:20 - SIGINT to 20196 failed - Killing as fallback
+2025-09-28 00:47:20 - Stopping process 19028
+2025-09-28 00:47:20 - Send SIGINT 19028
+2025-09-28 00:47:20 - SIGINT to 19028 failed - Killing as fallback
+2025-09-28 00:47:20 - Finished websitenodeserver.exe
+2025-09-28 00:47:22 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 00:47:22 - Started 17152
+2025-09-28 00:54:58 - Stopping websitenodeserver.exe
+2025-09-28 00:54:58 - ProcessKill 17152
+2025-09-28 00:54:59 - Found child process: 13560 Name: conhost.exe
+2025-09-28 00:54:59 - Found child process: 9880 Name: node.exe
+2025-09-28 00:54:59 - Stopping process 13560
+2025-09-28 00:54:59 - Send SIGINT 13560
+2025-09-28 00:54:59 - SIGINT to 13560 failed - Killing as fallback
+2025-09-28 00:54:59 - Stopping process 9880
+2025-09-28 00:54:59 - Send SIGINT 9880
+2025-09-28 00:54:59 - SIGINT to 9880 failed - Killing as fallback
+2025-09-28 00:54:59 - Stopping process 17152
+2025-09-28 00:54:59 - Send SIGINT 17152
+2025-09-28 00:54:59 - SIGINT to 17152 failed - Killing as fallback
+2025-09-28 00:54:59 - Finished websitenodeserver.exe
+2025-09-28 00:55:01 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 00:55:01 - Started 10748
+2025-09-28 00:58:45 - Stopping websitenodeserver.exe
+2025-09-28 00:58:45 - ProcessKill 10748
+2025-09-28 00:58:45 - Found child process: 6612 Name: conhost.exe
+2025-09-28 00:58:45 - Found child process: 13140 Name: node.exe
+2025-09-28 00:58:46 - Stopping process 6612
+2025-09-28 00:58:46 - Send SIGINT 6612
+2025-09-28 00:58:46 - SIGINT to 6612 failed - Killing as fallback
+2025-09-28 00:58:46 - Stopping process 13140
+2025-09-28 00:58:46 - Send SIGINT 13140
+2025-09-28 00:58:46 - SIGINT to 13140 failed - Killing as fallback
+2025-09-28 00:58:46 - Stopping process 10748
+2025-09-28 00:58:46 - Send SIGINT 10748
+2025-09-28 00:58:46 - SIGINT to 10748 failed - Killing as fallback
+2025-09-28 00:58:46 - Finished websitenodeserver.exe
+2025-09-28 00:58:48 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 00:58:48 - Started 16748
+2025-09-28 01:12:04 - Stopping websitenodeserver.exe
+2025-09-28 01:12:04 - ProcessKill 16748
+2025-09-28 01:12:04 - Found child process: 904 Name: conhost.exe
+2025-09-28 01:12:04 - Found child process: 15820 Name: node.exe
+2025-09-28 01:12:04 - Stopping process 904
+2025-09-28 01:12:04 - Send SIGINT 904
+2025-09-28 01:12:04 - SIGINT to 904 failed - Killing as fallback
+2025-09-28 01:12:05 - Stopping process 15820
+2025-09-28 01:12:05 - Send SIGINT 15820
+2025-09-28 01:12:05 - SIGINT to 15820 failed - Killing as fallback
+2025-09-28 01:12:05 - Stopping process 16748
+2025-09-28 01:12:05 - Send SIGINT 16748
+2025-09-28 01:12:05 - SIGINT to 16748 failed - Killing as fallback
+2025-09-28 01:12:05 - Finished websitenodeserver.exe
+2025-09-28 01:12:07 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 01:12:07 - Started 20920
+2025-09-28 01:13:57 - Stopping websitenodeserver.exe
+2025-09-28 01:13:57 - ProcessKill 20920
+2025-09-28 01:13:58 - Found child process: 5708 Name: conhost.exe
+2025-09-28 01:13:58 - Found child process: 2172 Name: node.exe
+2025-09-28 01:13:58 - Stopping process 5708
+2025-09-28 01:13:58 - Send SIGINT 5708
+2025-09-28 01:13:58 - SIGINT to 5708 failed - Killing as fallback
+2025-09-28 01:13:58 - Stopping process 2172
+2025-09-28 01:13:58 - Send SIGINT 2172
+2025-09-28 01:13:58 - SIGINT to 2172 failed - Killing as fallback
+2025-09-28 01:13:58 - Stopping process 20920
+2025-09-28 01:13:58 - Send SIGINT 20920
+2025-09-28 01:13:58 - SIGINT to 20920 failed - Killing as fallback
+2025-09-28 01:13:58 - Finished websitenodeserver.exe
+2025-09-28 01:14:09 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 01:14:09 - Started 12312
+2025-09-28 01:26:22 - Stopping websitenodeserver.exe
+2025-09-28 01:26:22 - ProcessKill 12312
+2025-09-28 01:26:23 - Found child process: 16084 Name: conhost.exe
+2025-09-28 01:26:23 - Found child process: 13184 Name: node.exe
+2025-09-28 01:26:23 - Stopping process 16084
+2025-09-28 01:26:23 - Send SIGINT 16084
+2025-09-28 01:26:23 - SIGINT to 16084 failed - Killing as fallback
+2025-09-28 01:26:23 - Stopping process 13184
+2025-09-28 01:26:23 - Send SIGINT 13184
+2025-09-28 01:26:23 - SIGINT to 13184 failed - Killing as fallback
+2025-09-28 01:26:23 - Stopping process 12312
+2025-09-28 01:26:23 - Send SIGINT 12312
+2025-09-28 01:26:23 - SIGINT to 12312 failed - Killing as fallback
+2025-09-28 01:26:23 - Finished websitenodeserver.exe
+2025-09-28 01:26:25 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 01:26:25 - Started 7576
+2025-09-28 01:29:15 - Stopping websitenodeserver.exe
+2025-09-28 01:29:15 - ProcessKill 7576
+2025-09-28 01:29:15 - Found child process: 13320 Name: conhost.exe
+2025-09-28 01:29:15 - Found child process: 13152 Name: node.exe
+2025-09-28 01:29:15 - Stopping process 13320
+2025-09-28 01:29:15 - Send SIGINT 13320
+2025-09-28 01:29:15 - SIGINT to 13320 failed - Killing as fallback
+2025-09-28 01:29:15 - Stopping process 13152
+2025-09-28 01:29:15 - Send SIGINT 13152
+2025-09-28 01:29:15 - SIGINT to 13152 failed - Killing as fallback
+2025-09-28 01:29:15 - Stopping process 7576
+2025-09-28 01:29:15 - Send SIGINT 7576
+2025-09-28 01:29:15 - SIGINT to 7576 failed - Killing as fallback
+2025-09-28 01:29:15 - Finished websitenodeserver.exe
+2025-09-28 01:29:18 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 01:29:18 - Started 1324
+2025-09-28 02:04:27 - Stopping websitenodeserver.exe
+2025-09-28 02:04:27 - ProcessKill 1324
+2025-09-28 02:04:28 - Found child process: 4904 Name: conhost.exe
+2025-09-28 02:04:28 - Found child process: 20416 Name: node.exe
+2025-09-28 02:04:28 - Stopping process 4904
+2025-09-28 02:04:28 - Send SIGINT 4904
+2025-09-28 02:04:28 - SIGINT to 4904 failed - Killing as fallback
+2025-09-28 02:04:28 - Stopping process 20416
+2025-09-28 02:04:28 - Send SIGINT 20416
+2025-09-28 02:04:28 - SIGINT to 20416 failed - Killing as fallback
+2025-09-28 02:04:28 - Stopping process 1324
+2025-09-28 02:04:28 - Send SIGINT 1324
+2025-09-28 02:04:28 - SIGINT to 1324 failed - Killing as fallback
+2025-09-28 02:04:28 - Finished websitenodeserver.exe
+2025-09-28 02:04:30 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 02:04:30 - Started 18892
+2025-09-28 02:06:54 - Stopping websitenodeserver.exe
+2025-09-28 02:06:54 - ProcessKill 18892
+2025-09-28 02:06:54 - Found child process: 17764 Name: conhost.exe
+2025-09-28 02:06:54 - Found child process: 7096 Name: node.exe
+2025-09-28 02:06:54 - Stopping process 17764
+2025-09-28 02:06:54 - Send SIGINT 17764
+2025-09-28 02:06:54 - SIGINT to 17764 failed - Killing as fallback
+2025-09-28 02:06:55 - Stopping process 7096
+2025-09-28 02:06:55 - Send SIGINT 7096
+2025-09-28 02:06:55 - SIGINT to 7096 failed - Killing as fallback
+2025-09-28 02:06:55 - Stopping process 18892
+2025-09-28 02:06:55 - Send SIGINT 18892
+2025-09-28 02:06:55 - SIGINT to 18892 failed - Killing as fallback
+2025-09-28 02:06:55 - Finished websitenodeserver.exe
+2025-09-28 02:06:56 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 02:06:56 - Started 17276
+2025-09-28 02:12:44 - Stopping websitenodeserver.exe
+2025-09-28 02:12:44 - ProcessKill 17276
+2025-09-28 02:12:44 - Found child process: 4372 Name: conhost.exe
+2025-09-28 02:12:44 - Found child process: 21284 Name: node.exe
+2025-09-28 02:12:44 - Stopping process 4372
+2025-09-28 02:12:44 - Send SIGINT 4372
+2025-09-28 02:12:44 - SIGINT to 4372 failed - Killing as fallback
+2025-09-28 02:12:44 - Stopping process 21284
+2025-09-28 02:12:44 - Send SIGINT 21284
+2025-09-28 02:12:44 - SIGINT to 21284 failed - Killing as fallback
+2025-09-28 02:12:44 - Stopping process 17276
+2025-09-28 02:12:44 - Send SIGINT 17276
+2025-09-28 02:12:44 - SIGINT to 17276 failed - Killing as fallback
+2025-09-28 02:12:44 - Finished websitenodeserver.exe
+2025-09-28 02:12:47 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 02:12:47 - Started 17944
+2025-09-28 02:21:23 - Stopping websitenodeserver.exe
+2025-09-28 02:21:23 - ProcessKill 17944
+2025-09-28 02:21:23 - Found child process: 10280 Name: conhost.exe
+2025-09-28 02:21:23 - Found child process: 7684 Name: node.exe
+2025-09-28 02:21:23 - Stopping process 10280
+2025-09-28 02:21:23 - Send SIGINT 10280
+2025-09-28 02:21:23 - SIGINT to 10280 failed - Killing as fallback
+2025-09-28 02:21:24 - Stopping process 7684
+2025-09-28 02:21:24 - Send SIGINT 7684
+2025-09-28 02:21:24 - SIGINT to 7684 failed - Killing as fallback
+2025-09-28 02:21:24 - Stopping process 17944
+2025-09-28 02:21:24 - Send SIGINT 17944
+2025-09-28 02:21:24 - SIGINT to 17944 failed - Killing as fallback
+2025-09-28 02:21:24 - Finished websitenodeserver.exe
+2025-09-28 02:21:26 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 02:21:26 - Started 7316
+2025-09-28 02:24:44 - Stopping websitenodeserver.exe
+2025-09-28 02:24:44 - ProcessKill 7316
+2025-09-28 02:24:44 - Found child process: 20912 Name: conhost.exe
+2025-09-28 02:24:44 - Found child process: 1880 Name: node.exe
+2025-09-28 02:24:45 - Stopping process 20912
+2025-09-28 02:24:45 - Send SIGINT 20912
+2025-09-28 02:24:45 - SIGINT to 20912 failed - Killing as fallback
+2025-09-28 02:24:45 - Stopping process 1880
+2025-09-28 02:24:45 - Send SIGINT 1880
+2025-09-28 02:24:45 - SIGINT to 1880 failed - Killing as fallback
+2025-09-28 02:24:45 - Stopping process 7316
+2025-09-28 02:24:45 - Send SIGINT 7316
+2025-09-28 02:24:45 - SIGINT to 7316 failed - Killing as fallback
+2025-09-28 02:24:45 - Finished websitenodeserver.exe
+2025-09-28 02:24:47 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 02:24:47 - Started 20564
+2025-09-28 02:26:52 - Stopping websitenodeserver.exe
+2025-09-28 02:26:52 - ProcessKill 20564
+2025-09-28 02:26:52 - Found child process: 12444 Name: conhost.exe
+2025-09-28 02:26:52 - Found child process: 21228 Name: node.exe
+2025-09-28 02:26:52 - Stopping process 12444
+2025-09-28 02:26:52 - Send SIGINT 12444
+2025-09-28 02:26:52 - SIGINT to 12444 failed - Killing as fallback
+2025-09-28 02:26:52 - Stopping process 21228
+2025-09-28 02:26:52 - Send SIGINT 21228
+2025-09-28 02:26:52 - SIGINT to 21228 failed - Killing as fallback
+2025-09-28 02:26:52 - Stopping process 20564
+2025-09-28 02:26:52 - Send SIGINT 20564
+2025-09-28 02:26:52 - SIGINT to 20564 failed - Killing as fallback
+2025-09-28 02:26:52 - Finished websitenodeserver.exe
+2025-09-28 02:26:54 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 02:26:54 - Started 18812
+2025-09-28 23:49:26 - Stopping websitenodeserver.exe
+2025-09-28 23:49:26 - ProcessKill 18812
+2025-09-28 23:49:27 - Found child process: 20572 Name: conhost.exe
+2025-09-28 23:49:27 - Found child process: 9616 Name: node.exe
+2025-09-28 23:49:27 - Stopping process 20572
+2025-09-28 23:49:27 - Send SIGINT 20572
+2025-09-28 23:49:27 - SIGINT to 20572 failed - Killing as fallback
+2025-09-28 23:49:27 - Stopping process 9616
+2025-09-28 23:49:27 - Send SIGINT 9616
+2025-09-28 23:49:27 - SIGINT to 9616 failed - Killing as fallback
+2025-09-28 23:49:27 - Stopping process 18812
+2025-09-28 23:49:27 - Send SIGINT 18812
+2025-09-28 23:49:27 - SIGINT to 18812 failed - Killing as fallback
+2025-09-28 23:49:27 - Finished websitenodeserver.exe
+2025-09-28 23:49:30 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 23:49:30 - Started 20292
+2025-09-28 23:59:39 - Stopping websitenodeserver.exe
+2025-09-28 23:59:39 - ProcessKill 20292
+2025-09-28 23:59:40 - Found child process: 8756 Name: conhost.exe
+2025-09-28 23:59:40 - Found child process: 1220 Name: node.exe
+2025-09-28 23:59:40 - Stopping process 8756
+2025-09-28 23:59:40 - Send SIGINT 8756
+2025-09-28 23:59:40 - SIGINT to 8756 failed - Killing as fallback
+2025-09-28 23:59:40 - Stopping process 1220
+2025-09-28 23:59:40 - Send SIGINT 1220
+2025-09-28 23:59:40 - SIGINT to 1220 failed - Killing as fallback
+2025-09-28 23:59:40 - Stopping process 20292
+2025-09-28 23:59:40 - Send SIGINT 20292
+2025-09-28 23:59:40 - SIGINT to 20292 failed - Killing as fallback
+2025-09-28 23:59:40 - Finished websitenodeserver.exe
+2025-09-28 23:59:42 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-28 23:59:42 - Started 19788
+2025-09-29 00:14:43 - Stopping websitenodeserver.exe
+2025-09-29 00:14:43 - ProcessKill 19788
+2025-09-29 00:14:43 - Found child process: 5640 Name: conhost.exe
+2025-09-29 00:14:43 - Found child process: 19116 Name: node.exe
+2025-09-29 00:14:43 - Stopping process 5640
+2025-09-29 00:14:43 - Send SIGINT 5640
+2025-09-29 00:14:43 - SIGINT to 5640 failed - Killing as fallback
+2025-09-29 00:14:43 - Stopping process 19116
+2025-09-29 00:14:43 - Send SIGINT 19116
+2025-09-29 00:14:43 - SIGINT to 19116 failed - Killing as fallback
+2025-09-29 00:14:43 - Stopping process 19788
+2025-09-29 00:14:43 - Send SIGINT 19788
+2025-09-29 00:14:43 - SIGINT to 19788 failed - Killing as fallback
+2025-09-29 00:14:43 - Finished websitenodeserver.exe
+2025-09-29 00:14:45 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 00:14:45 - Started 20804
+2025-09-29 00:20:24 - Stopping websitenodeserver.exe
+2025-09-29 00:20:24 - ProcessKill 20804
+2025-09-29 00:20:25 - Found child process: 20504 Name: conhost.exe
+2025-09-29 00:20:25 - Found child process: 16040 Name: node.exe
+2025-09-29 00:20:25 - Stopping process 20504
+2025-09-29 00:20:25 - Send SIGINT 20504
+2025-09-29 00:20:25 - SIGINT to 20504 failed - Killing as fallback
+2025-09-29 00:20:25 - Stopping process 16040
+2025-09-29 00:20:25 - Send SIGINT 16040
+2025-09-29 00:20:25 - SIGINT to 16040 failed - Killing as fallback
+2025-09-29 00:20:25 - Stopping process 20804
+2025-09-29 00:20:25 - Send SIGINT 20804
+2025-09-29 00:20:25 - SIGINT to 20804 failed - Killing as fallback
+2025-09-29 00:20:25 - Finished websitenodeserver.exe
+2025-09-29 00:20:27 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 00:20:27 - Started 3468
+2025-09-29 00:39:32 - Stopping websitenodeserver.exe
+2025-09-29 00:39:32 - ProcessKill 3468
+2025-09-29 00:39:32 - Found child process: 19096 Name: conhost.exe
+2025-09-29 00:39:32 - Found child process: 14136 Name: node.exe
+2025-09-29 00:39:33 - Stopping process 19096
+2025-09-29 00:39:33 - Send SIGINT 19096
+2025-09-29 00:39:33 - SIGINT to 19096 failed - Killing as fallback
+2025-09-29 00:39:33 - Stopping process 14136
+2025-09-29 00:39:33 - Send SIGINT 14136
+2025-09-29 00:39:33 - SIGINT to 14136 failed - Killing as fallback
+2025-09-29 00:39:33 - Stopping process 3468
+2025-09-29 00:39:33 - Send SIGINT 3468
+2025-09-29 00:39:33 - SIGINT to 3468 failed - Killing as fallback
+2025-09-29 00:39:33 - Finished websitenodeserver.exe
+2025-09-29 00:39:35 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 00:39:35 - Started 17428
+2025-09-29 00:47:34 - Stopping websitenodeserver.exe
+2025-09-29 00:47:34 - ProcessKill 17428
+2025-09-29 00:47:35 - Found child process: 17604 Name: conhost.exe
+2025-09-29 00:47:35 - Found child process: 20848 Name: node.exe
+2025-09-29 00:47:35 - Stopping process 17604
+2025-09-29 00:47:35 - Send SIGINT 17604
+2025-09-29 00:47:35 - SIGINT to 17604 failed - Killing as fallback
+2025-09-29 00:47:35 - Stopping process 20848
+2025-09-29 00:47:35 - Send SIGINT 20848
+2025-09-29 00:47:35 - SIGINT to 20848 failed - Killing as fallback
+2025-09-29 00:47:35 - Stopping process 17428
+2025-09-29 00:47:35 - Send SIGINT 17428
+2025-09-29 00:47:35 - SIGINT to 17428 failed - Killing as fallback
+2025-09-29 00:47:35 - Finished websitenodeserver.exe
+2025-09-29 00:47:37 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 00:47:37 - Started 7180
+2025-09-29 00:49:21 - Stopping websitenodeserver.exe
+2025-09-29 00:49:21 - ProcessKill 7180
+2025-09-29 00:49:21 - Found child process: 6436 Name: conhost.exe
+2025-09-29 00:49:21 - Found child process: 10120 Name: node.exe
+2025-09-29 00:49:21 - Stopping process 6436
+2025-09-29 00:49:21 - Send SIGINT 6436
+2025-09-29 00:49:21 - SIGINT to 6436 failed - Killing as fallback
+2025-09-29 00:49:21 - Stopping process 10120
+2025-09-29 00:49:21 - Send SIGINT 10120
+2025-09-29 00:49:21 - SIGINT to 10120 failed - Killing as fallback
+2025-09-29 00:49:21 - Stopping process 7180
+2025-09-29 00:49:21 - Send SIGINT 7180
+2025-09-29 00:49:21 - SIGINT to 7180 failed - Killing as fallback
+2025-09-29 00:49:21 - Finished websitenodeserver.exe
+2025-09-29 00:49:23 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 00:49:23 - Started 6048
+2025-09-29 00:55:44 - Stopping websitenodeserver.exe
+2025-09-29 00:55:44 - ProcessKill 6048
+2025-09-29 00:55:45 - Found child process: 14604 Name: conhost.exe
+2025-09-29 00:55:45 - Found child process: 12840 Name: node.exe
+2025-09-29 00:55:45 - Stopping process 14604
+2025-09-29 00:55:45 - Send SIGINT 14604
+2025-09-29 00:55:45 - SIGINT to 14604 failed - Killing as fallback
+2025-09-29 00:55:45 - Stopping process 12840
+2025-09-29 00:55:45 - Send SIGINT 12840
+2025-09-29 00:55:45 - SIGINT to 12840 failed - Killing as fallback
+2025-09-29 00:55:45 - Stopping process 6048
+2025-09-29 00:55:45 - Send SIGINT 6048
+2025-09-29 00:55:45 - SIGINT to 6048 failed - Killing as fallback
+2025-09-29 00:55:45 - Finished websitenodeserver.exe
+2025-09-29 00:55:52 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 00:55:52 - Started 8096
+2025-09-29 01:02:25 - Stopping websitenodeserver.exe
+2025-09-29 01:02:25 - ProcessKill 8096
+2025-09-29 01:02:26 - Found child process: 17448 Name: conhost.exe
+2025-09-29 01:02:26 - Found child process: 10824 Name: node.exe
+2025-09-29 01:02:26 - Stopping process 17448
+2025-09-29 01:02:26 - Send SIGINT 17448
+2025-09-29 01:02:26 - SIGINT to 17448 failed - Killing as fallback
+2025-09-29 01:02:26 - Stopping process 10824
+2025-09-29 01:02:26 - Send SIGINT 10824
+2025-09-29 01:02:26 - SIGINT to 10824 failed - Killing as fallback
+2025-09-29 01:02:26 - Stopping process 8096
+2025-09-29 01:02:26 - Send SIGINT 8096
+2025-09-29 01:02:26 - SIGINT to 8096 failed - Killing as fallback
+2025-09-29 01:02:26 - Finished websitenodeserver.exe
+2025-09-29 01:02:28 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 01:02:28 - Started 18104
+2025-09-29 01:03:40 - Stopping websitenodeserver.exe
+2025-09-29 01:03:40 - ProcessKill 18104
+2025-09-29 01:03:41 - Found child process: 4952 Name: conhost.exe
+2025-09-29 01:03:41 - Found child process: 12660 Name: node.exe
+2025-09-29 01:03:41 - Stopping process 4952
+2025-09-29 01:03:41 - Send SIGINT 4952
+2025-09-29 01:03:41 - SIGINT to 4952 failed - Killing as fallback
+2025-09-29 01:03:41 - Stopping process 12660
+2025-09-29 01:03:41 - Send SIGINT 12660
+2025-09-29 01:03:41 - SIGINT to 12660 failed - Killing as fallback
+2025-09-29 01:03:41 - Stopping process 18104
+2025-09-29 01:03:41 - Send SIGINT 18104
+2025-09-29 01:03:41 - SIGINT to 18104 failed - Killing as fallback
+2025-09-29 01:03:41 - Finished websitenodeserver.exe
+2025-09-29 01:03:42 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 01:03:42 - Started 13516
+2025-09-29 01:07:08 - Stopping websitenodeserver.exe
+2025-09-29 01:07:08 - ProcessKill 13516
+2025-09-29 01:07:08 - Found child process: 20184 Name: conhost.exe
+2025-09-29 01:07:08 - Found child process: 12612 Name: node.exe
+2025-09-29 01:07:09 - Stopping process 20184
+2025-09-29 01:07:09 - Send SIGINT 20184
+2025-09-29 01:07:09 - SIGINT to 20184 failed - Killing as fallback
+2025-09-29 01:07:09 - Stopping process 12612
+2025-09-29 01:07:09 - Send SIGINT 12612
+2025-09-29 01:07:09 - SIGINT to 12612 failed - Killing as fallback
+2025-09-29 01:07:09 - Stopping process 13516
+2025-09-29 01:07:09 - Send SIGINT 13516
+2025-09-29 01:07:09 - SIGINT to 13516 failed - Killing as fallback
+2025-09-29 01:07:09 - Finished websitenodeserver.exe
+2025-09-29 01:07:10 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 01:07:10 - Started 15572
+2025-09-29 01:10:07 - Stopping websitenodeserver.exe
+2025-09-29 01:10:07 - ProcessKill 15572
+2025-09-29 01:10:07 - Found child process: 12744 Name: conhost.exe
+2025-09-29 01:10:07 - Found child process: 19620 Name: node.exe
+2025-09-29 01:10:07 - Stopping process 12744
+2025-09-29 01:10:07 - Send SIGINT 12744
+2025-09-29 01:10:07 - SIGINT to 12744 failed - Killing as fallback
+2025-09-29 01:10:07 - Stopping process 19620
+2025-09-29 01:10:07 - Send SIGINT 19620
+2025-09-29 01:10:07 - SIGINT to 19620 failed - Killing as fallback
+2025-09-29 01:10:07 - Stopping process 15572
+2025-09-29 01:10:07 - Send SIGINT 15572
+2025-09-29 01:10:07 - SIGINT to 15572 failed - Killing as fallback
+2025-09-29 01:10:07 - Finished websitenodeserver.exe
+2025-09-29 01:10:10 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 01:10:10 - Started 14396
+2025-09-29 01:18:49 - Stopping websitenodeserver.exe
+2025-09-29 01:18:49 - ProcessKill 14396
+2025-09-29 01:18:50 - Found child process: 20244 Name: conhost.exe
+2025-09-29 01:18:50 - Found child process: 20216 Name: node.exe
+2025-09-29 01:18:50 - Stopping process 20244
+2025-09-29 01:18:50 - Send SIGINT 20244
+2025-09-29 01:18:50 - SIGINT to 20244 failed - Killing as fallback
+2025-09-29 01:18:50 - Stopping process 20216
+2025-09-29 01:18:50 - Send SIGINT 20216
+2025-09-29 01:18:50 - SIGINT to 20216 failed - Killing as fallback
+2025-09-29 01:18:50 - Stopping process 14396
+2025-09-29 01:18:50 - Send SIGINT 14396
+2025-09-29 01:18:50 - SIGINT to 14396 failed - Killing as fallback
+2025-09-29 01:18:50 - Finished websitenodeserver.exe
+2025-09-29 01:18:51 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 01:18:51 - Started 19524
+2025-09-29 01:22:52 - Stopping websitenodeserver.exe
+2025-09-29 01:22:52 - ProcessKill 19524
+2025-09-29 01:22:52 - Found child process: 19976 Name: conhost.exe
+2025-09-29 01:22:52 - Found child process: 10648 Name: node.exe
+2025-09-29 01:22:52 - Stopping process 19976
+2025-09-29 01:22:52 - Send SIGINT 19976
+2025-09-29 01:22:52 - SIGINT to 19976 failed - Killing as fallback
+2025-09-29 01:22:52 - Stopping process 10648
+2025-09-29 01:22:52 - Send SIGINT 10648
+2025-09-29 01:22:52 - SIGINT to 10648 failed - Killing as fallback
+2025-09-29 01:22:52 - Stopping process 19524
+2025-09-29 01:22:52 - Send SIGINT 19524
+2025-09-29 01:22:52 - SIGINT to 19524 failed - Killing as fallback
+2025-09-29 01:22:52 - Finished websitenodeserver.exe
+2025-09-29 01:22:55 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 01:22:55 - Started 4716
+2025-09-29 09:54:33 - Stopping websitenodeserver.exe
+2025-09-29 09:54:33 - ProcessKill 4716
+2025-09-29 09:54:33 - Found child process: 2340 Name: conhost.exe
+2025-09-29 09:54:34 - Found child process: 5152 Name: node.exe
+2025-09-29 09:54:34 - Stopping process 2340
+2025-09-29 09:54:34 - Send SIGINT 2340
+2025-09-29 09:54:34 - SIGINT to 2340 failed - Killing as fallback
+2025-09-29 09:54:34 - Stopping process 5152
+2025-09-29 09:54:34 - Send SIGINT 5152
+2025-09-29 09:54:34 - SIGINT to 5152 failed - Killing as fallback
+2025-09-29 09:54:34 - Stopping process 4716
+2025-09-29 09:54:34 - Send SIGINT 4716
+2025-09-29 09:54:34 - SIGINT to 4716 failed - Killing as fallback
+2025-09-29 09:54:34 - Finished websitenodeserver.exe
+2025-09-29 09:54:38 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 09:54:38 - Started 12060
+2025-09-29 10:23:34 - Stopping websitenodeserver.exe
+2025-09-29 10:23:34 - ProcessKill 12060
+2025-09-29 10:23:34 - Found child process: 6776 Name: conhost.exe
+2025-09-29 10:23:34 - Found child process: 19472 Name: node.exe
+2025-09-29 10:23:34 - Stopping process 6776
+2025-09-29 10:23:34 - Send SIGINT 6776
+2025-09-29 10:23:34 - SIGINT to 6776 failed - Killing as fallback
+2025-09-29 10:23:35 - Stopping process 19472
+2025-09-29 10:23:35 - Send SIGINT 19472
+2025-09-29 10:23:35 - SIGINT to 19472 failed - Killing as fallback
+2025-09-29 10:23:35 - Stopping process 12060
+2025-09-29 10:23:35 - Send SIGINT 12060
+2025-09-29 10:23:35 - SIGINT to 12060 failed - Killing as fallback
+2025-09-29 10:23:35 - Finished websitenodeserver.exe
+2025-09-29 10:23:38 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 10:23:38 - Started 6900
+2025-09-29 11:42:13 - Stopping websitenodeserver.exe
+2025-09-29 11:42:13 - ProcessKill 6900
+2025-09-29 11:42:14 - Found child process: 11636 Name: conhost.exe
+2025-09-29 11:42:14 - Found child process: 16304 Name: node.exe
+2025-09-29 11:42:14 - Stopping process 11636
+2025-09-29 11:42:14 - Send SIGINT 11636
+2025-09-29 11:42:14 - SIGINT to 11636 failed - Killing as fallback
+2025-09-29 11:42:15 - Stopping process 16304
+2025-09-29 11:42:15 - Send SIGINT 16304
+2025-09-29 11:42:15 - SIGINT to 16304 failed - Killing as fallback
+2025-09-29 11:42:15 - Stopping process 6900
+2025-09-29 11:42:15 - Send SIGINT 6900
+2025-09-29 11:42:15 - SIGINT to 6900 failed - Killing as fallback
+2025-09-29 11:42:15 - Finished websitenodeserver.exe
+2025-09-29 11:42:17 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 11:42:17 - Started 15368
+2025-09-29 11:46:04 - Stopping websitenodeserver.exe
+2025-09-29 11:46:04 - ProcessKill 15368
+2025-09-29 11:46:05 - Found child process: 3752 Name: conhost.exe
+2025-09-29 11:46:05 - Found child process: 19108 Name: node.exe
+2025-09-29 11:46:05 - Stopping process 3752
+2025-09-29 11:46:05 - Send SIGINT 3752
+2025-09-29 11:46:05 - SIGINT to 3752 failed - Killing as fallback
+2025-09-29 11:46:06 - Stopping process 19108
+2025-09-29 11:46:06 - Send SIGINT 19108
+2025-09-29 11:46:06 - SIGINT to 19108 failed - Killing as fallback
+2025-09-29 11:46:06 - Stopping process 15368
+2025-09-29 11:46:06 - Send SIGINT 15368
+2025-09-29 11:46:06 - SIGINT to 15368 failed - Killing as fallback
+2025-09-29 11:46:06 - Finished websitenodeserver.exe
+2025-09-29 11:46:07 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 11:46:07 - Started 14520
+2025-09-29 15:48:10 - Stopping websitenodeserver.exe
+2025-09-29 15:48:10 - ProcessKill 14520
+2025-09-29 15:48:11 - Shutdown exception
+Message:Class not registered
+
+Stacktrace:   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at winsw.WrapperService.GetChildPids(Int32 pid)
+   at winsw.WrapperService.StopProcessAndChildren(Int32 pid)
+   at winsw.WrapperService.StopIt()
+   at winsw.WrapperService.OnShutdown()
+2025-09-29 15:49:48 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 15:49:48 - Started 5496
+2025-09-29 15:56:40 - Stopping websitenodeserver.exe
+2025-09-29 15:56:40 - ProcessKill 5496
+2025-09-29 15:56:40 - Found child process: 5532 Name: conhost.exe
+2025-09-29 15:56:40 - Found child process: 6492 Name: node.exe
+2025-09-29 15:56:40 - Stopping process 5532
+2025-09-29 15:56:40 - Send SIGINT 5532
+2025-09-29 15:56:40 - SIGINT to 5532 failed - Killing as fallback
+2025-09-29 15:56:40 - Stopping process 6492
+2025-09-29 15:56:40 - Send SIGINT 6492
+2025-09-29 15:56:40 - SIGINT to 6492 failed - Killing as fallback
+2025-09-29 15:56:40 - Stopping process 5496
+2025-09-29 15:56:40 - Send SIGINT 5496
+2025-09-29 15:56:40 - SIGINT to 5496 failed - Killing as fallback
+2025-09-29 15:56:40 - Finished websitenodeserver.exe
+2025-09-29 15:56:43 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 15:56:43 - Started 3096
+2025-09-29 16:00:39 - Stopping websitenodeserver.exe
+2025-09-29 16:00:39 - ProcessKill 3096
+2025-09-29 16:00:40 - Found child process: 7068 Name: conhost.exe
+2025-09-29 16:00:40 - Found child process: 2016 Name: node.exe
+2025-09-29 16:00:40 - Stopping process 7068
+2025-09-29 16:00:40 - Send SIGINT 7068
+2025-09-29 16:00:40 - SIGINT to 7068 failed - Killing as fallback
+2025-09-29 16:00:41 - Stopping process 2016
+2025-09-29 16:00:41 - Send SIGINT 2016
+2025-09-29 16:00:41 - SIGINT to 2016 failed - Killing as fallback
+2025-09-29 16:00:41 - Stopping process 3096
+2025-09-29 16:00:41 - Send SIGINT 3096
+2025-09-29 16:00:41 - SIGINT to 3096 failed - Killing as fallback
+2025-09-29 16:00:41 - Finished websitenodeserver.exe
+2025-09-29 16:00:43 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 16:00:43 - Started 11664
+2025-09-29 16:04:44 - Stopping websitenodeserver.exe
+2025-09-29 16:04:44 - ProcessKill 11664
+2025-09-29 16:04:44 - Found child process: 11652 Name: conhost.exe
+2025-09-29 16:04:44 - Found child process: 852 Name: node.exe
+2025-09-29 16:04:44 - Stopping process 11652
+2025-09-29 16:04:44 - Send SIGINT 11652
+2025-09-29 16:04:45 - SIGINT to 11652 failed - Killing as fallback
+2025-09-29 16:04:45 - Stopping process 852
+2025-09-29 16:04:45 - Send SIGINT 852
+2025-09-29 16:04:45 - SIGINT to 852 failed - Killing as fallback
+2025-09-29 16:04:45 - Stopping process 11664
+2025-09-29 16:04:45 - Send SIGINT 11664
+2025-09-29 16:04:45 - SIGINT to 11664 failed - Killing as fallback
+2025-09-29 16:04:45 - Finished websitenodeserver.exe
+2025-09-29 16:04:47 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 16:04:48 - Started 3084
+2025-09-29 21:25:30 - Stopping websitenodeserver.exe
+2025-09-29 21:25:30 - ProcessKill 3084
+2025-09-29 21:25:33 - Found child process: 5724 Name: conhost.exe
+2025-09-29 21:25:33 - Found child process: 12564 Name: node.exe
+2025-09-29 21:25:33 - Stopping process 5724
+2025-09-29 21:25:33 - Send SIGINT 5724
+2025-09-29 21:25:33 - SIGINT to 5724 failed - Killing as fallback
+2025-09-29 21:25:34 - Stopping process 12564
+2025-09-29 21:25:34 - Send SIGINT 12564
+2025-09-29 21:25:34 - SIGINT to 12564 failed - Killing as fallback
+2025-09-29 21:25:34 - Stopping process 3084
+2025-09-29 21:25:34 - Send SIGINT 3084
+2025-09-29 21:25:34 - SIGINT to 3084 failed - Killing as fallback
+2025-09-29 21:25:34 - Finished websitenodeserver.exe
+2025-09-29 21:25:40 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 21:25:40 - Started 4728
+2025-09-29 21:46:52 - Stopping websitenodeserver.exe
+2025-09-29 21:46:52 - ProcessKill 4728
+2025-09-29 21:46:53 - Found child process: 5636 Name: conhost.exe
+2025-09-29 21:46:53 - Found child process: 1188 Name: node.exe
+2025-09-29 21:46:53 - Stopping process 5636
+2025-09-29 21:46:53 - Send SIGINT 5636
+2025-09-29 21:46:53 - SIGINT to 5636 failed - Killing as fallback
+2025-09-29 21:46:53 - Stopping process 1188
+2025-09-29 21:46:53 - Send SIGINT 1188
+2025-09-29 21:46:53 - SIGINT to 1188 failed - Killing as fallback
+2025-09-29 21:46:53 - Stopping process 4728
+2025-09-29 21:46:53 - Send SIGINT 4728
+2025-09-29 21:46:53 - SIGINT to 4728 failed - Killing as fallback
+2025-09-29 21:46:53 - Finished websitenodeserver.exe
+2025-09-29 21:46:56 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 21:46:56 - Started 13764
+2025-09-29 22:21:54 - Stopping websitenodeserver.exe
+2025-09-29 22:21:54 - ProcessKill 13764
+2025-09-29 22:21:54 - Found child process: 3608 Name: conhost.exe
+2025-09-29 22:21:54 - Found child process: 4148 Name: node.exe
+2025-09-29 22:21:54 - Stopping process 3608
+2025-09-29 22:21:54 - Send SIGINT 3608
+2025-09-29 22:21:54 - SIGINT to 3608 failed - Killing as fallback
+2025-09-29 22:21:54 - Stopping process 4148
+2025-09-29 22:21:54 - Send SIGINT 4148
+2025-09-29 22:21:54 - SIGINT to 4148 failed - Killing as fallback
+2025-09-29 22:21:54 - Stopping process 13764
+2025-09-29 22:21:54 - Send SIGINT 13764
+2025-09-29 22:21:54 - SIGINT to 13764 failed - Killing as fallback
+2025-09-29 22:21:54 - Finished websitenodeserver.exe
+2025-09-29 22:21:56 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 22:21:56 - Started 2500
+2025-09-29 22:29:47 - Stopping websitenodeserver.exe
+2025-09-29 22:29:47 - ProcessKill 2500
+2025-09-29 22:29:48 - Found child process: 4356 Name: conhost.exe
+2025-09-29 22:29:48 - Found child process: 13508 Name: node.exe
+2025-09-29 22:29:48 - Stopping process 4356
+2025-09-29 22:29:48 - Send SIGINT 4356
+2025-09-29 22:29:48 - SIGINT to 4356 failed - Killing as fallback
+2025-09-29 22:29:48 - Stopping process 13508
+2025-09-29 22:29:48 - Send SIGINT 13508
+2025-09-29 22:29:48 - SIGINT to 13508 failed - Killing as fallback
+2025-09-29 22:29:48 - Stopping process 2500
+2025-09-29 22:29:48 - Send SIGINT 2500
+2025-09-29 22:29:48 - SIGINT to 2500 failed - Killing as fallback
+2025-09-29 22:29:48 - Finished websitenodeserver.exe
+2025-09-29 22:29:50 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 22:29:50 - Started 5188
+2025-09-29 22:35:15 - Stopping websitenodeserver.exe
+2025-09-29 22:35:15 - ProcessKill 5188
+2025-09-29 22:35:15 - Found child process: 14188 Name: conhost.exe
+2025-09-29 22:35:15 - Found child process: 12916 Name: node.exe
+2025-09-29 22:35:15 - Stopping process 14188
+2025-09-29 22:35:15 - Send SIGINT 14188
+2025-09-29 22:35:15 - SIGINT to 14188 failed - Killing as fallback
+2025-09-29 22:35:15 - Stopping process 12916
+2025-09-29 22:35:15 - Send SIGINT 12916
+2025-09-29 22:35:15 - SIGINT to 12916 failed - Killing as fallback
+2025-09-29 22:35:15 - Stopping process 5188
+2025-09-29 22:35:15 - Send SIGINT 5188
+2025-09-29 22:35:15 - SIGINT to 5188 failed - Killing as fallback
+2025-09-29 22:35:15 - Finished websitenodeserver.exe
+2025-09-29 22:35:17 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 22:35:17 - Started 6368
+2025-09-29 22:43:29 - Stopping websitenodeserver.exe
+2025-09-29 22:43:29 - ProcessKill 6368
+2025-09-29 22:43:29 - Found child process: 2044 Name: conhost.exe
+2025-09-29 22:43:29 - Found child process: 9628 Name: node.exe
+2025-09-29 22:43:29 - Stopping process 2044
+2025-09-29 22:43:29 - Send SIGINT 2044
+2025-09-29 22:43:29 - SIGINT to 2044 failed - Killing as fallback
+2025-09-29 22:43:30 - Stopping process 9628
+2025-09-29 22:43:30 - Send SIGINT 9628
+2025-09-29 22:43:30 - SIGINT to 9628 failed - Killing as fallback
+2025-09-29 22:43:30 - Stopping process 6368
+2025-09-29 22:43:30 - Send SIGINT 6368
+2025-09-29 22:43:30 - SIGINT to 6368 failed - Killing as fallback
+2025-09-29 22:43:30 - Finished websitenodeserver.exe
+2025-09-29 22:43:31 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 22:43:31 - Started 5292
+2025-09-29 22:54:34 - Stopping websitenodeserver.exe
+2025-09-29 22:54:34 - ProcessKill 5292
+2025-09-29 22:54:34 - Found child process: 3828 Name: conhost.exe
+2025-09-29 22:54:34 - Found child process: 12352 Name: node.exe
+2025-09-29 22:54:34 - Stopping process 3828
+2025-09-29 22:54:34 - Send SIGINT 3828
+2025-09-29 22:54:34 - SIGINT to 3828 failed - Killing as fallback
+2025-09-29 22:54:34 - Stopping process 12352
+2025-09-29 22:54:34 - Send SIGINT 12352
+2025-09-29 22:54:34 - SIGINT to 12352 failed - Killing as fallback
+2025-09-29 22:54:34 - Stopping process 5292
+2025-09-29 22:54:34 - Send SIGINT 5292
+2025-09-29 22:54:34 - SIGINT to 5292 failed - Killing as fallback
+2025-09-29 22:54:34 - Finished websitenodeserver.exe
+2025-09-29 22:54:36 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 22:54:36 - Started 9700
+2025-09-29 23:28:41 - Stopping websitenodeserver.exe
+2025-09-29 23:28:41 - ProcessKill 9700
+2025-09-29 23:28:41 - Found child process: 7852 Name: conhost.exe
+2025-09-29 23:28:41 - Found child process: 14184 Name: node.exe
+2025-09-29 23:28:41 - Stopping process 7852
+2025-09-29 23:28:41 - Send SIGINT 7852
+2025-09-29 23:28:41 - SIGINT to 7852 failed - Killing as fallback
+2025-09-29 23:28:41 - Stopping process 14184
+2025-09-29 23:28:41 - Send SIGINT 14184
+2025-09-29 23:28:41 - SIGINT to 14184 failed - Killing as fallback
+2025-09-29 23:28:41 - Stopping process 9700
+2025-09-29 23:28:41 - Send SIGINT 9700
+2025-09-29 23:28:41 - SIGINT to 9700 failed - Killing as fallback
+2025-09-29 23:28:41 - Finished websitenodeserver.exe
+2025-09-29 23:28:43 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-29 23:28:43 - Started 8628
+2025-09-30 21:36:07 - Stopping websitenodeserver.exe
+2025-09-30 21:36:07 - ProcessKill 8628
+2025-09-30 21:36:08 - Found child process: 11384 Name: conhost.exe
+2025-09-30 21:36:08 - Found child process: 12096 Name: node.exe
+2025-09-30 21:36:08 - Stopping process 11384
+2025-09-30 21:36:08 - Send SIGINT 11384
+2025-09-30 21:36:08 - SIGINT to 11384 failed - Killing as fallback
+2025-09-30 21:36:08 - Stopping process 12096
+2025-09-30 21:36:08 - Send SIGINT 12096
+2025-09-30 21:36:08 - SIGINT to 12096 failed - Killing as fallback
+2025-09-30 21:36:08 - Stopping process 8628
+2025-09-30 21:36:08 - Send SIGINT 8628
+2025-09-30 21:36:08 - SIGINT to 8628 failed - Killing as fallback
+2025-09-30 21:36:08 - Finished websitenodeserver.exe
+2025-09-30 21:36:10 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-30 21:36:10 - Started 14228
+2025-09-30 21:37:23 - Stopping websitenodeserver.exe
+2025-09-30 21:37:23 - ProcessKill 14228
+2025-09-30 21:37:24 - Found child process: 968 Name: conhost.exe
+2025-09-30 21:37:24 - Found child process: 10992 Name: node.exe
+2025-09-30 21:37:24 - Stopping process 968
+2025-09-30 21:37:24 - Send SIGINT 968
+2025-09-30 21:37:24 - SIGINT to 968 failed - Killing as fallback
+2025-09-30 21:37:24 - Stopping process 10992
+2025-09-30 21:37:24 - Send SIGINT 10992
+2025-09-30 21:37:24 - SIGINT to 10992 failed - Killing as fallback
+2025-09-30 21:37:24 - Stopping process 14228
+2025-09-30 21:37:24 - Send SIGINT 14228
+2025-09-30 21:37:24 - SIGINT to 14228 failed - Killing as fallback
+2025-09-30 21:37:24 - Finished websitenodeserver.exe
+2025-09-30 21:37:26 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-30 21:37:26 - Started 14884
+2025-09-30 21:40:48 - Stopping websitenodeserver.exe
+2025-09-30 21:40:48 - ProcessKill 14884
+2025-09-30 21:40:48 - Found child process: 8152 Name: conhost.exe
+2025-09-30 21:40:48 - Found child process: 11936 Name: node.exe
+2025-09-30 21:40:48 - Stopping process 8152
+2025-09-30 21:40:48 - Send SIGINT 8152
+2025-09-30 21:40:48 - SIGINT to 8152 failed - Killing as fallback
+2025-09-30 21:40:48 - Stopping process 11936
+2025-09-30 21:40:48 - Send SIGINT 11936
+2025-09-30 21:40:48 - SIGINT to 11936 failed - Killing as fallback
+2025-09-30 21:40:48 - Stopping process 14884
+2025-09-30 21:40:48 - Send SIGINT 14884
+2025-09-30 21:40:48 - SIGINT to 14884 failed - Killing as fallback
+2025-09-30 21:40:48 - Finished websitenodeserver.exe
+2025-09-30 21:40:50 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-30 21:40:50 - Started 8468
+2025-09-30 21:45:35 - Stopping websitenodeserver.exe
+2025-09-30 21:45:35 - ProcessKill 8468
+2025-09-30 21:45:36 - Found child process: 11576 Name: conhost.exe
+2025-09-30 21:45:36 - Found child process: 6684 Name: node.exe
+2025-09-30 21:45:36 - Stopping process 11576
+2025-09-30 21:45:36 - Send SIGINT 11576
+2025-09-30 21:45:36 - SIGINT to 11576 failed - Killing as fallback
+2025-09-30 21:45:36 - Stopping process 6684
+2025-09-30 21:45:36 - Send SIGINT 6684
+2025-09-30 21:45:36 - SIGINT to 6684 failed - Killing as fallback
+2025-09-30 21:45:36 - Stopping process 8468
+2025-09-30 21:45:36 - Send SIGINT 8468
+2025-09-30 21:45:36 - SIGINT to 8468 failed - Killing as fallback
+2025-09-30 21:45:36 - Finished websitenodeserver.exe
+2025-09-30 21:45:38 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-30 21:45:38 - Started 9296
+2025-09-30 22:22:33 - Stopping websitenodeserver.exe
+2025-09-30 22:22:33 - ProcessKill 9296
+2025-09-30 22:22:33 - Found child process: 4448 Name: conhost.exe
+2025-09-30 22:22:33 - Found child process: 4756 Name: node.exe
+2025-09-30 22:22:34 - Stopping process 4448
+2025-09-30 22:22:34 - Send SIGINT 4448
+2025-09-30 22:22:34 - SIGINT to 4448 failed - Killing as fallback
+2025-09-30 22:22:34 - Stopping process 4756
+2025-09-30 22:22:34 - Send SIGINT 4756
+2025-09-30 22:22:34 - SIGINT to 4756 failed - Killing as fallback
+2025-09-30 22:22:34 - Stopping process 9296
+2025-09-30 22:22:34 - Send SIGINT 9296
+2025-09-30 22:22:34 - SIGINT to 9296 failed - Killing as fallback
+2025-09-30 22:22:34 - Finished websitenodeserver.exe
+2025-09-30 22:22:35 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-30 22:22:35 - Started 8652
+2025-09-30 22:32:03 - Stopping websitenodeserver.exe
+2025-09-30 22:32:03 - ProcessKill 8652
+2025-09-30 22:32:04 - Found child process: 8348 Name: conhost.exe
+2025-09-30 22:32:04 - Found child process: 4548 Name: node.exe
+2025-09-30 22:32:04 - Stopping process 8348
+2025-09-30 22:32:04 - Send SIGINT 8348
+2025-09-30 22:32:04 - SIGINT to 8348 failed - Killing as fallback
+2025-09-30 22:32:04 - Stopping process 4548
+2025-09-30 22:32:04 - Send SIGINT 4548
+2025-09-30 22:32:04 - SIGINT to 4548 failed - Killing as fallback
+2025-09-30 22:32:04 - Stopping process 8652
+2025-09-30 22:32:04 - Send SIGINT 8652
+2025-09-30 22:32:04 - SIGINT to 8652 failed - Killing as fallback
+2025-09-30 22:32:04 - Finished websitenodeserver.exe
+2025-09-30 22:32:06 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-30 22:32:06 - Started 15192
+2025-09-30 23:01:28 - Stopping websitenodeserver.exe
+2025-09-30 23:01:28 - ProcessKill 15192
+2025-09-30 23:01:28 - Found child process: 13296 Name: conhost.exe
+2025-09-30 23:01:28 - Found child process: 1876 Name: node.exe
+2025-09-30 23:01:28 - Stopping process 13296
+2025-09-30 23:01:28 - Send SIGINT 13296
+2025-09-30 23:01:28 - SIGINT to 13296 failed - Killing as fallback
+2025-09-30 23:01:28 - Stopping process 1876
+2025-09-30 23:01:28 - Send SIGINT 1876
+2025-09-30 23:01:28 - SIGINT to 1876 failed - Killing as fallback
+2025-09-30 23:01:28 - Stopping process 15192
+2025-09-30 23:01:28 - Send SIGINT 15192
+2025-09-30 23:01:28 - SIGINT to 15192 failed - Killing as fallback
+2025-09-30 23:01:28 - Finished websitenodeserver.exe
+2025-09-30 23:01:30 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-30 23:01:30 - Started 12600
+2025-10-01 12:57:59 - Stopping websitenodeserver.exe
+2025-10-01 12:57:59 - ProcessKill 12600
+2025-10-01 12:57:59 - Found child process: 14104 Name: conhost.exe
+2025-10-01 12:57:59 - Found child process: 11560 Name: node.exe
+2025-10-01 12:57:59 - Stopping process 14104
+2025-10-01 12:57:59 - Send SIGINT 14104
+2025-10-01 12:57:59 - SIGINT to 14104 failed - Killing as fallback
+2025-10-01 12:57:59 - Stopping process 11560
+2025-10-01 12:57:59 - Send SIGINT 11560
+2025-10-01 12:57:59 - SIGINT to 11560 failed - Killing as fallback
+2025-10-01 12:57:59 - Stopping process 12600
+2025-10-01 12:57:59 - Send SIGINT 12600
+2025-10-01 12:57:59 - SIGINT to 12600 failed - Killing as fallback
+2025-10-01 12:57:59 - Finished websitenodeserver.exe
+2025-10-01 12:58:02 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-01 12:58:02 - Started 7204
+2025-10-02 10:31:13 - Stopping websitenodeserver.exe
+2025-10-02 10:31:13 - ProcessKill 7204
+2025-10-02 10:31:14 - Found child process: 11044 Name: conhost.exe
+2025-10-02 10:31:14 - Found child process: 7300 Name: node.exe
+2025-10-02 10:31:14 - Stopping process 11044
+2025-10-02 10:31:14 - Send SIGINT 11044
+2025-10-02 10:31:14 - SIGINT to 11044 failed - Killing as fallback
+2025-10-02 10:31:14 - Stopping process 7300
+2025-10-02 10:31:14 - Send SIGINT 7300
+2025-10-02 10:31:14 - SIGINT to 7300 failed - Killing as fallback
+2025-10-02 10:31:14 - Stopping process 7204
+2025-10-02 10:31:14 - Send SIGINT 7204
+2025-10-02 10:31:14 - SIGINT to 7204 failed - Killing as fallback
+2025-10-02 10:31:14 - Finished websitenodeserver.exe
+2025-10-02 10:31:16 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-02 10:31:16 - Started 10736
+2025-10-02 11:05:01 - Stopping websitenodeserver.exe
+2025-10-02 11:05:01 - ProcessKill 10736
+2025-10-02 11:05:01 - Found child process: 14852 Name: conhost.exe
+2025-10-02 11:05:01 - Found child process: 7888 Name: node.exe
+2025-10-02 11:05:02 - Stopping process 14852
+2025-10-02 11:05:02 - Send SIGINT 14852
+2025-10-02 11:05:02 - SIGINT to 14852 failed - Killing as fallback
+2025-10-02 11:05:02 - Stopping process 7888
+2025-10-02 11:05:02 - Send SIGINT 7888
+2025-10-02 11:05:02 - SIGINT to 7888 failed - Killing as fallback
+2025-10-02 11:05:02 - Stopping process 10736
+2025-10-02 11:05:02 - Send SIGINT 10736
+2025-10-02 11:05:02 - SIGINT to 10736 failed - Killing as fallback
+2025-10-02 11:05:02 - Finished websitenodeserver.exe
+2025-10-02 11:05:04 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-02 11:05:04 - Started 15016
+2025-10-02 11:39:01 - Stopping websitenodeserver.exe
+2025-10-02 11:39:01 - ProcessKill 15016
+2025-10-02 11:39:01 - Found child process: 15280 Name: conhost.exe
+2025-10-02 11:39:01 - Found child process: 8260 Name: node.exe
+2025-10-02 11:39:01 - Stopping process 15280
+2025-10-02 11:39:02 - Send SIGINT 15280
+2025-10-02 11:39:02 - SIGINT to 15280 failed - Killing as fallback
+2025-10-02 11:39:02 - Stopping process 8260
+2025-10-02 11:39:02 - Send SIGINT 8260
+2025-10-02 11:39:02 - SIGINT to 8260 failed - Killing as fallback
+2025-10-02 11:39:02 - Stopping process 15016
+2025-10-02 11:39:02 - Send SIGINT 15016
+2025-10-02 11:39:02 - SIGINT to 15016 failed - Killing as fallback
+2025-10-02 11:39:02 - Finished websitenodeserver.exe
+2025-10-02 11:39:05 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-02 11:39:05 - Started 4040
+2025-10-02 11:52:10 - Stopping websitenodeserver.exe
+2025-10-02 11:52:10 - ProcessKill 4040
+2025-10-02 11:52:10 - Found child process: 13248 Name: conhost.exe
+2025-10-02 11:52:10 - Found child process: 5324 Name: node.exe
+2025-10-02 11:52:10 - Stopping process 13248
+2025-10-02 11:52:10 - Send SIGINT 13248
+2025-10-02 11:52:10 - SIGINT to 13248 failed - Killing as fallback
+2025-10-02 11:52:10 - Stopping process 5324
+2025-10-02 11:52:10 - Send SIGINT 5324
+2025-10-02 11:52:10 - SIGINT to 5324 failed - Killing as fallback
+2025-10-02 11:52:10 - Stopping process 4040
+2025-10-02 11:52:10 - Send SIGINT 4040
+2025-10-02 11:52:11 - SIGINT to 4040 failed - Killing as fallback
+2025-10-02 11:52:11 - Finished websitenodeserver.exe
+2025-10-02 11:52:12 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-02 11:52:12 - Started 10364
+2025-10-02 14:40:54 - Stopping websitenodeserver.exe
+2025-10-02 14:40:54 - ProcessKill 10364
+2025-10-02 14:40:54 - Found child process: 8148 Name: conhost.exe
+2025-10-02 14:40:54 - Found child process: 10504 Name: node.exe
+2025-10-02 14:40:55 - Stopping process 8148
+2025-10-02 14:40:55 - Send SIGINT 8148
+2025-10-02 14:40:55 - SIGINT to 8148 failed - Killing as fallback
+2025-10-02 14:40:55 - Stopping process 10504
+2025-10-02 14:40:55 - Send SIGINT 10504
+2025-10-02 14:40:55 - SIGINT to 10504 failed - Killing as fallback
+2025-10-02 14:40:55 - Stopping process 10364
+2025-10-02 14:40:55 - Send SIGINT 10364
+2025-10-02 14:40:55 - SIGINT to 10364 failed - Killing as fallback
+2025-10-02 14:40:55 - Finished websitenodeserver.exe
+2025-10-02 14:40:57 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-02 14:40:57 - Started 1840
+2025-10-02 14:46:41 - Stopping websitenodeserver.exe
+2025-10-02 14:46:41 - ProcessKill 1840
+2025-10-02 14:46:41 - Found child process: 3100 Name: conhost.exe
+2025-10-02 14:46:41 - Found child process: 7216 Name: node.exe
+2025-10-02 14:46:41 - Stopping process 3100
+2025-10-02 14:46:41 - Send SIGINT 3100
+2025-10-02 14:46:41 - SIGINT to 3100 failed - Killing as fallback
+2025-10-02 14:46:42 - Stopping process 7216
+2025-10-02 14:46:42 - Send SIGINT 7216
+2025-10-02 14:46:42 - SIGINT to 7216 failed - Killing as fallback
+2025-10-02 14:46:42 - Stopping process 1840
+2025-10-02 14:46:42 - Send SIGINT 1840
+2025-10-02 14:46:42 - SIGINT to 1840 failed - Killing as fallback
+2025-10-02 14:46:42 - Finished websitenodeserver.exe
+2025-10-02 14:46:44 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-02 14:46:44 - Started 15308
+2025-10-02 14:49:11 - Stopping websitenodeserver.exe
+2025-10-02 14:49:11 - ProcessKill 15308
+2025-10-02 14:49:12 - Found child process: 7464 Name: conhost.exe
+2025-10-02 14:49:12 - Found child process: 2100 Name: node.exe
+2025-10-02 14:49:12 - Stopping process 7464
+2025-10-02 14:49:12 - Send SIGINT 7464
+2025-10-02 14:49:12 - SIGINT to 7464 failed - Killing as fallback
+2025-10-02 14:49:12 - Stopping process 2100
+2025-10-02 14:49:12 - Send SIGINT 2100
+2025-10-02 14:49:12 - SIGINT to 2100 failed - Killing as fallback
+2025-10-02 14:49:12 - Stopping process 15308
+2025-10-02 14:49:12 - Send SIGINT 15308
+2025-10-02 14:49:12 - SIGINT to 15308 failed - Killing as fallback
+2025-10-02 14:49:12 - Finished websitenodeserver.exe
+2025-10-02 14:49:14 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-02 14:49:14 - Started 12164
+2025-10-02 14:59:14 - Stopping websitenodeserver.exe
+2025-10-02 14:59:14 - ProcessKill 12164
+2025-10-02 14:59:14 - Found child process: 8984 Name: conhost.exe
+2025-10-02 14:59:14 - Found child process: 16344 Name: node.exe
+2025-10-02 14:59:14 - Stopping process 8984
+2025-10-02 14:59:14 - Send SIGINT 8984
+2025-10-02 14:59:15 - SIGINT to 8984 failed - Killing as fallback
+2025-10-02 14:59:15 - Stopping process 16344
+2025-10-02 14:59:15 - Send SIGINT 16344
+2025-10-02 14:59:15 - SIGINT to 16344 failed - Killing as fallback
+2025-10-02 14:59:15 - Stopping process 12164
+2025-10-02 14:59:15 - Send SIGINT 12164
+2025-10-02 14:59:15 - SIGINT to 12164 failed - Killing as fallback
+2025-10-02 14:59:15 - Finished websitenodeserver.exe
+2025-10-02 14:59:17 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-02 14:59:17 - Started 8928
+2025-10-02 15:03:00 - Stopping websitenodeserver.exe
+2025-10-02 15:03:00 - ProcessKill 8928
+2025-10-02 15:03:01 - Found child process: 9156 Name: conhost.exe
+2025-10-02 15:03:01 - Found child process: 11800 Name: node.exe
+2025-10-02 15:03:01 - Stopping process 9156
+2025-10-02 15:03:01 - Send SIGINT 9156
+2025-10-02 15:03:01 - SIGINT to 9156 failed - Killing as fallback
+2025-10-02 15:03:01 - Stopping process 11800
+2025-10-02 15:03:01 - Send SIGINT 11800
+2025-10-02 15:03:01 - SIGINT to 11800 failed - Killing as fallback
+2025-10-02 15:03:01 - Stopping process 8928
+2025-10-02 15:03:01 - Send SIGINT 8928
+2025-10-02 15:03:01 - SIGINT to 8928 failed - Killing as fallback
+2025-10-02 15:03:01 - Finished websitenodeserver.exe
+2025-10-02 15:03:03 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-02 15:03:03 - Started 9088
+2025-10-02 15:04:44 - Stopping websitenodeserver.exe
+2025-10-02 15:04:44 - ProcessKill 9088
+2025-10-02 15:04:45 - Found child process: 12316 Name: conhost.exe
+2025-10-02 15:04:45 - Found child process: 12116 Name: node.exe
+2025-10-02 15:04:45 - Stopping process 12316
+2025-10-02 15:04:45 - Send SIGINT 12316
+2025-10-02 15:04:45 - SIGINT to 12316 failed - Killing as fallback
+2025-10-02 15:04:45 - Stopping process 12116
+2025-10-02 15:04:45 - Send SIGINT 12116
+2025-10-02 15:04:45 - SIGINT to 12116 failed - Killing as fallback
+2025-10-02 15:04:45 - Stopping process 9088
+2025-10-02 15:04:45 - Send SIGINT 9088
+2025-10-02 15:04:45 - SIGINT to 9088 failed - Killing as fallback
+2025-10-02 15:04:45 - Finished websitenodeserver.exe
+2025-10-02 15:04:46 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-02 15:04:46 - Started 16060
+2025-10-05 18:05:25 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-05 18:05:25 - Started 5148
+2025-10-07 16:19:00 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-07 16:19:00 - Started 5132
+2025-10-16 10:58:56 - Stopping websitenodeserver.exe
+2025-10-16 10:58:56 - ProcessKill 5132
+2025-10-16 10:58:57 - Shutdown exception
+Message:Class not registered
+
+Stacktrace:   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at winsw.WrapperService.GetChildPids(Int32 pid)
+   at winsw.WrapperService.StopProcessAndChildren(Int32 pid)
+   at winsw.WrapperService.StopIt()
+   at winsw.WrapperService.OnShutdown()
+2025-10-16 11:01:44 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-16 11:01:44 - Started 5308
+2025-10-17 00:37:38 - Stopping websitenodeserver.exe
+2025-10-17 00:37:38 - ProcessKill 5308
+2025-10-17 00:37:39 - Shutdown exception
+Message:A system shutdown is in progress.
+
+Stacktrace:   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at winsw.WrapperService.GetChildPids(Int32 pid)
+   at winsw.WrapperService.StopProcessAndChildren(Int32 pid)
+   at winsw.WrapperService.StopIt()
+   at winsw.WrapperService.OnShutdown()
+2025-10-17 00:38:45 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-17 00:38:45 - Started 6020
+2025-10-20 20:09:49 - Stopping websitenodeserver.exe
+2025-10-20 20:09:49 - ProcessKill 6020
+2025-10-20 20:09:50 - Found child process: 6036 Name: conhost.exe
+2025-10-20 20:09:50 - Found child process: 6404 Name: node.exe
+2025-10-20 20:09:50 - Stopping process 6036
+2025-10-20 20:09:50 - Send SIGINT 6036
+2025-10-20 20:09:50 - SIGINT to 6036 failed - Killing as fallback
+2025-10-20 20:09:51 - Stopping process 6404
+2025-10-20 20:09:51 - Send SIGINT 6404
+2025-10-20 20:09:51 - SIGINT to 6404 failed - Killing as fallback
+2025-10-20 20:09:51 - Stopping process 6020
+2025-10-20 20:09:51 - Send SIGINT 6020
+2025-10-20 20:09:51 - SIGINT to 6020 failed - Killing as fallback
+2025-10-20 20:09:51 - Finished websitenodeserver.exe
+2025-10-20 20:09:54 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-20 20:09:54 - Started 12456
+2025-10-21 10:41:09 - Stopping websitenodeserver.exe
+2025-10-21 10:41:09 - ProcessKill 12456
+2025-10-21 10:41:09 - Found child process: 13948 Name: conhost.exe
+2025-10-21 10:41:09 - Found child process: 6872 Name: node.exe
+2025-10-21 10:41:10 - Stopping process 13948
+2025-10-21 10:41:10 - Send SIGINT 13948
+2025-10-21 10:41:10 - SIGINT to 13948 failed - Killing as fallback
+2025-10-21 10:41:10 - Stopping process 6872
+2025-10-21 10:41:10 - Send SIGINT 6872
+2025-10-21 10:41:10 - SIGINT to 6872 failed - Killing as fallback
+2025-10-21 10:41:10 - Stopping process 12456
+2025-10-21 10:41:10 - Send SIGINT 12456
+2025-10-21 10:41:10 - SIGINT to 12456 failed - Killing as fallback
+2025-10-21 10:41:10 - Finished websitenodeserver.exe
+2025-10-21 10:41:12 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-21 10:41:12 - Started 15948
+2025-10-21 10:47:41 - Stopping websitenodeserver.exe
+2025-10-21 10:47:41 - ProcessKill 15948
+2025-10-21 10:47:41 - Found child process: 13328 Name: conhost.exe
+2025-10-21 10:47:41 - Found child process: 13216 Name: node.exe
+2025-10-21 10:47:41 - Stopping process 13328
+2025-10-21 10:47:41 - Send SIGINT 13328
+2025-10-21 10:47:41 - SIGINT to 13328 failed - Killing as fallback
+2025-10-21 10:47:41 - Stopping process 13216
+2025-10-21 10:47:41 - Send SIGINT 13216
+2025-10-21 10:47:41 - SIGINT to 13216 failed - Killing as fallback
+2025-10-21 10:47:41 - Stopping process 15948
+2025-10-21 10:47:41 - Send SIGINT 15948
+2025-10-21 10:47:41 - SIGINT to 15948 failed - Killing as fallback
+2025-10-21 10:47:41 - Finished websitenodeserver.exe
+2025-10-21 10:47:44 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-21 10:47:44 - Started 9492
+2025-10-22 13:36:00 - Stopping websitenodeserver.exe
+2025-10-22 13:36:00 - ProcessKill 9492
+2025-10-22 13:36:01 - Found child process: 4964 Name: conhost.exe
+2025-10-22 13:36:01 - Found child process: 13832 Name: node.exe
+2025-10-22 13:36:01 - Stopping process 4964
+2025-10-22 13:36:01 - Send SIGINT 4964
+2025-10-22 13:36:01 - SIGINT to 4964 failed - Killing as fallback
+2025-10-22 13:36:01 - Stopping process 13832
+2025-10-22 13:36:01 - Send SIGINT 13832
+2025-10-22 13:36:01 - SIGINT to 13832 failed - Killing as fallback
+2025-10-22 13:36:01 - Stopping process 9492
+2025-10-22 13:36:01 - Send SIGINT 9492
+2025-10-22 13:36:01 - SIGINT to 9492 failed - Killing as fallback
+2025-10-22 13:36:01 - Finished websitenodeserver.exe
+2025-10-22 13:36:03 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-22 13:36:03 - Started 15080
+2025-10-22 15:46:06 - Stopping websitenodeserver.exe
+2025-10-22 15:46:06 - ProcessKill 15080
+2025-10-22 15:46:06 - Found child process: 13960 Name: conhost.exe
+2025-10-22 15:46:06 - Found child process: 4836 Name: node.exe
+2025-10-22 15:46:07 - Stopping process 13960
+2025-10-22 15:46:07 - Send SIGINT 13960
+2025-10-22 15:46:07 - SIGINT to 13960 failed - Killing as fallback
+2025-10-22 15:46:07 - Stopping process 4836
+2025-10-22 15:46:07 - Send SIGINT 4836
+2025-10-22 15:46:07 - SIGINT to 4836 failed - Killing as fallback
+2025-10-22 15:46:07 - Stopping process 15080
+2025-10-22 15:46:07 - Send SIGINT 15080
+2025-10-22 15:46:07 - SIGINT to 15080 failed - Killing as fallback
+2025-10-22 15:46:07 - Finished websitenodeserver.exe
+2025-10-22 15:46:10 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-22 15:46:10 - Started 13296
+2025-10-22 15:58:49 - Stopping websitenodeserver.exe
+2025-10-22 15:58:49 - ProcessKill 13296
+2025-10-22 15:58:50 - Found child process: 12092 Name: conhost.exe
+2025-10-22 15:58:50 - Found child process: 7792 Name: node.exe
+2025-10-22 15:58:50 - Stopping process 12092
+2025-10-22 15:58:50 - Send SIGINT 12092
+2025-10-22 15:58:50 - SIGINT to 12092 failed - Killing as fallback
+2025-10-22 15:58:50 - Stopping process 7792
+2025-10-22 15:58:50 - Send SIGINT 7792
+2025-10-22 15:58:50 - SIGINT to 7792 failed - Killing as fallback
+2025-10-22 15:58:50 - Stopping process 13296
+2025-10-22 15:58:50 - Send SIGINT 13296
+2025-10-22 15:58:50 - SIGINT to 13296 failed - Killing as fallback
+2025-10-22 15:58:50 - Finished websitenodeserver.exe
+2025-10-22 15:58:52 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-22 15:58:52 - Started 9736
+2025-10-31 13:38:28 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-31 13:38:28 - Started 5312
+2025-10-31 22:00:34 - Stopping websitenodeserver.exe
+2025-10-31 22:00:34 - ProcessKill 5312
+2025-10-31 22:00:34 - Found child process: 5348 Name: conhost.exe
+2025-10-31 22:00:34 - Found child process: 5772 Name: node.exe
+2025-10-31 22:00:35 - Stopping process 5348
+2025-10-31 22:00:35 - Send SIGINT 5348
+2025-10-31 22:00:35 - SIGINT to 5348 failed - Killing as fallback
+2025-10-31 22:00:35 - Stopping process 5772
+2025-10-31 22:00:35 - Send SIGINT 5772
+2025-10-31 22:00:35 - SIGINT to 5772 failed - Killing as fallback
+2025-10-31 22:00:35 - Stopping process 5312
+2025-10-31 22:00:35 - Send SIGINT 5312
+2025-10-31 22:00:35 - SIGINT to 5312 failed - Killing as fallback
+2025-10-31 22:00:35 - Finished websitenodeserver.exe
+2025-10-31 22:00:37 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-31 22:00:37 - Started 8872
+2025-10-31 22:13:50 - Stopping websitenodeserver.exe
+2025-10-31 22:13:50 - ProcessKill 8872
+2025-10-31 22:13:50 - Found child process: 13144 Name: conhost.exe
+2025-10-31 22:13:50 - Found child process: 11600 Name: node.exe
+2025-10-31 22:13:50 - Stopping process 13144
+2025-10-31 22:13:50 - Send SIGINT 13144
+2025-10-31 22:13:50 - SIGINT to 13144 failed - Killing as fallback
+2025-10-31 22:13:50 - Stopping process 11600
+2025-10-31 22:13:50 - Send SIGINT 11600
+2025-10-31 22:13:50 - SIGINT to 11600 failed - Killing as fallback
+2025-10-31 22:13:50 - Stopping process 8872
+2025-10-31 22:13:50 - Send SIGINT 8872
+2025-10-31 22:13:50 - SIGINT to 8872 failed - Killing as fallback
+2025-10-31 22:13:50 - Finished websitenodeserver.exe
+2025-10-31 22:13:52 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-31 22:13:52 - Started 6732
+2025-10-31 22:14:18 - Stopping websitenodeserver.exe
+2025-10-31 22:14:18 - ProcessKill 6732
+2025-10-31 22:14:18 - Found child process: 1376 Name: conhost.exe
+2025-10-31 22:14:18 - Found child process: 664 Name: node.exe
+2025-10-31 22:14:18 - Stopping process 1376
+2025-10-31 22:14:18 - Send SIGINT 1376
+2025-10-31 22:14:19 - SIGINT to 1376 failed - Killing as fallback
+2025-10-31 22:14:19 - Stopping process 664
+2025-10-31 22:14:19 - Send SIGINT 664
+2025-10-31 22:14:19 - SIGINT to 664 failed - Killing as fallback
+2025-10-31 22:14:19 - Stopping process 6732
+2025-10-31 22:14:19 - Send SIGINT 6732
+2025-10-31 22:14:19 - SIGINT to 6732 failed - Killing as fallback
+2025-10-31 22:14:19 - Finished websitenodeserver.exe
+2025-10-31 22:14:20 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-31 22:14:21 - Started 11100
+2025-10-31 22:31:41 - Stopping websitenodeserver.exe
+2025-10-31 22:31:41 - ProcessKill 11100
+2025-10-31 22:31:41 - Found child process: 6004 Name: conhost.exe
+2025-10-31 22:31:41 - Found child process: 2548 Name: node.exe
+2025-10-31 22:31:41 - Stopping process 6004
+2025-10-31 22:31:41 - Send SIGINT 6004
+2025-10-31 22:31:41 - SIGINT to 6004 failed - Killing as fallback
+2025-10-31 22:31:41 - Stopping process 2548
+2025-10-31 22:31:41 - Send SIGINT 2548
+2025-10-31 22:31:41 - SIGINT to 2548 failed - Killing as fallback
+2025-10-31 22:31:41 - Stopping process 11100
+2025-10-31 22:31:41 - Send SIGINT 11100
+2025-10-31 22:31:41 - SIGINT to 11100 failed - Killing as fallback
+2025-10-31 22:31:41 - Finished websitenodeserver.exe
+2025-10-31 22:31:43 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-31 22:31:43 - Started 8728
+2025-10-31 22:56:19 - Stopping websitenodeserver.exe
+2025-10-31 22:56:19 - ProcessKill 8728
+2025-10-31 22:56:19 - Found child process: 9400 Name: conhost.exe
+2025-10-31 22:56:19 - Found child process: 8128 Name: node.exe
+2025-10-31 22:56:19 - Stopping process 9400
+2025-10-31 22:56:19 - Send SIGINT 9400
+2025-10-31 22:56:19 - SIGINT to 9400 failed - Killing as fallback
+2025-10-31 22:56:20 - Stopping process 8128
+2025-10-31 22:56:20 - Send SIGINT 8128
+2025-10-31 22:56:20 - SIGINT to 8128 failed - Killing as fallback
+2025-10-31 22:56:20 - Stopping process 8728
+2025-10-31 22:56:20 - Send SIGINT 8728
+2025-10-31 22:56:20 - SIGINT to 8728 failed - Killing as fallback
+2025-10-31 22:56:20 - Finished websitenodeserver.exe
+2025-10-31 22:56:33 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-10-31 22:56:33 - Started 72
+2025-11-05 12:17:19 - Stopping websitenodeserver.exe
+2025-11-05 12:17:19 - ProcessKill 72
+2025-11-05 12:17:19 - Found child process: 3640 Name: conhost.exe
+2025-11-05 12:17:19 - Found child process: 6564 Name: node.exe
+2025-11-05 12:17:19 - Stopping process 3640
+2025-11-05 12:17:19 - Send SIGINT 3640
+2025-11-05 12:17:19 - SIGINT to 3640 failed - Killing as fallback
+2025-11-05 12:17:19 - Stopping process 6564
+2025-11-05 12:17:19 - Send SIGINT 6564
+2025-11-05 12:17:19 - SIGINT to 6564 failed - Killing as fallback
+2025-11-05 12:17:19 - Stopping process 72
+2025-11-05 12:17:19 - Send SIGINT 72
+2025-11-05 12:17:19 - SIGINT to 72 failed - Killing as fallback
+2025-11-05 12:17:19 - Finished websitenodeserver.exe
+2025-11-05 12:17:21 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=2048 C:\Users\Me\Desktop\project\backend\node_modules\node-windows\lib\wrapper.js --file C:\Users\Me\Desktop\project\backend\server.js --scriptoptions= --log "WebsiteNodeServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-11-05 12:17:21 - Started 8596
+2025-11-09 00:29:49 - Stopping websitenodeserver.exe
+2025-11-09 00:29:49 - ProcessKill 8596
+2025-11-09 00:29:49 - Found child process: 8668 Name: conhost.exe
+2025-11-09 00:29:49 - Found child process: 5420 Name: node.exe
+2025-11-09 00:29:49 - Stopping process 8668
+2025-11-09 00:29:49 - Send SIGINT 8668
+2025-11-09 00:29:49 - SIGINT to 8668 failed - Killing as fallback
+2025-11-09 00:29:49 - Stopping process 5420
+2025-11-09 00:29:49 - Send SIGINT 5420
+2025-11-09 00:29:49 - SIGINT to 5420 failed - Killing as fallback
+2025-11-09 00:29:49 - Stopping process 8596
+2025-11-09 00:29:49 - Send SIGINT 8596
+2025-11-09 00:29:49 - SIGINT to 8596 failed - Killing as fallback
+2025-11-09 00:29:49 - Finished websitenodeserver.exe

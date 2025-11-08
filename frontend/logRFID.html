@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Aktivitas RFID - Si-Mohan</title>
+        <script>
+        // Cek login - jika belum login, redirect SEKARANG JUGA
+        const token = localStorage.getItem('authToken');
+        const userData = localStorage.getItem('userData');
+        
+        if (!token || !userData) {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧹</text></svg>">
+    <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧹</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <style>
+        .toast-container {
+            z-index: 1055;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+        .toast { opacity: 1; }
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+        }
+        body { background-color: #f8f9fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .navbar { background-color: var(--primary-color); }
+        .sidebar { background-color: var(--dark-color); color: white; min-height: calc(100vh - 56px); padding: 0; }
+        .sidebar .nav-link { color: rgba(255, 255, 255, 0.8); padding: 1rem 1.5rem; border-left: 4px solid transparent; }
+        .sidebar .nav-link:hover { color: white; background-color: rgba(255, 255, 255, 0.1); }
+        .sidebar .nav-link.active { color: white; border-left-color: var(--secondary-color); background-color: rgba(255, 255, 255, 0.1); }
+        .sidebar .nav-link i { margin-right: 10px; width: 20px; text-align: center; }
+        .main-content { padding: 20px; }
+        .card { border: none; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-bottom: 20px; }
+        .card-header { background-color: white; border-bottom: 1px solid #eee; font-weight: 600; }
+        .stats-card { text-align: center; padding: 20px; }
+        .stats-number { font-size: 2.5rem; font-weight: 700; color: var(--secondary-color); }
+        .stats-label { color: #6c757d; font-size: 0.9rem; }
+        .table th { border-top: none; font-weight: 600; color: #6c757d; }
+        .badge-status { padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; }
+        .badge-pending { background-color: #ffc107; color: #000; }
+        .badge-active { background-color: #198754; color: #fff; }
+        .badge-inactive { background-color: #6c757d; color: #fff; }
+        .btn-primary { background-color: var(--secondary-color); border-color: var(--secondary-color); }
+        .btn-primary:hover { background-color: #2980b9; border-color: #2980b9; }
+        .search-box { position: relative; }
+        .search-box input { padding-left: 40px; }
+        .search-box i { position: absolute; left: 15px; top: 12px; color: #6c757d; }
+        .export-btn { background-color: #28a745 !important; border-color: #28a745 !important; }
+        .export-btn:hover { background-color: #218838 !important; border-color: #1e7e34 !important; }
+        .checklist-item { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+        #qrcode { display: flex; justify-content: center; margin: 20px 0; }
+        .pagination { margin-top: 20px; }
+        .filter-section { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .room-report-card { border-left: 4px solid #3498db; }
+        .qr-code-container { text-align: center; margin: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .qr-info { font-size: 0.8rem; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fas fa-broom"></i> Si-Mohan</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle"></i> Koordinator
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="index.html">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-2 col-md-3 d-md-block sidebar collapse">
+                <div class="pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="laporan.html"><i class="fas fa-list"></i> Laporan Kebersihan</a></li>
+                        <li class="nav-item"><a class="nav-link" href="kebutuhan.html"><i class="fas fa-id-card"></i> Laporan Kebutuhan</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#"><i class="fas fa-users"></i> Log RFID</a></li>
+                        <li class="nav-item"><a class="nav-link" href="PendaftaranKartu.html"><i class="fas fa-door-open"></i> Pendaftaran Kartu</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <main class="col-md-9 col-lg-10 main-content">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Log Aktivitas RFID</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="loadRfidLogs()">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                            <button type="button" class="btn btn-sm btn-primary export-btn" onclick="showExportModal()">
+                                <i class="fas fa-download"></i> Export Laporan
+                            </button>
+                            <button type="button" class="btn btn-sm btn-info" onclick="showQRCodeModal()">
+                                <i class="fas fa-qrcode"></i> Generate QR Codes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 mb-4"><div class="card stats-card"><div class="stats-number" id="totalLogs">0</div><div class="stats-label">Total Aktivitas</div></div></div>
+                    <div class="col-xl-3 col-md-6 mb-4"><div class="card stats-card"><div class="stats-number" id="todayLogs">0</div><div class="stats-label">Hari Ini</div></div></div>
+                    <div class="col-xl-3 col-md-6 mb-4"><div class="card stats-card"><div class="stats-number" id="activePetugas">0</div><div class="stats-label">Petugas Aktif</div></div></div>
+                    <div class="col-xl-3 col-md-6 mb-4"><div class="card stats-card"><div class="stats-number" id="ruanganTercover">0</div><div class="stats-label">Ruangan Tercover</div></div></div>
+                </div>
+
+                <!-- Filter and Search -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" class="form-control" placeholder="Cari berdasarkan nama atau ruangan..."></div>
+                            <div class="col-md-3"><select class="form-select" id="filterStatus"><option value="">Semua Status</option><option value="pending">Pending</option><option value="tercatat">Tercatat</option><option value="selesai">Selesai</option></select></div>
+                            <div class="col-md-3"><input type="date" class="form-control" id="filterDate"></div>
+                            <div class="col-md-2"><button class="btn btn-outline-secondary w-100" onclick="clearFilters()"><i class="fas fa-times"></i> Hapus Filter</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Log Table -->
+                <div class="card">
+                    <div class="card-header"><i class="fas fa-table me-1"></i> Daftar Aktivitas RFID</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover" id="rfidLogTable">
+                                <thead><tr><th>Waktu</th><th>RFID UID</th><th>Nama Petugas</th><th>Ruangan</th><th>Status</th><th>Aksi</th></tr></thead>
+                                <tbody id="rfidLogBody"></tbody>
+                            </table>
+                        </div>
+                        <nav aria-label="Page navigation"><ul class="pagination justify-content-center" id="pagination"></ul></nav>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal Checklist Kebersihan -->
+    <div class="modal fade" id="checklistModal" tabindex="-1" aria-labelledby="checklistModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="checklistModalLabel">Checklist Kebersihan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="checklistContent"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" id="saveChecklistBtn">Simpan Checklist</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Export Laporan -->
+    <div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exportModalLabel">Export Laporan Kebersihan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="exportForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="exportTanggal" class="form-label">Tanggal</label>
+                                <input type="date" class="form-control" id="exportTanggal" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="exportTipeLaporan" class="form-label">Tipe Laporan</label>
+                                <select class="form-select" id="exportTipeLaporan">
+                                    <option value="per-ruangan">Per Ruangan (Terpisah)</option>
+                                    <option value="gabungan">Gabungan Semua Ruangan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="exportPetugas" class="form-label">Petugas</label>
+                                <select class="form-select" id="exportPetugas">
+                                    <option value="">Semua Petugas</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="exportRuangan" class="form-label">Ruangan</label>
+                                <select class="form-select" id="exportRuangan">
+                                    <option value="">Semua Ruangan</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="generateReportBtn">Generate Laporan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal QR Code -->
+    <div class="modal fade" id="qrcodeModal" tabindex="-1" aria-labelledby="qrcodeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="qrcodeModalLabel">QR Code Monitoring Kebersihan - Semua Ruangan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="qrDateFilter" class="form-label">Pilih Tanggal Laporan:</label>
+                            <input type="date" class="form-control" id="qrDateFilter" onchange="generateAllQRCodes()">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="qrRoomFilter" class="form-label">Filter Ruangan:</label>
+                            <input type="text" class="form-control" id="qrRoomFilter" placeholder="Cari ruangan..." onkeyup="filterQRCodes()">
+                        </div>
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i> QR Code bersifat permanen. Scan QR code akan mengarahkan ke halaman laporan dengan tanggal yang dipilih.
+                    </div>
+                    <div id="allQRCodes" class="row"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-success" onclick="downloadAllQRCodes()">
+                        <i class="fas fa-download"></i> Download Semua QR Code
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // ==================== KONFIGURASI & VARIABEL GLOBAL ====================
+        let lastLogCount = 0;
+        let pollingInterval;
+        let isPageVisible = true;
+        let rfidLogsData = [];
+        let currentLogId = null;
+        let allRoomsData = [];
+
+        // Data tetap untuk laporan
+        const NAMA_PENGAWAS = "Dicky Adji Nugraha";
+        const JABATAN_PENGAWAS = "Teknisi Sarana dan Prasana";
+        const BASE_URL = window.location.origin;
+
+        // ==================== INISIALISASI ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Aplikasi Si-Mohan RFID Logs initialized');
+            startPolling();
+            
+            // Event listeners untuk visibility change
+            document.addEventListener('visibilitychange', function() {
+                isPageVisible = !document.hidden;
+                if (isPageVisible) {
+                    console.log('📱 Halaman aktif, memulai polling');
+                    startPolling();
+                } else {
+                    console.log('📱 Halaman tidak aktif, menghentikan polling');
+                    stopPolling();
+                }
+            });
+            
+            // Event listeners untuk search dan filter
+            document.getElementById('searchInput').addEventListener('input', searchLogs);
+            document.getElementById('filterStatus').addEventListener('change', searchLogs);
+            document.getElementById('filterDate').addEventListener('change', searchLogs);
+            document.getElementById('saveChecklistBtn').addEventListener('click', saveChecklist);
+            document.getElementById('generateReportBtn').addEventListener('click', generateReport);
+            
+            // Set tanggal default untuk filter QR code ke hari ini
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('qrDateFilter').value = today;
+            document.getElementById('exportTanggal').value = today;
+            
+            // Load data awal
+            loadRfidLogs();
+        });
+
+        // ==================== POLLING SYSTEM ====================
+        function startPolling() {
+            console.log('🔄 Memulai polling data RFID logs...');
+            stopPolling(); // Hentikan polling sebelumnya
+            loadRfidLogs();
+            pollingInterval = setInterval(() => {
+                if (isPageVisible) {
+                    loadRfidLogs();
+                }
+            }, 10000); // Polling setiap 10 detik
+        }
+
+        function stopPolling() {
+            if (pollingInterval) {
+                clearInterval(pollingInterval);
+                console.log('⏹️ Polling dihentikan');
+            }
+        }
+
+        // ==================== API CALLS & DATA MANAGEMENT ====================
+        async function loadRfidLogs() {
+            try {
+                const searchText = document.getElementById('searchInput').value;
+                const filterStatus = document.getElementById('filterStatus').value;
+                const filterDate = document.getElementById('filterDate').value;
+                
+                let url = '/api/rfid/logs?';
+                const params = [];
+                if (searchText) params.push(`search=${encodeURIComponent(searchText)}`);
+                if (filterStatus) params.push(`status=${encodeURIComponent(filterStatus)}`);
+                if (filterDate) params.push(`date=${encodeURIComponent(filterDate)}`);
+                url += params.join('&');
+                
+                console.log('📡 Fetching data dari:', url);
+                
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                
+                const data = await response.json();
+                console.log('✅ Data logs received:', data);
+                
+                if (data.success && data.data) {
+                    rfidLogsData = data.data;
+                    
+                    // Notifikasi jika ada log baru
+                    if (data.data.length > lastLogCount && lastLogCount > 0) {
+                        const newLogs = data.data.length - lastLogCount;
+                        showNotification(`${newLogs} log baru ditambahkan!`, 'info');
+                    }
+                    
+                    lastLogCount = data.data.length;
+                    updateStats(data.data);
+                    populateLogTable(data.data);
+                    
+                    // Update data ruangan untuk QR code
+                    updateRoomsData(data.data);
+                } else {
+                    showNoDataMessage();
+                }
+            } catch (error) {
+                console.error('❌ Error loading logs:', error);
+                showErrorMessage(error);
+            }
+        }
+
+        function showNoDataMessage() {
+            document.getElementById('rfidLogBody').innerHTML = `
+                <tr>
+                    <td colspan="6" class="text-center py-4">
+                        <i class="fas fa-inbox fa-3x text-muted"></i>
+                        <p class="mt-2">Tidak ada data log RFID</p>
+                    </td>
+                </tr>`;
+            lastLogCount = 0;
+            rfidLogsData = [];
+            updateStats([]);
+        }
+
+        function showErrorMessage(error) {
+            document.getElementById('rfidLogBody').innerHTML = `
+                <tr>
+                    <td colspan="6" class="text-center py-4 text-danger">
+                        <i class="fas fa-exclamation-circle fa-2x"></i>
+                        <p class="mt-2">Gagal memuat data: ${error.message}</p>
+                        <button class="btn btn-sm btn-primary mt-2" onclick="loadRfidLogs()">
+                            <i class="fas fa-redo"></i> Coba Lagi
+                        </button>
+                    </td>
+                </tr>`;
+        }
+
+        // ==================== STATISTICS & UI UPDATES ====================
+        function updateStats(data) {
+            document.getElementById('totalLogs').textContent = data.length.toLocaleString();
+            
+            const today = new Date().toISOString().split('T')[0];
+            const todayLogs = data.filter(log => {
+                const logDate = new Date(log.waktu).toISOString().split('T')[0];
+                return logDate === today;
+            });
+            document.getElementById('todayLogs').textContent = todayLogs.length.toLocaleString();
+            
+            const activePetugas = new Set();
+            const coveredRooms = new Set();
+            
+            todayLogs.forEach(log => {
+                if (log.petugas_name) activePetugas.add(log.petugas_name);
+                if (log.ruangan) {
+                    if (typeof log.ruangan === 'string') {
+                        coveredRooms.add(log.ruangan);
+                    } else if (Array.isArray(log.ruangan)) {
+                        log.ruangan.forEach(r => coveredRooms.add(r.nama_ruangan));
+                    }
+                }
+            });
+            
+            document.getElementById('activePetugas').textContent = activePetugas.size.toLocaleString();
+            document.getElementById('ruanganTercover').textContent = coveredRooms.size.toLocaleString();
+        }
+
+        function populateLogTable(data) {
+            const tableBody = document.getElementById('rfidLogBody');
+            tableBody.innerHTML = '';
+            
+            if (data.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center py-4">
+                            <i class="fas fa-inbox fa-3x text-muted"></i>
+                            <p class="mt-2">Tidak ada data yang sesuai dengan filter</p>
+                        </td>
+                    </tr>`;
+                return;
+            }
+            
+            data.forEach(log => {
+                const row = document.createElement('tr');
+                
+                // Format ruangan
+                let ruanganDisplay = 'Belum diassign';
+                if (log.ruangan) {
+                    if (typeof log.ruangan === 'string') {
+                        ruanganDisplay = log.ruangan;
+                    } else if (Array.isArray(log.ruangan)) {
+                        ruanganDisplay = log.ruangan.map(r => r.nama_ruangan).join(', ');
+                    }
+                }
+                
+                // Status badge
+                let statusBadge = '';
+                switch (log.status) {
+                    case 'pending':
+                        statusBadge = '<span class="badge bg-warning badge-status">Pending</span>';
+                        break;
+                    case 'selesai':
+                        statusBadge = '<span class="badge bg-success badge-status">Selesai</span>';
+                        break;
+                    default:
+                        statusBadge = '<span class="badge bg-info badge-status">Tercatat</span>';
+                }
+                
+                // Checklist indicator
+                const hasChecklist = log.checklist_lantai !== null || 
+                                   log.checklist_kaca_jendela !== null ||
+                                   log.checklist_pintu !== null;
+                
+                const checklistIcon = hasChecklist ? 
+                    '<i class="fas fa-check-circle text-success" title="Checklist sudah diisi"></i>' : 
+                    '<i class="fas fa-clock text-warning" title="Menunggu checklist"></i>';
+                
+                row.innerHTML = `
+                    <td>
+                        ${new Date(log.waktu).toLocaleString('id-ID')}
+                        ${checklistIcon}
+                    </td>
+                    <td><span class="font-monospace">${log.card_uid}</span></td>
+                    <td>${log.petugas_name || 'Belum diassign'}</td>
+                    <td>${ruanganDisplay}</td>
+                    <td>${statusBadge}</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary me-1 view-details-btn" data-id="${log.id}">
+                            <i class="fas fa-eye"></i> Detail
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger delete-log-btn" data-id="${log.id}">
+                            <i class="fas fa-trash"></i> Hapus
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+            
+            // Add event listeners to buttons
+            document.querySelectorAll('.view-details-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const logId = this.getAttribute('data-id');
+                    showLogDetails(logId);
+                });
+            });
+            
+            document.querySelectorAll('.delete-log-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const logId = this.getAttribute('data-id');
+                    deleteLog(logId);
+                });
+            });
+        }
+
+        // ==================== SEARCH & FILTER FUNCTIONS ====================
+        function searchLogs() {
+            const searchText = document.getElementById('searchInput').value.toLowerCase();
+            const filterStatus = document.getElementById('filterStatus').value;
+            const filterDate = document.getElementById('filterDate').value;
+            
+            const filteredData = rfidLogsData.filter(log => {
+                // Text search
+                const nameMatch = log.petugas_name && log.petugas_name.toLowerCase().includes(searchText);
+                let roomMatch = false;
+                if (log.ruangan) {
+                    if (typeof log.ruangan === 'string') {
+                        roomMatch = log.ruangan.toLowerCase().includes(searchText);
+                    } else if (Array.isArray(log.ruangan)) {
+                        roomMatch = log.ruangan.some(r => r.nama_ruangan.toLowerCase().includes(searchText));
+                    }
+                }
+                const textMatch = nameMatch || roomMatch;
+                
+                // Status filter
+                let statusMatch = true;
+                if (filterStatus) {
+                    statusMatch = log.status === filterStatus;
+                }
+                
+                // Date filter
+                let dateMatch = true;
+                if (filterDate) {
+                    const logDate = new Date(log.waktu).toISOString().split('T')[0];
+                    dateMatch = logDate === filterDate;
+                }
+                
+                return textMatch && statusMatch && dateMatch;
+            });
+            
+            populateLogTable(filteredData);
+        }
+
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('filterStatus').value = '';
+            document.getElementById('filterDate').value = '';
+            loadRfidLogs();
+        }
+
+        // ==================== LOG MANAGEMENT FUNCTIONS ====================
+        async function deleteLog(logId) {
+            if (!confirm('Apakah Anda yakin ingin menghapus log ini?')) return;
+            
+            try {
+                const response = await fetch(`/api/rfid/logs/${logId}`, {
+                    method: 'DELETE'
+                });
+                
+                if (!response.ok) throw new Error('Network response was not ok');
+                
+                const data = await response.json();
+                if (data.success) {
+                    showNotification('Log berhasil dihapus!', 'success');
+                    loadRfidLogs();
+                } else {
+                    showNotification('Gagal menghapus log: ' + data.error, 'error');
+                }
+            } catch (error) {
+                console.error('❌ Error deleting log:', error);
+                showNotification('Terjadi kesalahan saat menghapus log.', 'error');
+            }
+        }
+
+        // ==================== CHECKLIST SYSTEM ====================
+        async function showLogDetails(logId) {
+            currentLogId = logId;
+            try {
+                const response = await fetch(`/api/rfid/logs/${logId}`);
+                if (!response.ok) throw new Error('Network response was not ok');
+                
+                const data = await response.json();
+                if (data.success) {
+                    showChecklistModal(data.data);
+                } else {
+                    throw new Error(data.error || 'Failed to fetch log details');
+                }
+            } catch (error) {
+                console.error('❌ Error fetching log details:', error);
+                showNotification('Gagal memuat detail log: ' + error.message, 'error');
+            }
+        }
+
+        function showChecklistModal(log) {
+            const modal = new bootstrap.Modal(document.getElementById('checklistModal'));
+            const checklistContent = document.getElementById('checklistContent');
+            
+            // Format ruangan display
+            let ruanganDisplay = 'Belum diassign';
+            if (log.ruangan) {
+                if (typeof log.ruangan === 'string') {
+                    ruanganDisplay = log.ruangan;
+                } else if (Array.isArray(log.ruangan)) {
+                    ruanganDisplay = log.ruangan.map(r => r.nama_ruangan).join(', ');
+                }
+            }
+            
+            console.log('🔍 Data checklist untuk modal:', {
+                id: log.id,
+                lantai: log.checklist_lantai,
+                kaca: log.checklist_kaca_jendela,
+                pintu: log.checklist_pintu,
+                lawa_lawa: log.checklist_lawa_lawa,
+                lubang_angin: log.checklist_lubang_angin,
+                kusen: log.checklist_kusen_jendela_dan_pintu,
+                keterangan: log.checklist_keterangan
+            });
+            
+            checklistContent.innerHTML = `
+                <div class="row mb-3">
+                    <div class="col-md-6"><strong>Petugas:</strong> ${log.petugas_name || 'Belum diassign'}</div>
+                    <div class="col-md-6"><strong>Ruangan:</strong> ${ruanganDisplay}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6"><strong>Waktu:</strong> ${new Date(log.waktu).toLocaleString('id-ID')}</div>
+                    <div class="col-md-6"><strong>Status:</strong> ${log.status || 'Tercatat'}</div>
+                </div>
+                <hr>
+                <h6>Checklist Kebersihan</h6>
+                <p class="text-muted small">Centang (✓) untuk item yang sudah dibersihkan</p>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkLantai" ${log.checklist_lantai ? 'checked' : ''}>
+                            <label class="form-check-label" for="checkLantai">Lantai</label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkKacaJendela" ${log.checklist_kaca_jendela ? 'checked' : ''}>
+                            <label class="form-check-label" for="checkKacaJendela">Kaca Jendela</label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkPintu" ${log.checklist_pintu ? 'checked' : ''}>
+                            <label class="form-check-label" for="checkPintu">Pintu</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkLawaLawa" ${log.checklist_lawa_lawa ? 'checked' : ''}>
+                            <label class="form-check-label" for="checkLawaLawa">Lawa-lawa</label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkLubangAngin" ${log.checklist_lubang_angin ? 'checked' : ''}>
+                            <label class="form-check-label" for="checkLubangAngin">Lubang Angin</label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkKusen" ${log.checklist_kusen_jendela_dan_pintu ? 'checked' : ''}>
+                            <label class="form-check-label" for="checkKusen">Kusen Jendela dan Pintu</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="keteranganChecklist" class="form-label">Keterangan (B: Baik, K: Kurang)</label>
+                    <select class="form-select" id="keteranganChecklist">
+                        <option value="">Pilih Keterangan</option>
+                        <option value="B" ${log.checklist_keterangan === 'B' ? 'selected' : ''}>B (Baik)</option>
+                        <option value="K" ${log.checklist_keterangan === 'K' ? 'selected' : ''}>K (Kurang)</option>
+                    </select>
+                </div>
+                
+                <div class="alert alert-info">
+                    <small>
+                        <strong>Catatan:</strong> Checklist akan langsung terupdate di QR Code dan laporan PDF. 
+                        Centang = ✓ (Check), Tidak centang = ✗ (Cross) di laporan.
+                    </small>
+                </div>
+            `;
+            
+            modal.show();
+        }
+
+        async function saveChecklist() {
+            if (!currentLogId) {
+                showNotification('Tidak ada log yang dipilih', 'error');
+                return;
+            }
+            
+            const checklistData = {
+                checklist_lantai: document.getElementById('checkLantai').checked,
+                checklist_kaca_jendela: document.getElementById('checkKacaJendela').checked,
+                checklist_pintu: document.getElementById('checkPintu').checked,
+                checklist_lawa_lawa: document.getElementById('checkLawaLawa').checked,
+                checklist_lubang_angin: document.getElementById('checkLubangAngin').checked,
+                checklist_kusen_jendela_dan_pintu: document.getElementById('checkKusen').checked,
+                checklist_keterangan: document.getElementById('keteranganChecklist').value,
+                status: 'selesai'
+            };
+            
+            console.log('💾 Menyimpan checklist:', checklistData);
+            
+            try {
+        // ✅ PERBAIKAN: Gunakan relative path tanpa hostname
+        const response = await fetch(`/api/rfid/logs/${currentLogId}/checklist`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(checklistData)
+        });
+                
+                if (!response.ok) throw new Error('Network response was not ok');
+                
+                const data = await response.json();
+                console.log('✅ Response dari server:', data);
+                
+                if (data.success) {
+                    showNotification('Checklist berhasil disimpan!', 'success');
+                    
+                    // Tutup modal
+                    bootstrap.Modal.getInstance(document.getElementById('checklistModal')).hide();
+                    
+                    // Refresh data
+                    loadRfidLogs();
+                    
+                    // Update QR codes
+                    generateAllQRCodes();
+                    
+                } else {
+                    throw new Error(data.error || 'Unknown error');
+                }
+            } catch (error) {
+                console.error('❌ Error saving checklist:', error);
+                showNotification('Gagal menyimpan checklist: ' + error.message, 'error');
+            }
+        }
+
+        // ==================== PDF REPORT GENERATION ====================
+        function showExportModal() {
+            fillExportDropdowns();
+            const modal = new bootstrap.Modal(document.getElementById('exportModal'));
+            modal.show();
+        }
+
+    function fillExportDropdowns() {
+    const petugasSet = new Set();
+    const ruanganByPetugas = {}; // Object untuk mapping petugas -> ruangan
+    
+    // Kelompokkan ruangan berdasarkan petugas
+    rfidLogsData.forEach(log => {
+        if (log.petugas_name) {
+            petugasSet.add(log.petugas_name);
+            
+            // Inisialisasi array untuk petugas jika belum ada
+            if (!ruanganByPetugas[log.petugas_name]) {
+                ruanganByPetugas[log.petugas_name] = new Set();
+            }
+            
+            // Tambahkan ruangan untuk petugas ini
+            if (log.ruangan) {
+                if (typeof log.ruangan === 'string') {
+                    ruanganByPetugas[log.petugas_name].add(log.ruangan);
+                } else if (Array.isArray(log.ruangan)) {
+                    log.ruangan.forEach(r => ruanganByPetugas[log.petugas_name].add(r.nama_ruangan));
+                }
+            }
+        }
+    });
+    
+    // Isi dropdown petugas
+    const petugasSelect = document.getElementById('exportPetugas');
+    petugasSelect.innerHTML = '<option value="">Semua Petugas</option>';
+    petugasSet.forEach(petugas => {
+        const option = document.createElement('option');
+        option.value = petugas;
+        option.textContent = petugas;
+        petugasSelect.appendChild(option);
+    });
+    
+    // Isi dropdown ruangan awal (semua ruangan)
+    updateRuanganDropdown();
+    
+    // Tambahkan event listener untuk update ruangan ketika petugas berubah
+    petugasSelect.addEventListener('change', function() {
+        updateRuanganDropdown(this.value);
+    });
+}
+
+function updateRuanganDropdown(selectedPetugas = '') {
+    const ruanganSelect = document.getElementById('exportRuangan');
+    const ruanganSet = new Set();
+    
+    if (selectedPetugas) {
+        // Jika petugas dipilih, hanya ambil ruangan untuk petugas tersebut
+        rfidLogsData.forEach(log => {
+            if (log.petugas_name === selectedPetugas && log.ruangan) {
+                if (typeof log.ruangan === 'string') {
+                    ruanganSet.add(log.ruangan);
+                } else if (Array.isArray(log.ruangan)) {
+                    log.ruangan.forEach(r => ruanganSet.add(r.nama_ruangan));
+                }
+            }
+        });
+    } else {
+        // Jika tidak ada petugas dipilih, tampilkan semua ruangan
+        rfidLogsData.forEach(log => {
+            if (log.ruangan) {
+                if (typeof log.ruangan === 'string') {
+                    ruanganSet.add(log.ruangan);
+                } else if (Array.isArray(log.ruangan)) {
+                    log.ruangan.forEach(r => ruanganSet.add(r.nama_ruangan));
+                }
+            }
+        });
+    }
+    
+    ruanganSelect.innerHTML = '<option value="">Semua Ruangan</option>';
+    ruanganSet.forEach(ruangan => {
+        const option = document.createElement('option');
+        option.value = ruangan;
+        option.textContent = ruangan;
+        ruanganSelect.appendChild(option);
+    });
+}
+// Ubah fungsi generateReport menjadi async
+async function generateReport() {
+    const tanggal = document.getElementById('exportTanggal').value;
+    const petugas = document.getElementById('exportPetugas').value;
+    const ruangan = document.getElementById('exportRuangan').value;
+    const tipeLaporan = document.getElementById('exportTipeLaporan').value;
+    
+    if (!tanggal) {
+        showNotification('Tanggal harus diisi!', 'error');
+        return;
+    }
+    
+    // Filter data berdasarkan parameter
+    const filteredData = rfidLogsData.filter(log => {
+        const logDate = new Date(log.waktu).toISOString().split('T')[0];
+        let dateMatch = logDate === tanggal;
+        let petugasMatch = !petugas || log.petugas_name === petugas;
+        let ruanganMatch = !ruangan;
+        
+        if (ruangan && log.ruangan) {
+            if (typeof log.ruangan === 'string') {
+                ruanganMatch = log.ruangan === ruangan;
+            } else if (Array.isArray(log.ruangan)) {
+                ruanganMatch = log.ruangan.some(r => r.nama_ruangan === ruangan);
+            }
+        }
+        
+        return dateMatch && petugasMatch && ruanganMatch;
+    });
+    
+    if (filteredData.length === 0) {
+        showNotification('Tidak ada data untuk parameter yang dipilih!', 'warning');
+        return;
+    }
+    
+    // Tampilkan loading
+    const generateBtn = document.getElementById('generateReportBtn');
+    const originalText = generateBtn.innerHTML;
+    generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+    generateBtn.disabled = true;
+    
+    try {
+        // Generate laporan berdasarkan tipe
+        if (tipeLaporan === 'per-ruangan') {
+            await generateSeparateRoomReports(filteredData, tanggal, petugas, ruangan);
+        } else {
+            await generateCombinedReport(filteredData, tanggal, petugas, ruangan);
+        }
+        
+        showNotification('Laporan berhasil di-generate!', 'success');
+    } catch (error) {
+        console.error('Error generating report:', error);
+        showNotification('Gagal generate laporan: ' + error.message, 'error');
+    } finally {
+        // Reset button
+        generateBtn.innerHTML = originalText;
+        generateBtn.disabled = false;
+        
+        // Tutup modal
+        bootstrap.Modal.getInstance(document.getElementById('exportModal')).hide();
+    }
+}
+
+// Ubah fungsi generateSeparateRoomReports dan generateCombinedReport menjadi async
+async function generateSeparateRoomReports(data, tanggal, petugas, ruanganFilter) {
+    const roomGroups = {};
+    
+    // Kelompokkan data berdasarkan ruangan
+    data.forEach(log => {
+        let rooms = [];
+        if (log.ruangan) {
+            if (typeof log.ruangan === 'string') {
+                rooms = [{ nama_ruangan: log.ruangan }];
+            } else if (Array.isArray(log.ruangan)) {
+                rooms = log.ruangan;
+            }
+        }
+        
+        rooms.forEach(room => {
+            if (!roomGroups[room.nama_ruangan]) {
+                roomGroups[room.nama_ruangan] = [];
+            }
+            roomGroups[room.nama_ruangan].push({
+                ...log,
+                specific_ruangan: room.nama_ruangan
+            });
+        });
+    });
+            
+     // Generate PDF untuk setiap ruangan
+    for (const roomName of Object.keys(roomGroups)) {
+        await generatePDFReport(roomGroups[roomName], tanggal, petugas, roomName, true);
+    }
+}
+
+async function generateCombinedReport(data, tanggal, petugas, ruangan) {
+    await generatePDFReport(data, tanggal, petugas, ruangan, false);
+}
+
+ async function generatePDFReport(data, tanggal, petugas, ruangan, isSeparateReport = false) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({
+        orientation: 'landscape',
+        unit: 'mm', 
+        format: 'a4'
+    });
+    
+    // ✅ PERBAIKAN: Definisikan pageWidth dan pageHeight
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const centerX = pageWidth / 2;
+
+    console.log('📄 Starting PDF generation with data:', data);
+
+    // === MUAT SEMUA GAMBAR DENGAN ERROR HANDLING ===
+    let logoBase64 = null;
+    let ttdBase64 = null;
+    let fotoPetugasBase64 = null;
+    let fotoPengawasBase64 = null;
+
+    const firstLog = data[0];
+    const namaPetugas = firstLog?.petugas_name;
+
+    console.log('🔄 Loading images for:', { namaPetugas });
+
+    // Muat semua gambar secara paralel dengan error handling
+    try {
+        [logoBase64, ttdBase64, fotoPetugasBase64, fotoPengawasBase64] = await Promise.allSettled([
+            loadImageAsBase64(getImagePath('', 'logo')),
+            loadImageAsBase64(getImagePath('', 'ttd')),
+            namaPetugas ? loadImageAsBase64(getImagePath(namaPetugas, 'foto_petugas')) : Promise.resolve(null),
+            loadImageAsBase64(getImagePath('', 'foto_pengawas'))
+        ]).then(results => results.map(result => 
+            result.status === 'fulfilled' ? result.value : null
+        ));
+    } catch (error) {
+        console.log('⚠️ Beberapa gambar gagal dimuat, menggunakan fallback');
+    }
+
+    // Debug info
+    console.log('🖼️ Image loading results:', {
+        logo: !!logoBase64,
+        ttd: !!ttdBase64,
+        fotoPetugas: !!fotoPetugasBase64,
+        fotoPengawas: !!fotoPengawasBase64
+    });
+
+    // === HEADER DENGAN LOGO DI KIRI ===
+    const headerStartY = 10;
+
+    // ✅ LOGO DI KIRI - POSISI BARU
+    if (logoBase64) {
+        try {
+            doc.addImage(logoBase64, 'PNG', 20, headerStartY, 20, 20);
+            console.log('✅ Logo berhasil ditambahkan di kiri');
+        } catch (e) {
+            console.log('❌ Gagal menambahkan logo:', e.message);
+        }
+    }
+
+    // Header teks - DI TENGAH (seperti sebelumnya)
+    doc.setFontSize(10);
+    doc.setTextColor(0, 0, 0);
+    doc.text('MAHKAMAH AGUNG REPUBLIK INDONESIA', centerX, 15, { align: 'center' });
+    doc.text('DIREKTORAT JENDERAL BADAN PERADILAN AGAMA', centerX, 20, { align: 'center' });
+    doc.text('PENGADILAN TINGGI AGAMA MAKASSAR', centerX, 25, { align: 'center' });
+    doc.text('PENGADILAN AGAMA TAKALAR', centerX, 30, { align: 'center' });
+
+    doc.setFontSize(7);
+    doc.text('Jl. Diponegoro No. 5, Kel. Bajeng, Kec. Pattallassang, Kab. Takalar Sulawesi Selatan 92211', centerX, 37, { align: 'center' });
+    doc.text('https://pa-takalar.go.id/ | patakalar307470@gmail.com | Phone/Fax: (0418)21022', centerX, 42, { align: 'center' });
+    
+    // === GARIS PEMBATAS ===
+    doc.setDrawColor(0, 0, 0);
+    doc.setLineWidth(0.5);
+    doc.line(10, 45, pageWidth - 10, 45);
+
+    // Judul laporan
+    doc.setFontSize(12);
+    doc.setFont(undefined, 'bold');
+    doc.text('KEBERSIHAN LANTAI, KACA JENDELA, PINTU / LAWA-LAWA / LUBANG ANGIN / KUSEN JENDELA DAN PINTU', centerX, 55, { align: 'center' });
+    
+    // Format tanggal Indonesia
+    const hari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    const bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 
+                  'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    const dateObj = new Date(tanggal);
+    const hariStr = hari[dateObj.getDay()];
+    const tanggalStr = `${dateObj.getDate()} ${bulan[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+    
+    // Informasi filter
+    let filterInfo = `Hari/Tanggal: ${hariStr}, ${tanggalStr}`;
+    if (petugas) filterInfo += ` | Petugas: ${petugas}`;
+    if (ruangan && isSeparateReport) filterInfo += ` | Ruangan: ${ruangan}`;
+    
+    doc.setFontSize(8);
+    doc.setFont(undefined, 'normal');
+    doc.text(filterInfo, 20, 65);
+    doc.text(`Dicetak pada: ${new Date().toLocaleDateString('id-ID')} ${new Date().toLocaleTimeString('id-ID')}`, pageWidth - 20, 65, { align: 'right' });
+
+    // === DATA TABEL ===
+    const tableData = data.map((log, index) => {
+        let ruanganDisplay = ruangan;
+        if (!isSeparateReport && log.ruangan) {
+            if (typeof log.ruangan === 'string') {
+                ruanganDisplay = log.ruangan;
+            } else if (Array.isArray(log.ruangan)) {
+                ruanganDisplay = log.ruangan.map(r => r.nama_ruangan).join(', ');
+            }
+        }
+
+        const waktu = new Date(log.waktu);
+        const jam = waktu.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+
+        // Fungsi konversi checklist untuk PDF
+        const getCheckmarkValueForPDF = (checkValue) => { 
+            if (checkValue === null || checkValue === undefined) {
+                return 'X';
+            }
+            
+            if (typeof checkValue === 'boolean') {
+                return checkValue ? 'V' : '-';
+            }
+            
+            if (typeof checkValue === 'number') {
+                return checkValue === 1 ? 'V' : '-';
+            }
+            
+            if (typeof checkValue === 'string') {
+                const cleanValue = checkValue.toLowerCase().trim();
+                if (cleanValue === 'true' || cleanValue === '1' || cleanValue === 'yes' || cleanValue === 'y') {
+                    return 'V';
+                }
+                if (cleanValue === 'false' || cleanValue === '0' || cleanValue === 'no' || cleanValue === 'n') {
+                    return '-';
+                }
+            }
+            
+            return 'X';
+        };
+
+        return [
+            ruanganDisplay || 'Tidak diketahui',
+            `${hariStr}, ${tanggalStr}`,
+            jam,
+            getCheckmarkValueForPDF(log.checklist_lantai),
+            getCheckmarkValueForPDF(log.checklist_kaca_jendela),
+            getCheckmarkValueForPDF(log.checklist_pintu),
+            getCheckmarkValueForPDF(log.checklist_lawa_lawa),
+            getCheckmarkValueForPDF(log.checklist_lubang_angin),
+            getCheckmarkValueForPDF(log.checklist_kusen_jendela_dan_pintu),
+            log.checklist_keterangan || '-'
+        ];
+    });
+    
+    // Header tabel
+    const headers = ['LOKASI', 'HARI/TGL', 'JAM', 'LANTAI', 'KACA JENDELA', 'PINTU', 'LAWA-LAWA', 'LUBANG ANGIN', 'KUSEN', 'KETERANGAN'];
+    
+    // Generate tabel
+    doc.autoTable({
+        startY: 70,
+        head: [headers],
+        body: tableData,
+        theme: 'grid',
+        headStyles: { 
+            fillColor: [41, 128, 185], 
+            textColor: 255, 
+            fontSize: 6,
+            fontStyle: 'bold',
+            halign: 'center'
+        },
+        bodyStyles: { 
+            fontSize: 6,
+            cellPadding: 2,
+            textColor: [0, 0, 0],
+            halign: 'center'
+        },
+        styles: { 
+            cellPadding: 1, 
+            fontSize: 6,
+            lineColor: [0, 0, 0],
+            lineWidth: 0.1
+        },
+        margin: { left: 10, right: 10 }
+    });
+    
+    // Keterangan simbol
+    const finalY = doc.lastAutoTable.finalY + 5;
+    doc.setFontSize(6);
+    doc.text('Keterangan: V = Sudah dibersihkan, - = Belum selesai, X = Belum dicek | B = Baik, K = Kurang', 10, finalY);
+    
+    // === BAGIAN TANDA TANGAN DENGAN FOTO REAL ===
+    const signatureY = finalY + 15;
+    
+    // Foto Petugas
+    if (namaPetugas) {
+        const fotoPetugasX = 20;
+        const fotoPetugasY = signatureY;
+        
+        if (fotoPetugasBase64) {
+            try {
+                doc.addImage(fotoPetugasBase64, 'PNG', fotoPetugasX, fotoPetugasY, 20, 25);
+                console.log('✅ Foto petugas berhasil ditambahkan:', namaPetugas);
+            } catch (e) {
+                console.log('❌ Gagal menambahkan foto petugas:', e.message);
+                // Fallback placeholder
+                doc.setFillColor(240, 240, 240);
+                doc.rect(fotoPetugasX, fotoPetugasY, 20, 25, 'F');
+                doc.setFontSize(5);
+                doc.setTextColor(150, 150, 150);
+                doc.text('FOTO PETUGAS', fotoPetugasX + 10, fotoPetugasY + 12, { align: 'center' });
+            }
+        } else {
+            // Fallback placeholder
+            doc.setFillColor(240, 240, 240);
+            doc.rect(fotoPetugasX, fotoPetugasY, 20, 25, 'F');
+            doc.setFontSize(5);
+            doc.setTextColor(150, 150, 150);
+            doc.text('FOTO PETUGAS', fotoPetugasX + 10, fotoPetugasY + 12, { align: 'center' });
+        }
+        
+        doc.setFontSize(7);
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Nama Petugas: ${namaPetugas}`, 45, signatureY + 8);
+        doc.text('Nomor Hp: -', 45, signatureY + 13);
+    }
+    
+    // Foto Pengawas
+    if (fotoPengawasBase64) {
+        doc.addImage(fotoPengawasBase64, 'PNG', 20, signatureY + 30, 20, 25);
+    } else {
+        // Fallback placeholder
+        doc.setFillColor(240, 240, 240);
+        doc.rect(20, signatureY + 30, 20, 25, 'F');
+        doc.setFontSize(5);
+        doc.setTextColor(150, 150, 150);
+        doc.text('FOTO PENGAWAS', 30, signatureY + 42, { align: 'center' });
+    }
+    
+    doc.setFontSize(7);
+    doc.setTextColor(0, 0, 0);
+    doc.text('Nama Pengawas: Dicky Adji Nugraha', 45, signatureY + 33);
+    doc.text('Nomor Hp: -', 45, signatureY + 38);
+    
+    // === BAGIAN TANDA TANGAN DIBUAT OLEH ===
+    const dibuatOlehY = signatureY + 35;
+    const ttdX = pageWidth - 65;
+    
+// ✅ PERBAIKAN: Bagian TTD dengan aspect ratio yang benar
+if (ttdBase64) {
+    try {
+        // ✅ UKURAN TTD YANG LEBIH BESAR DAN PROPORSIONAL
+        const ttdWidth = 40; 
+        const ttdHeight = 20; 
+        
+        doc.addImage(ttdBase64, 'PNG', ttdX, dibuatOlehY, ttdWidth, ttdHeight);
+        console.log('✅ TTD berhasil ditambahkan dengan ukuran proporsional');
+    } catch (e) {
+        console.log('❌ Gagal menambahkan TTD:', e.message);
+        // Fallback placeholder dengan border tipis
+        doc.setDrawColor(0, 0, 0);
+        doc.setLineWidth(0.3);
+        doc.rect(ttdX, dibuatOlehY, 50, 30);
+        
+        doc.setFontSize(5);
+        doc.setTextColor(0, 0, 0);
+        doc.text('TANDA TANGAN', ttdX + 20, dibuatOlehY + 10, { align: 'center' });
+        
+        // Tambahkan garis untuk tanda tangan
+        doc.setDrawColor(0, 0, 0);
+        doc.setLineWidth(0.3);
+        doc.line(ttdX + 10, dibuatOlehY + 16, ttdX + 30, dibuatOlehY + 16);
+    }
+} else {
+    // Fallback placeholder dengan border tipis
+    doc.setDrawColor(0, 0, 0);
+    doc.setLineWidth(0.3);
+    doc.rect(ttdX, dibuatOlehY, 40, 20);
+    
+    doc.setFontSize(5);
+    doc.setTextColor(0, 0, 0);
+    doc.text('TANDA TANGAN', ttdX + 20, dibuatOlehY + 10, { align: 'center' });
+    
+    // Garis tanda tangan
+    doc.setDrawColor(0, 0, 0);
+    doc.setLineWidth(0.3);
+    doc.line(ttdX + 10, dibuatOlehY + 16, ttdX + 30, dibuatOlehY + 16);
+}
+    doc.setFontSize(7);
+    doc.setTextColor(0, 0, 0);
+    doc.text('Dibuat Oleh:', ttdX, dibuatOlehY + 25);
+    doc.text('Teknisi Sarana dan Prasana', ttdX, dibuatOlehY + 30);
+    doc.text('Dicky Adji Nugraha', ttdX, dibuatOlehY + 35);
+    
+    // Footer halaman
+    const pageCount = doc.internal.getNumberOfPages();
+    for (let i = 1; i <= pageCount; i++) {
+        doc.setPage(i);
+        doc.setFontSize(6);
+        doc.text(`Halaman ${i} dari ${pageCount}`, centerX, pageHeight - 10, { align: 'center' });
+    }
+
+    // Simpan PDF
+    const fileName = isSeparateReport 
+        ? `Laporan_${ruangan.replace(/\s+/g, '_')}_${tanggal}.pdf`
+        : `Laporan_Kebersihan_${tanggal}.pdf`;
+    
+    console.log('💾 Saving PDF as:', fileName);
+    doc.save(fileName);
+    
+    console.log('✅ PDF generated successfully with real images!');
+}
+
+// Tambahkan fungsi ini di logRFID.html setelah variabel global
+function getImagePath(nama, type) {
+    const basePath = window.location.origin;
+    
+    if (type === 'logo') {
+        return `${basePath}/assets/logo/logo_pengadilan.png`;
+    } else if (type === 'ttd') {
+        return `${basePath}/assets/ttd/ttd_dicky.png`;
+    } else if (type === 'foto_petugas') {
+        if (!nama) return null;
+        // ✅ GUNAKAN MAPPING YANG SAMA DENGAN laporan.html
+        const mappedName = mapNamaPetugasKeFile(nama);
+        console.log(`🖼️ Mencari foto petugas: ${nama} -> ${mappedName}.jpg`);
+        
+        return `${basePath}/assets/foto_petugas/${mappedName}.jpg`;
+    } else if (type === 'foto_pengawas') {
+        return `${basePath}/assets/foto_pengawas/dicky_adji_nugraha.jpg`;
+    }
+    return null;
+}
+
+// ✅ PERBAIKAN: Fungsi mapping yang SAMA PERSIS dengan laporan.html
+function mapNamaPetugasKeFile(namaPetugas) {
+    if (!namaPetugas) return '';
+    
+    const mapping = {
+        'NURHAEDA, S.ag': 'nurhaeda_s_ag',
+        'Harits Fakhruni Zainuddin, S.Kom': 'harits_fakhruni_zainuddin_s_kom', 
+        'M. Nazar, SH': 'm_nazar_sh',
+        'Muh. Risal': 'muh_risal',
+        'Sunardi': 'sunardi',
+        'Syamsuddin': 'syamsuddin',
+        'Hasanuddin': 'hasanuddin'
+        // Tambahkan mapping lainnya sesuai kebutuhan
+    };
+    
+    // Cari di mapping terlebih dahulu
+    if (mapping[namaPetugas]) {
+        return mapping[namaPetugas];
+    }
+    
+    // Fallback: format nama secara otomatis
+    return namaPetugas
+        .toLowerCase()
+        .replace(/\s*,\s*/g, '_') // Ganti koma dengan underscore
+        .replace(/\s+/g, '_')
+        .replace(/[^a-z0-9_]/g, '');
+}
+
+
+function loadImageAsBase64(url) {
+    return new Promise((resolve, reject) => {
+        if (!url) {
+            reject(new Error('URL gambar tidak valid'));
+            return;
+        }
+
+        const img = new Image();
+        img.crossOrigin = 'Anonymous';
+        
+        img.onload = function() {
+            try {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                // Clear canvas dengan transparan
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Gambar image dengan transparansi
+                ctx.drawImage(img, 0, 0);
+                
+                // Convert ke PNG untuk menjaga transparansi
+                const dataURL = canvas.toDataURL('image/png');
+                resolve(dataURL);
+            } catch (e) {
+                reject(new Error('Gagal mengkonversi gambar: ' + e.message));
+            }
+        };
+        
+        img.onerror = function() {
+            reject(new Error('Gagal memuat gambar dari: ' + url));
+        };
+        
+        // Timeout setelah 5 detik
+        const timeout = setTimeout(() => {
+            reject(new Error('Timeout memuat gambar'));
+        }, 5000);
+        
+        img.onload = function() {
+            clearTimeout(timeout);
+            try {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                // Clear canvas dengan transparan
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Gambar image dengan transparansi
+                ctx.drawImage(img, 0, 0);
+                
+                // Convert ke PNG untuk menjaga transparansi
+                const dataURL = canvas.toDataURL('image/png');
+                resolve(dataURL);
+            } catch (e) {
+                reject(new Error('Gagal mengkonversi gambar: ' + e.message));
+            }
+        };
+        
+        img.src = url;
+        
+        // Jika gambar sudah di-cache, trigger onload manually
+        if (img.complete) {
+            img.onload();
+        }
+    });
+}
+
+        // ==================== QR CODE SYSTEM ====================
+        function updateRoomsData(logs) {
+            const roomsMap = new Map();
+            
+            logs.forEach(log => {
+                if (log.ruangan) {
+                    let rooms = [];
+                    if (typeof log.ruangan === 'string') {
+                        rooms = log.ruangan.split(',').map(r => r.trim());
+                    } else if (Array.isArray(log.ruangan)) {
+                        rooms = log.ruangan.map(r => r.nama_ruangan);
+                    }
+                    
+                    rooms.forEach(roomName => {
+                        if (roomName && roomName !== 'Belum diassign') {
+                            if (!roomsMap.has(roomName)) {
+                                roomsMap.set(roomName, {
+                                    nama: roomName,
+                                    logs: [],
+                                    lastUpdated: null,
+                                    checklistStatus: 'belum'
+                                });
+                            }
+                            const room = roomsMap.get(roomName);
+                            room.logs.push(log);
+                            
+                            // Update status checklist
+                            if (log.status === 'selesai') {
+                                room.checklistStatus = 'selesai';
+                            } else if (room.checklistStatus !== 'selesai' && log.status === 'tercatat') {
+                                room.checklistStatus = 'tercatat';
+                            }
+                            
+                            // Update last updated time
+                            if (!room.lastUpdated || new Date(log.waktu) > new Date(room.lastUpdated)) {
+                                room.lastUpdated = log.waktu;
+                            }
+                        }
+                    });
+                }
+            });
+            
+            allRoomsData = Array.from(roomsMap.values());
+            console.log('🏢 Data ruangan diupdate:', allRoomsData);
+        }
+
+        function showQRCodeModal() {
+            generateAllQRCodes();
+            const modal = new bootstrap.Modal(document.getElementById('qrcodeModal'));
+            modal.show();
+        }
+
+        function generateAllQRCodes() {
+            const container = document.getElementById('allQRCodes');
+            const selectedDate = document.getElementById('qrDateFilter').value;
+            container.innerHTML = '';
+            
+            if (allRoomsData.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center py-4">
+                        <i class="fas fa-inbox fa-3x text-muted"></i>
+                        <p class="mt-2">Tidak ada data ruangan</p>
+                    </div>`;
+                return;
+            }
+            
+            allRoomsData.forEach(room => {
+                const roomDiv = document.createElement('div');
+                roomDiv.className = 'col-md-4 col-sm-6 mb-4 room-qr-item';
+                roomDiv.setAttribute('data-room-name', room.nama.toLowerCase());
+                
+                const qrContainer = document.createElement('div');
+                qrContainer.className = 'qr-code-container';
+                
+                // Status indicator
+                let statusBadge = '';
+                switch (room.checklistStatus) {
+                    case 'selesai':
+                        statusBadge = '<span class="badge bg-success">Selesai</span>';
+                        break;
+                    case 'tercatat':
+                        statusBadge = '<span class="badge bg-warning">Tercatat</span>';
+                        break;
+                    default:
+                        statusBadge = '<span class="badge bg-secondary">Belum</span>';
+                }
+                
+                const roomTitle = document.createElement('h6');
+                roomTitle.className = 'room-title';
+                roomTitle.innerHTML = `${room.nama} ${statusBadge}`;
+                
+                const qrDiv = document.createElement('div');
+                qrDiv.id = `qrcode-${room.nama.replace(/\s+/g, '-')}`;
+                
+                const lastUpdate = document.createElement('div');
+                lastUpdate.className = 'qr-info';
+                lastUpdate.innerHTML = `
+                    <div><strong>Update:</strong> ${room.lastUpdated ? new Date(room.lastUpdated).toLocaleDateString('id-ID') : 'Belum ada data'}</div>
+                    <div><strong>Logs:</strong> ${room.logs.length} aktivitas</div>
+                `;
+                
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'btn btn-sm btn-outline-primary mt-2';
+                downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download';
+                downloadBtn.onclick = () => downloadQRCode(room.nama, selectedDate);
+                
+                qrContainer.appendChild(roomTitle);
+                qrContainer.appendChild(qrDiv);
+                qrContainer.appendChild(lastUpdate);
+                qrContainer.appendChild(downloadBtn);
+                roomDiv.appendChild(qrContainer);
+                container.appendChild(roomDiv);
+                
+                // Generate QR Code dengan URL permanen
+                const currentUrl = new URL(window.location.href);
+                const baseUrl = `${currentUrl.protocol}//${currentUrl.host}`;
+                const url = `${BASE_URL}/laporan2.html?room=${encodeURIComponent(room.nama)}&date=${selectedDate}`;
+                new QRCode(qrDiv, {
+                    text: url,
+                    width: 120,
+                    height: 120,
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                
+                // Tambahkan teks URL di bawah QR code
+                const urlText = document.createElement('div');
+                urlText.className = 'qr-info small text-muted mt-2';
+                urlText.textContent = `${room.nama} - ${selectedDate}`;
+                qrContainer.appendChild(urlText);
+            });
+        }
+
+        function filterQRCodes() {
+            const filter = document.getElementById('qrRoomFilter').value.toLowerCase();
+            const items = document.querySelectorAll('.room-qr-item');
+            
+            let visibleCount = 0;
+            items.forEach(item => {
+                const roomName = item.getAttribute('data-room-name');
+                if (roomName.includes(filter)) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Jika tidak ada yang visible, tampilkan pesan
+            if (visibleCount === 0) {
+                document.getElementById('allQRCodes').innerHTML = `
+                    <div class="col-12 text-center py-4">
+                        <i class="fas fa-search fa-3x text-muted"></i>
+                        <p class="mt-2">Tidak ada ruangan yang sesuai dengan pencarian</p>
+                    </div>`;
+            }
+        }
+
+        function downloadQRCode(roomName, date) {
+            const canvas = document.querySelector(`#qrcode-${roomName.replace(/\s+/g, '-')} canvas`);
+            if (canvas) {
+                const link = document.createElement('a');
+                link.download = `QRCode_${roomName}_${date}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                showNotification(`QR Code untuk ${roomName} berhasil di-download`, 'success');
+            }
+        }
+
+        async function downloadAllQRCodes() {
+            const zip = new JSZip();
+            const date = document.getElementById('qrDateFilter').value;
+            let count = 0;
+            
+            for (const room of allRoomsData) {
+                const canvas = document.querySelector(`#qrcode-${room.nama.replace(/\s+/g, '-')} canvas`);
+                if (canvas) {
+                    const dataURL = canvas.toDataURL('image/png').split(',')[1];
+                    zip.file(`QRCode_${room.nama}_${date}.png`, dataURL, { base64: true });
+                    count++;
+                }
+            }
+            
+            if (count > 0) {
+                const content = await zip.generateAsync({ type: 'blob' });
+                saveAs(content, `QRCode_Monitoring_Kebersihan_${date}.zip`);
+                showNotification(`${count} QR Code berhasil di-download dalam format ZIP`, 'success');
+            } else {
+                showNotification('Tidak ada QR Code yang dapat di-download', 'warning');
+            }
+        }
+
+        // ==================== UTILITY FUNCTIONS ====================
+        function showNotification(message, type = 'info') {
+            // Hapus toast sebelumnya jika ada
+            const existingToast = document.getElementById('notification-toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            const toastContainer = document.createElement('div');
+            toastContainer.className = 'toast-container';
+            toastContainer.innerHTML = `
+                <div id="notification-toast" class="toast align-items-center text-white bg-${type === 'error' ? 'danger' : type === 'warning' ? 'warning' : 'success'} border-0" 
+                     role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <i class="fas fa-${type === 'error' ? 'exclamation-triangle' : type === 'warning' ? 'exclamation-circle' : 'check-circle'} me-2"></i>
+                            ${message}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>`;
+            
+            document.body.appendChild(toastContainer);
+            
+            const toastElement = document.getElementById('notification-toast');
+            const toast = new bootstrap.Toast(toastElement, { delay: 3000 });
+            toast.show();
+            
+            // Hapus toast setelah ditutup
+            toastElement.addEventListener('hidden.bs.toast', function() {
+                toastContainer.remove();
+            });
+        }
+
+        // ==================== DEBUG FUNCTIONS ====================
+        function debugChecklistData() {
+            console.log('=== 🐛 DEBUG CHECKLIST DATA ===');
+            
+            if (rfidLogsData.length === 0) {
+                console.log('❌ Tidak ada data log');
+                return;
+            }
+            
+            console.log(`📊 Total logs: ${rfidLogsData.length}`);
+            
+            rfidLogsData.forEach((log, index) => {
+                console.log(`\n📋 LOG ${index + 1} (ID: ${log.id}):`);
+                console.log('   Petugas:', log.petugas_name);
+                console.log('   Ruangan:', log.ruangan);
+                console.log('   Status:', log.status);
+                console.log('   Checklist Data:');
+                console.log('   - Lantai:', log.checklist_lantai, `(tipe: ${typeof log.checklist_lantai})`);
+                console.log('   - Kaca Jendela:', log.checklist_kaca_jendela, `(tipe: ${typeof log.checklist_kaca_jendela})`);
+                console.log('   - Pintu:', log.checklist_pintu, `(tipe: ${typeof log.checklist_pintu})`);
+                console.log('   - Lawa-lawa:', log.checklist_lawa_lawa, `(tipe: ${typeof log.checklist_lawa_lawa})`);
+                console.log('   - Lubang Angin:', log.checklist_lubang_angin, `(tipe: ${typeof log.checklist_lubang_angin})`);
+                console.log('   - Kusen:', log.checklist_kusen_jendela_dan_pintu, `(tipe: ${typeof log.checklist_kusen_jendela_dan_pintu})`);
+                console.log('   - Keterangan:', log.checklist_keterangan);
+            });
+        }
+
+        // Export fungsi debug ke global scope
+        window.debugChecklistData = debugChecklistData;
+        window.loadRfidLogs = loadRfidLogs;
+
+    </script>
+</body>
+</html>
